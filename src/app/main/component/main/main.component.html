@@ -1,0 +1,66 @@
+<mat-sidenav-container class="main-container" [hasBackdrop]="false">
+  <mat-sidenav #drawer opened class="sidenav"
+               position="end" mode="push">
+
+    <div class="login-form-container">
+      <form name="login-form" id="login-form" class="login-form">
+        <label>Login de usuário</label>
+        <span class="login-error"></span>
+        <div class="inputWithIcon">
+          <input type="text" name="log" id="log" value="" size="20" class="input username" placeholder="Usuário">
+          <i class="fa fa-user fa-lg"></i>
+        </div>
+        <div class="inputWithIcon">
+          <input type="password" name="pwd" id="login_password" value="" size="20" class="input password" placeholder="Senha">
+          <i class="fa fa-lock fa-lg"></i>
+        </div>
+        <a class="lost-pass" href="https://mrdgames.com.br/wp-login.php?action=lostpassword" title="Senha perdida">Senha
+          perdida</a>
+        <input type="submit" class="button" name="submit" id="submit" value="Entrar" tabindex="4">
+        <input type="hidden" name="is_custom_login" value="1">
+      </form>
+
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div id="wrapper">
+      <div class="center logotype">
+        <header>
+          <div class="logo-box">
+            <img width="220" alt="MRD Logo" src="assets/img/logo-300x300.png">
+          </div>
+        </header>
+      </div>
+
+      <div id="content" class="site-content">
+        <div class="center">
+          <h2 class="heading font-center">Modo de manutenção ativado</h2>
+          <div class="description">
+            <p>O site estará disponível em breve</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <picture class="bg-img">
+      <img src="../../../../assets/img/Gamer.jpg" alt="Background">
+    </picture>
+
+
+    <div class="btn-lock-icon">
+      <i class="fa fa-lock fa-2x" (click)="drawer.toggle()"></i>
+    </div>
+
+    <footer>
+      <div class="center">
+        <div style="font-weight:600;font-style:normal">© MRD Games 2018</div>
+      </div>
+    </footer>
+
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

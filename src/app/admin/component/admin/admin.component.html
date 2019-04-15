@@ -1,0 +1,53 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <a mat-list-item href="#">Link 1</a>
+          </mat-expansion-panel-header>
+          <a mat-list-item href="#">SubLink 1.1</a>
+          <a mat-list-item href="#">SubLink 1.2</a>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <a mat-list-item href="#">Link 2</a>
+          </mat-expansion-panel-header>
+          <a mat-list-item href="#">SubLink 2.1</a>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <a mat-list-item href="#">Link 3</a>
+          </mat-expansion-panel-header>
+          <a mat-list-item href="#">SubLink 3.1</a>
+          <a mat-list-item href="#">SubLink 3.2</a>
+          <a mat-list-item href="#">SubLink 3.3</a>
+          <a mat-list-item href="#">SubLink 3.4</a>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>MRD</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

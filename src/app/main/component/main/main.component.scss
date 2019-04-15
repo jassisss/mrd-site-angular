@@ -1,0 +1,325 @@
+body, .preloader {
+  background-color: #111;
+}
+
+.main-container {
+  background-color: #111111 !important;
+  font-family: Dashico, "Helvetica Neue", sans-serif;
+  color: #eac220 !important;
+  height: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  z-index: 0;
+  overflow: hidden;
+  position: absolute !important;
+  overflow-y: auto;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  display: inline-block;
+  width: 100%;
+  margin: 25px 0 20px;
+}
+
+.site-content {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  left: 0;
+  top: 50%;
+}
+
+.site-content h2.heading {
+  font-style:normal;
+  font-size: 45px;
+  font-weight: lighter;
+}
+
+.site-content .font-center {
+  text-align: center;
+}
+
+.site-content h2, .site-content h3 {
+  width: 100%;
+  display: block;
+}
+
+.logotype {
+  max-width: 100%;
+}
+
+.description {
+  font-weight: lighter;
+  font-style: normal;
+}
+
+.center {
+  clear: both;
+  content: "";
+  display: block;
+  margin: 0 auto;
+  max-width: 1020px;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.logo-box img {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+}
+
+.logo-box {
+  padding: 50px 0 30px;
+}
+
+.bem-vindos {
+  text-align: center;
+}
+
+.bg-img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.bg-img img, .bg-img source {
+  background-color: #111111;
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  opacity: .5;
+}
+
+.bg-img img, .bg-img source {
+  position: absolute;
+  visibility: visible;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  height: calc(100% - 72px);
+  position: relative;
+  display: inline-block;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  min-width: 308px;
+  max-width: 308px;
+  width: 100%;
+  background-color: #111111 !important;
+}
+
+body > .login-form-container {
+  background-color: #111111CC;
+}
+
+body > .login-form-container {
+  font-family: Dashico, "Helvetica Neue", sans-serif;
+  color: #eac220 !important;
+  background: none repeat scroll 0 0 rgba(0,0,0,.8);
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  height: 100%;
+  min-height: 100%;
+  min-width: 308px;
+  max-width: 308px;
+  width: 100%;
+  position: fixed;
+  right: -308px;
+  top: 0;
+  transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  z-index: 999;
+  outline: 1px solid transparent;
+}
+
+.login-form {
+  font-family: Dashico, "Helvetica Neue", sans-serif;
+  color: #eac220 !important;
+  display: inline-block;
+  margin: 25px 0 0;
+  padding: 20px;
+  filter: alpha(opacity=50);
+  -moz-opacity: .5;
+  opacity: .5;
+  -webkit-transition: opacity .3s ease-in-out;
+  -moz-transition: opacity .3s ease-in-out;
+  -o-transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
+}
+
+.login-form:hover {
+  opacity: 1;
+  -webkit-transition: opacity .6s ease-in-out;
+  -moz-transition: opacity .6s ease-in-out;
+  -o-transition: opacity .6s ease-in-out;
+  transition: opacity .6s ease-in-out;
+}
+
+.login-form input[type="text"], .login-form input[type="password"] {
+  color: inherit;
+  background-color: rgba(113,113,113,.6);
+  background-position: 14px center;
+  background-repeat: no-repeat;
+  float: left;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 10px;
+  padding: 8px 16px 8px 40px;
+  width: 100%;
+  display: block;
+  line-height: 28px;
+  border: none;
+  max-width: 210px;
+}
+
+.login-form label {
+  color: inherit;
+  float: left;
+  font-family: inherit;
+  font-size: 25px;
+  padding: 0 0 10px;
+  width: 100%;
+}
+
+.login-form a.lost-pass {
+  font-family: Dashico, "Helvetica Neue", sans-serif;
+  color: #eac220;
+  float: left;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.login-form input[type="submit"] {
+  font-family: Dashico, "Helvetica Neue", sans-serif;
+  color: #eac220;
+  font-size: 20px;
+  background: 0 0;
+  cursor: pointer;
+  border: 2px solid rgb(255, 255, 255);
+  font-weight: 700;
+  margin: 10px 0 0;
+  padding: 5px 10px;
+  text-align: center;
+  float: right;
+  display: inline-block;
+}
+
+.login-form input[type="submit"]:hover {
+  border: 0;
+  padding: 5px 10px;
+  font-weight: 700;
+  margin: 10px 0 0;
+  color: #111111;
+  font-size: 20px;
+  font-family: inherit;
+  background-color: #eac220;
+  cursor: pointer;
+  transition: all .3s linear;
+}
+
+.btn-lock-icon {
+  position: absolute;
+  color: #eac220;
+  z-index: 99;
+  left: calc(100% - 48px);
+  float: right;
+  top: 23%;
+  cursor: pointer;
+}
+
+.mat-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: auto;
+  width: auto;
+}
+
+.material-icons {
+  font-size: 36px;
+}
+
+.inputWithIcon input[type="text"], .inputWithIcon input[type="password"] {
+  padding-left: 40px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon .fa-user{
+  position: absolute;
+  left: 0;
+  top: 42px;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.inputWithIcon .fa-lock{
+  position: absolute;
+  left: 0;
+  top: 96px;
+  padding: 10px;
+  transition: 0.3s;
+}
+/*.inputWithIcon .username {
+  font-size: 24px;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  padding: 7px;
+  transition: 0.3s;
+}
+
+.inputWithIcon .password {
+  font-size: 24px;
+  position: absolute;
+  left: 0;
+  top: 93px;
+  padding: 7px;
+  transition: 0.3s;
+}*/
+
+
+
