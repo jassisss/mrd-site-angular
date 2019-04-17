@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 import { TesteComponent } from './teste/teste.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ControleComponent } from './controle/controle.component';
+import { UserComponent } from './user/user.component';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -17,7 +18,6 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatSortModule, MatGridListModule, MatMenuModule } from '@angular/material';
-import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
