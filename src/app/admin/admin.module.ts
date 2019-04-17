@@ -5,6 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { TesteComponent } from './teste/teste.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ControleComponent } from './controle/controle.component';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -15,12 +16,15 @@ import {
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule } from '@angular/material';
+  MatSortModule, MatGridListModule, MatMenuModule } from '@angular/material';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
-    TesteComponent
+    TesteComponent,
+    ControleComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import {
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatGridListModule,
+    MatMenuModule
   ]
 })
 export class AdminModule { }

@@ -19,7 +19,7 @@
             <a mat-list-item>Dashboards</a>
           </mat-expansion-panel-header>
           <div class="menu-list-item">
-            <a mat-list-item>Controle</a>
+            <a mat-list-item routerLink="/admin/controle">Controle</a>
           </div>
         </mat-expansion-panel>
 
@@ -29,7 +29,7 @@
             <a mat-list-item>Cadastros</a>
           </mat-expansion-panel-header>
           <div class="menu-list-item">
-            <a mat-list-item>Usuários</a>
+            <a mat-list-item routerLink="/admin/teste">Usuários</a>
             <a mat-list-item>Produtos</a>
           </div>
         </mat-expansion-panel>
@@ -39,10 +39,10 @@
             <a mat-list-item>Serviços</a>
           </mat-expansion-panel-header>
           <div class="menu-list-item">
-            <a mat-list-item>Serviço 3.1</a>
-            <a mat-list-item>Serviço 3.2</a>
-            <a mat-list-item>Serviço 3.3</a>
-            <a mat-list-item>Serviço 3.4</a>
+            <a mat-list-item routerLink="/admin">Serviço 3.1</a>
+            <a mat-list-item routerLink="/admin">Serviço 3.2</a>
+            <a mat-list-item routerLink="/admin">Serviço 3.3</a>
+            <a mat-list-item routerLink="/admin">Serviço 3.4</a>
           </div>
         </mat-expansion-panel>
 
@@ -62,7 +62,7 @@
       <span>MRD</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <h1>Link para os componentes filhos</h1>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
