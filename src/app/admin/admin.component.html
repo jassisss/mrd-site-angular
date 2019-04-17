@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav mat-elevation-z6" fixedInViewport="true"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="!(isHandset$ | async)">
+
+    <div class="menu-nav">
+      <mat-card class="menu-card mat-elevation-z6" color="primary">
+        <img mat-card-image src="/assets/img/Logo-192x192.png" alt="MRD Logo">
+      </mat-card>
+    </div>
+
+    <mat-nav-list>
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="mat-elevation-z6 menu-list-header">
+            <a mat-list-item>Dashboards</a>
+          </mat-expansion-panel-header>
+          <div class="menu-list-item">
+            <a mat-list-item>Controle</a>
+          </div>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="mat-elevation-z6 menu-list-header">
+            <a mat-list-item>Cadastros</a>
+          </mat-expansion-panel-header>
+          <div class="menu-list-item">
+            <a mat-list-item>Usuários</a>
+            <a mat-list-item>Produtos</a>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="menu-expansion">
+          <mat-expansion-panel-header class="mat-elevation-z6 menu-list-header">
+            <a mat-list-item>Serviços</a>
+          </mat-expansion-panel-header>
+          <div class="menu-list-item">
+            <a mat-list-item>Serviço 3.1</a>
+            <a mat-list-item>Serviço 3.2</a>
+            <a mat-list-item>Serviço 3.3</a>
+            <a mat-list-item>Serviço 3.4</a>
+          </div>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-elevation-z8 mat-toolbar-main">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>MRD</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <h1>Link para os componentes filhos</h1>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

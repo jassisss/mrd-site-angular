@@ -7,10 +7,14 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
 import { AdminModule } from './admin/admin.module';
+import { TableComponent } from './table/table.component';
+import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 
 @NgModule({
+
   declarations: [
-    AppComponent
+    AppComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +22,10 @@ import { AdminModule } from './admin/admin.module';
     AppRoutingModule,
     SharedModule,
     MainModule,
-    AdminModule
+    AdminModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

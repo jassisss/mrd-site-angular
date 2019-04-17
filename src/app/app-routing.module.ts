@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminComponent } from './admin/component/admin/admin.component';
-import {MainComponent} from './main/component/main/main.component';
+import { MainComponent } from './main/main.component';
+import { TableComponent } from './table/table.component';
 
+// @ts-ignore
 const appRoutes: Routes = [
-  {path: 'admin', component: AdminComponent},
   {path: 'main', component: MainComponent},
-  {path: '', component: AdminComponent},
-  {path: '**', component: AdminComponent}
+  {path: 'table', component: TableComponent},
+  {path: '', redirectTo: '/admin', pathMatch: 'full'},
+  {path: '**', redirectTo: '/admin', pathMatch: 'full'}
   ];
 
 @NgModule({
