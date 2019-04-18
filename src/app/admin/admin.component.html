@@ -19,7 +19,7 @@
             <a mat-list-item>Dashboards</a>
           </mat-expansion-panel-header>
           <div class="menu-list-item">
-            <a mat-list-item routerLink="/admin/controle">Controle</a>
+            <a mat-list-item routerLinkActive="active" routerLink="/admin/controle">Controle</a>
           </div>
         </mat-expansion-panel>
 
@@ -30,7 +30,7 @@
           </mat-expansion-panel-header>
           <div class="menu-list-item">
             <a mat-list-item routerLink="/admin/user">Usuários</a>
-            <a mat-list-item routerLink="/admin/teste">Produtos</a>
+            <a mat-list-item routerLink="/admin/product">Produtos</a>
           </div>
         </mat-expansion-panel>
 
@@ -62,7 +62,9 @@
       <span>MRD</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

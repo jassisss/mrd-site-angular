@@ -8,7 +8,9 @@ import { TableComponent } from './table/table.component';
 // @ts-ignore
 const appRoutes: Routes = [
   {path: 'main', component: MainComponent},
-  {path: 'table', component: TableComponent}/*,
+  {path: 'table', component: TableComponent},
+  {path: '', redirectTo: 'admin', pathMatch: 'full'}
+  /*,
   {path: '**', component: Erro404Component}*/
 ];
 

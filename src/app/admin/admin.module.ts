@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { TesteComponent } from './teste/teste.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ControleComponent } from './controle/controle.component';
 import { UserComponent } from './user/user.component';
+import { ProductComponent } from './product/product.component';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -17,14 +17,16 @@ import {
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule, MatGridListModule, MatMenuModule } from '@angular/material';
+  MatSortModule, MatGridListModule, MatMenuModule, MatSelectModule
+} from '@angular/material';
+import {CdkTableModule} from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
     AdminComponent,
-    TesteComponent,
     ControleComponent,
-    UserComponent
+    UserComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,9 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    CdkTableModule,
+    MatSelectModule
   ]
 })
 export class AdminModule { }
