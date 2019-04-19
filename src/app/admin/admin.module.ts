@@ -17,16 +17,18 @@ import {
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule, MatGridListModule, MatMenuModule, MatSelectModule
+  MatSortModule, MatGridListModule, MatMenuModule, MatSelectModule, MatPaginatorIntl, MatInputModule, MatCheckboxModule, MatRadioModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
+import { PeriodictComponent } from './periodict/periodict.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     ControleComponent,
     UserComponent,
-    ProductComponent
+    ProductComponent,
+    PeriodictComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,13 @@ import {CdkTableModule} from '@angular/cdk/table';
     MatGridListModule,
     MatMenuModule,
     CdkTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule
+  ],
+  providers: [
+    {provide: MatPaginatorIntl, useClass: UserComponent}
   ]
 })
 export class AdminModule { }

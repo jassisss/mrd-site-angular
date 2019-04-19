@@ -1,35 +1,32 @@
 <div class="table-container">
 
   <h1 class="mat-h1 mat-h1-text">Usuários</h1>
+  
+  <mat-form-field class="mat-h1-text">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+  </mat-form-field>
 
-
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-
-
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-drawer">
-
+  <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8 table-drawer">
     <!-- Position Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> #</th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
-
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Nome</th>
+      <th mat-header-cell  mat-sort-header *matHeaderCellDef> Nome</th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
     <!-- Email Column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> E-mail</th>
+      <th mat-header-cell  mat-sort-header *matHeaderCellDef> E-mail</th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
     <!-- Registered Column -->
     <ng-container matColumnDef="registered">
-      <th mat-header-cell *matHeaderCellDef> Data de Registro</th>
+      <th mat-header-cell  mat-sort-header *matHeaderCellDef> Data de Registro</th>
       <td mat-cell *matCellDef="let element"> {{element.registered | date: 'dd/MM/yyyy'}} </td>
     </ng-container>
 

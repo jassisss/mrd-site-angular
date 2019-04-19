@@ -15,7 +15,8 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatFormFieldModule,
-  MatInputModule} from '@angular/material';
+  MatInputModule, MatPaginatorIntl
+} from '@angular/material';
 
 @NgModule({
 

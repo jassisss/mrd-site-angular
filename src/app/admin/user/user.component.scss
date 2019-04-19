@@ -5,9 +5,21 @@ table {
 .table-drawer {
   width: 95%;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .mat-h1-text {
   padding-left: 20px;
   padding-top: 20px;
+}
+
+tr.mat-header-row {
+  background-color: #c2c2c2 !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mat-header-cell {
+  color: rgba(0,0,0,.54);
+  font-size: 20px;
 }
