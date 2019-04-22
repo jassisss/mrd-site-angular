@@ -19,6 +19,7 @@ export class PeriodictComponent implements OnInit {
 
   constructor( private dataService: DataService) {
     this.selection.clear();
+//    this.dataSource.forEach(row => this.selection.selected = 'deselect');
   }
 
   ngOnInit() {
