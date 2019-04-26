@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -21,6 +24,7 @@ import {
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import { PeriodictComponent } from './periodict/periodict.component';
+import { ReadingComponent } from './reading/reading.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,8 @@ import { PeriodictComponent } from './periodict/periodict.component';
     ControleComponent,
     UserComponent,
     ProductComponent,
-    PeriodictComponent
+    PeriodictComponent,
+    ReadingComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +58,8 @@ import { PeriodictComponent } from './periodict/periodict.component';
     MatRadioModule
   ],
   providers: [
-    {provide: MatPaginatorIntl, useClass: UserComponent}
+    {provide: MatPaginatorIntl, useClass: UserComponent},
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })
 export class AdminModule { }

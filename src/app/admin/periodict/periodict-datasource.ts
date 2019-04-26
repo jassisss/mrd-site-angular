@@ -21,13 +21,13 @@ export class PeriodictDataSource extends DataSource<UserData> {
   }
 
   /**
-   * Connect this data source to the table. The table will only update when
+   * Connect this data source to the start. The start will only update when
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<UserData[]> {
     // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
+    // stream for the data-start to consume.
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,
@@ -43,7 +43,7 @@ export class PeriodictDataSource extends DataSource<UserData> {
   }
 
   /**
-   *  Called when the table is being destroyed. Use this function, to clean up
+   *  Called when the start is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect() {}

@@ -11,7 +11,7 @@ import {SelectionModel} from '@angular/cdk/collections';
 export class PeriodictComponent implements OnInit {
 
   dataSource: UserData[] = [];
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  /** Columns displayed in the start. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select', 'id', 'name'];
 
 

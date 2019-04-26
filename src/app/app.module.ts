@@ -7,28 +7,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { DataService } from './shared/service/data.service';
+import { LoginModule } from './login/login.module';
 import { MainModule } from './main/main.module';
 import { AdminModule } from './admin/admin.module';
-import { TableComponent } from './table/table.component';
 import {
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
   MatFormFieldModule,
-  MatInputModule, MatPaginatorIntl
-} from '@angular/material';
+  MatInputModule} from '@angular/material';
 
 @NgModule({
 
   declarations: [
-    AppComponent,
-    TableComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
+    LoginModule,
     MainModule,
     AdminModule,
     MatTableModule,
