@@ -1,13 +1,43 @@
 <article id="wrapper">
-  <section id="main">
+  <main id="cont">
+    <section class="main-bg">
+      <header>
+        <div class="logo-box center">
+          <img alt="MRD Logo" src="assets/img/logo-300x300.png">
+        </div>
+      </header>
+      <picture class="bg-img">
+        <img src="../../assets/img/Gamer.jpg" alt="Background">
+      </picture>
+    </section>
+    <footer>
+      <div class="center-footer">
+        <div>© MRD Games 2018</div>
+        <a href="http://www.cgctec.com.br" target="_blank" class="copy">Desenvolvido © 2019 - por CGC Tecnologia</a>
+      </div>
+    </footer>
+  </main>
+  <main id="main">
     <section id="content">
-      <h2>Conteúdo</h2>
-      <p>O conteúdo vai aqui!!</p>
     </section>
     <nav id="nav">
-      <a href="#" class="toggle-nav btn-lock"><i class="fa fa-lock"></i></a>
-      <h2>Nav-bar</h2>
-      <p>Aqui vai a nav bar</p>
+      <a href="#" class="toggle-nav btn-lock"><i class="fas fa-lock"></i></a>
+      <form name="login-form" id="login-form" class="login-form">
+        <label>Login de usuário</label>
+        <span class="login-error"></span>
+        <div class="inputWithIcon">
+          <input type="text" name="log" id="login_name" value="" size="20" class="input username" placeholder="Usuário">
+          <i class="fas fa-user fa-lg"></i>
+        </div>
+        <div class="inputWithIcon">
+          <input type="password" name="pwd" id="login_password" value="" size="20" class="input password"
+                 placeholder="Senha">
+          <i class="fas fa-lock fa-lg"></i>
+        </div>
+        <a class="lost-pass" href="#" title="Senha perdida">Senha perdida</a>
+        <input type="submit" class="button" name="submit" id="submit" value="Entrar" tabindex="4">
+        <input type="hidden" name="is_custom_login" value="1">
+      </form>
     </nav>
-  </section>
+  </main>
 </article>
