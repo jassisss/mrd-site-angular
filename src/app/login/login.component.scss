@@ -105,7 +105,7 @@ $mrd-bg-color-trans: rgba(17,17,17,0.8);
   right: -300px;
   background-color: $mrd-bg-color-trans;
   color: $mrd-color;
-  padding: 25px;
+  padding: 25px 10px;
   z-index: 99;
 }
 
@@ -249,6 +249,7 @@ footer {
 
 .login-form {
   display: inline-block;
+  width: 100%;
   margin: 25px 0 0;
   padding: 20px;
   filter: alpha(opacity=50);
@@ -276,7 +277,6 @@ footer {
   display: block;
   line-height: 28px;
   border: none;
-  max-width: 210px;
 }
 
 .login-form label {
