@@ -22,7 +22,7 @@ import {
   MatPaginatorModule,
   MatSortModule, MatGridListModule, MatMenuModule, MatSelectModule, MatPaginatorIntl, MatInputModule, MatCheckboxModule, MatRadioModule
 } from '@angular/material';
-import {CdkTableModule} from '@angular/cdk/table';
+import { CdkTableModule } from '@angular/cdk/table';
 import { PeriodictComponent } from './periodict/periodict.component';
 import { ReadingComponent } from './reading/reading.component';
 

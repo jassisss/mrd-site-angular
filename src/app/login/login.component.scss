@@ -1,53 +1,4 @@
-/* ********************************
-         VARIÁVEIS
-*********************************** */
-$mrd-color: #eac220;
-$mrd-bg-color: #111111;
-$mrd-bg-color-trans: rgba(17,17,17,0.8);
-
-/* ********************************
-         MIXINS
-*********************************** */
-@mixin u-transition ($transition) {
-  -webkit-transition: $transition;
-  -moz-transition: $transition;
-  -o-transition: $transition;
-  transition: $transition;
-}
-
-@mixin u-transition-300 {
-  -webkit-transition: 300ms ease all;
-}
-
-@mixin u-box-sizing ($box-sizing) {
-  -webkit-box-sizing: $box-sizing;
-  -moz-box-sizing: $box-sizing;
-  box-sizing: $box-sizing;
-}
-
-@mixin u-transform ($transform) {
-  -webkit-transform: $transform;
-  -moz-transform: $transform;
-  -o-transform: $transform;
-  transform: $transform;
-}
-
-@mixin u-backface ($backface) {
-  -webkit-backface-visibility: $backface;
-  -moz-backface-visibility: $backface;
-  backface-visibility: $backface;
-}
-
-/* ********************************
-         RESET
-*********************************** */
-
-* {
-  margin: 0;
-  padding: 0;
-  @include u-box-sizing(border-box);
-}
-
+@import "../shared/shared";
 /* ********************************
         GRID TEMPLATE
 *********************************** */
@@ -315,27 +266,27 @@ footer {
   background-color: $mrd-color;
 }
 
-.inputWithIcon input[type="text"], .inputWithIcon input[type="password"] {
-  padding-left: 40px;
-}
-
 .inputWithIcon {
   position: relative;
+  display: inline-block;
+  font-family: "Font Awesome 5 Free", "Open Sans", sans-serif;
+  font-size: 1.5em;
+  padding-right: 3px;
+  font-weight:900;
 }
 
-.inputWithIcon .fa-user{
+.inputIconUser::before {
   position: absolute;
-  left: 0;
-  top: 48px;
-  padding: 10px;
-  transition: 0.3s;
+  top: 8px;
+  left: 8px;
+  content: "\f007";
 }
 
-.inputWithIcon .fa-lock{
+.inputIconPassword::before {
   position: absolute;
-  left: 0;
-  top: 102px;
-  padding: 10px;
-  transition: 0.3s;
+  top: 8px;
+  left: 8px;
+  content: "\f023";
 }
+
 

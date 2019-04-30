@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,9 +9,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor() { }
+  loginForm = FormGroup;
+
+  constructor( private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    // @ts-ignore
+    this.loginForm = this.formBuilder.group({
+      loginName: [null, Validators.required],
+      loginPassword: [null, Validators.required]
+    });
+
+  }
+
+  onSubmit(formulario) {
+    this.onReset(formulario);
+  }
+
+  onReset(formulario) {
+    formulario.reset();
+  }
+
+  getErrorMessage() {
+/*    if (this.loginName.hasError('required') && this.loginPassword.hasError('required')) {
+      return 'Erro no login';
+    }
+    if (this.loginName.hasError('required')) {
+      return 'Usuário é requerido';
+    }
+    if (this.loginPassword.hasError('required')) {
+      return 'Usuário é requerido';
+    }*/
+    return 'Erro';
   }
 
 }

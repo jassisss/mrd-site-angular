@@ -5,9 +5,14 @@ import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { Erro404Component } from './component/erro404/erro404.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { FormDebugComponent } from './component/form-debug/form-debug.component';
 
 @NgModule({
-  declarations: [SidenavComponent, Erro404Component],
+  declarations: [
+    SidenavComponent,
+    Erro404Component,
+    FormDebugComponent
+  ],
   imports: [
     CommonModule,
     LayoutModule,
@@ -19,7 +24,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
   ],
   exports: [
     SidenavComponent,
-    Erro404Component
+    Erro404Component,
+    FormDebugComponent
   ]
 })
 export class SharedModule { }

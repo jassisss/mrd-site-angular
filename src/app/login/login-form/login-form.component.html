@@ -1,16 +1,23 @@
-<form name="login-form" id="login-form" class="login-form">
+<form id="login-form" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
   <label>Login de usuário</label>
-  <span class="login-error"></span>
-  <div class="inputWithIcon">
-    <input type="text" name="log" id="login_name" value="" size="20" class="input username" placeholder="Usuário">
-    <i class="fas fa-user fa-lg"></i>
-  </div>
-  <div class="inputWithIcon">
-    <input type="password" name="pwd" id="login_password" value="" size="20" class="input password"
-           placeholder="Senha">
-    <i class="fas fa-lock fa-lg"></i>
-  </div>
+
+  <span class="login-error" *ngIf="loginForm.invalid">{{getErrorMessage()}}</span>
+
+  <span class="inputWithIcon inputIconUser">
+      <input type="text" formControlName="loginName" id="login_name" value="" size="20" class="input username"
+             placeholder="Usuário">
+  </span>
+
+  <span class="inputWithIcon inputIconPassword">
+      <input type="password" formControlName="loginPassword" id="login_password" value="" size="20" class="input password"
+            placeholder="Senha">
+  </span>
+
   <a class="lost-pass" href="#" title="Senha perdida">Senha perdida</a>
+
   <input type="submit" class="button" name="submit" id="submit" value="Entrar" tabindex="4">
   <input type="hidden" name="is_custom_login" value="1">
+
+  <!--  Só para testes-->
+  <form-debug [form]="loginForm"></form-debug>
 </form>
