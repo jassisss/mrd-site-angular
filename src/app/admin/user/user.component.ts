@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {DataService} from '../../shared/service/data.service';
 import {MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
-import {UserData} from '../../shared/model/user-data';
+import {UserGeral} from '../../shared/model/user-geral';
 
 @Component({
   selector: 'app-user',
@@ -14,12 +14,12 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
   nextPageLabel     = '';
   previousPageLabel = '';
 
-  users: UserData[];
+  users: UserGeral[];
 
-  columnsToDisplay: string[] = ['id', 'name', 'email', 'registered'];
+  columnsToDisplay: string[] = ['id', 'full_name', 'email', 'date_created'];
 
  // dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
-  dataSource: MatTableDataSource<UserData>;
+  dataSource: MatTableDataSource<UserGeral>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -33,7 +33,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getUsers().subscribe(dados => {
+    this.dataService.getUsersGeral().subscribe(dados => {
       this.users = dados;
       this.dataSource = new MatTableDataSource(dados);
       this.dataSource.paginator = this.paginator;
@@ -42,7 +42,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
 
   }
 
-  getRangeLabel = function (page, pageSize, length) {
+  getRangeLabel = (page, pageSize, length) => {
     if (length === 0 || pageSize === 0) {
       return '0 de ' + length;
     }
@@ -53,7 +53,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return startIndex + 1 + ' - ' + endIndex + ' de ' + length;
-  };
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

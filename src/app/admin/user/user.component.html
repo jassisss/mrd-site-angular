@@ -13,9 +13,9 @@
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="full_name">
       <th mat-header-cell  mat-sort-header *matHeaderCellDef> Nome</th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
     </ng-container>
 
     <!-- Email Column -->
@@ -25,9 +25,9 @@
     </ng-container>
 
     <!-- Registered Column -->
-    <ng-container matColumnDef="registered">
+    <ng-container matColumnDef="date_created">
       <th mat-header-cell  mat-sort-header *matHeaderCellDef> Data de Registro</th>
-      <td mat-cell *matCellDef="let element"> {{element.registered | date: 'dd/MM/yyyy'}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.date_created | date: 'dd/MM/yyyy'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>

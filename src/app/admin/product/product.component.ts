@@ -42,7 +42,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
 
   }
 
-  getRangeLabel = function (page, pageSize, length) {
+  getRangeLabel = (page, pageSize, length) => {
     if (length === 0 || pageSize === 0) {
       return '0 de ' + length;
     }
@@ -53,7 +53,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return startIndex + 1 + ' - ' + endIndex + ' de ' + length;
-  };
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
