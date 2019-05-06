@@ -1,3 +1,36 @@
-[{"id":1, "email":"jassis@cgctec.com.br", "full_name":"Administrador", "password":"$2y$10$OmGcsXkFIgfWmJIASKsoluMY.94jLw6LeM2D1mpEpL5BrBd1zUkrK", "date_created":"2017-06-16 12:56:56", "pwd_reset_token":"w8gglcj9a710a9q1q2q6rikks086zjz9", "pwd_reset_token_creation_date":"2017-07-21 07:39:00", "usertipo_id":1, "userstatus_id":1},
- {"id":2, "email":"marcelo.simoes@ibist.org.br", "full_name":"Marcelo Simões", "password":"$2y$10$.JorO5UqkCr/9xzriV4Gde69umdLq5pofFJzVejPVho8G9bEie0hy", "date_created":"2017-06-16 15:54:03", "pwd_reset_token":"e6j8c2j0jy33uplykvlw3q5ebx444692", "pwd_reset_token_creation_date":"2017-08-27 01:11:07", "usertipo_id":1, "userstatus_id":1},
- {"id":3, "email":"jassis@ibist.org.br", "full_name":"José de Assis Silva", "password":"$2y$10$ZFkcrSDOkgK.i4Kj2k1f9.4aS3rMgc/5IDAqZErLOX2/jTdZb/RKC", "date_created":"2017-06-30 04:13:36", "pwd_reset_token":"6814zpmzy68w761ro24kg06r8wsny1if", "pwd_reset_token_creation_date":"2019-03-26 05:37:40", "usertipo_id":2, "userstatus_id":1}]
+[
+  {
+    "id": 1,
+    "email": "jassis@cgctec.com.br",
+    "full_name": "Administrador",
+    "password": "$2y$10$OmGcsXkFIgfWmJIASKsoluMY.94jLw6LeM2D1mpEpL5BrBd1zUkrK",
+    "date_created": "2017-06-16 12:56:56",
+    "pwd_reset_token": "w8gglcj9a710a9q1q2q6rikks086zjz9",
+    "pwd_reset_token_creation_date": "2017-07-21 07:39:00",
+    "usertipo_id": 1,
+    "userstatus_id": 1
+  },
+  {
+    "id": 2,
+    "email": "marcelo.simoes@ibist.org.br",
+    "full_name": "Marcelo Simões",
+    "password": "$2y$10$.JorO5UqkCr/9xzriV4Gde69umdLq5pofFJzVejPVho8G9bEie0hy",
+    "date_created": "2017-06-16 15:54:03",
+    "pwd_reset_token": "e6j8c2j0jy33uplykvlw3q5ebx444692",
+    "pwd_reset_token_creation_date": "2017-08-27 01:11:07",
+    "usertipo_id": 1,
+    "userstatus_id": 1
+  },
+  {
+    "id": 3,
+    "email": "jassis@ibist.org.br",
+    "full_name": "José de Assis Silva",
+    "password": "$2y$10$ZFkcrSDOkgK.i4Kj2k1f9.4aS3rMgc/5IDAqZErLOX2/jTdZb/RKC",
+    "date_created": "2017-06-30 04:13:36",
+    "pwd_reset_token": "6814zpmzy68w761ro24kg06r8wsny1if",
+    "pwd_reset_token_creation_date": "2019-03-26 05:37:40",
+    "usertipo_id": 2,
+    "userstatus_id": 1
+  }
+]
+
