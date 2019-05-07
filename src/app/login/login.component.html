@@ -22,7 +22,7 @@
     </section>
     <nav id="nav">
       <a href="#" class="toggle-nav btn-lock"><i class="fas fa-lock"></i></a>
-      <login-form></login-form>
+      <login-form (hasError)="withError($event)"></login-form>
     </nav>
   </main>
 </article>

@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    $(function() {
 
       $('.toggle-nav').click(function (e) {
         e.stopPropagation();
@@ -35,7 +34,19 @@ export class LoginComponent implements OnInit {
         }
       }
 
-    });
+
+  }
+
+  withError(e) {
+
+    const btnlock = $('.btn-lock>i');
+
+    if (e.hasError) {
+      btnlock.addClass('btn-has-error');
+    } else {
+      btnlock.removeClass('btn-has-error');
+    }
+
   }
 
 }

@@ -87,6 +87,10 @@
   opacity: .8;
 }
 
+.btn-has-error {
+  color: $mrd-error-color;
+}
+
 @media screen and (max-width:480px) {
   .btn-lock {
     top:10%;
@@ -213,7 +217,7 @@ footer {
   @include u-transition(opacity .6s ease-in-out);
 }
 
-.login-form input[type="text"], .login-form input[type="password"] {
+.login-form input[type="email"], .login-form input[type="password"] {
   color: inherit;
   background-color: rgba(113,113,113,.6);
   background-position: 14px center;
@@ -266,6 +270,14 @@ footer {
   background-color: $mrd-color;
 }
 
+.login-error {
+  display: inline-block;
+  padding-bottom: 10px;
+  color: $mrd-error-color;
+  font-weight: bold;
+  @include u-transition(all .6s ease-in-out);
+}
+
 .inputWithIcon {
   position: relative;
   display: inline-block;
@@ -279,7 +291,20 @@ footer {
   position: absolute;
   top: 8px;
   left: 8px;
-  content: "\f007";
+  content: "\f0e0";
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconUser.with-error {
+  color: $mrd-error-color;
+  font-weight: bold;
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconUser.with-error::before {
+  color: $mrd-error-color;
+  content: "\f00d";
+  @include u-transition(all .6s ease-in-out);
 }
 
 .inputIconPassword::before {
@@ -287,6 +312,20 @@ footer {
   top: 8px;
   left: 8px;
   content: "\f023";
+  @include u-transition(all .6s ease-in-out);
 }
+
+.inputIconPassword.with-error {
+  color: $mrd-error-color;
+  font-weight: bold;
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconPassword.with-error::before {
+  color: $mrd-error-color;
+  content: "\f00d";
+  @include u-transition(all .6s ease-in-out);
+}
+
 
 
