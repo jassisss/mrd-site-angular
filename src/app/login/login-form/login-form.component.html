@@ -1,0 +1,23 @@
+<form id="login-form" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label>Login de usuário</label>
+
+  <span class="login-error" *ngIf="withError">{{ erroMessage }}</span>
+
+  <span class="inputWithIcon inputIconUser" [ngClass]="emailClassError" >
+      <input (focusin)="clearInput()" type="email" formControlName="loginEmail" id="login_name" value="" size="20" class="input email"
+             placeholder="E-mail">
+  </span>
+
+  <span class="inputWithIcon inputIconPassword" [ngClass]="passwordClassError" >
+      <input (focusin)="clearInput()" type="password" formControlName="loginPassword" id="login_password" value="" size="20" class="input password"
+            placeholder="Senha">
+  </span>
+
+  <a class="lost-pass" href="#" title="Senha perdida">Senha perdida</a>
+
+  <input type="submit" class="button mat-ripple" name="submit" id="submit" value="Entrar" tabindex="4">
+  <input type="hidden" name="is_custom_login" value="1">
+
+  <!--  Só para testes-->
+  <form-debug [form]="loginForm"></form-debug>
+</form>

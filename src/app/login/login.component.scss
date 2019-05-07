@@ -1,0 +1,331 @@
+@import "../shared/shared";
+/* ********************************
+        GRID TEMPLATE
+*********************************** */
+.container {
+}
+
+.container-item {
+
+}
+
+.item-content {
+}
+
+.item-nav {
+  width: 300px;
+}
+
+/* ********************************
+         NAV BAR
+*********************************** */
+
+#wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  font-family: "Open Sans", Roboto, sans-serif;
+}
+
+#content {
+  background-color: transparent;
+}
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  @include u-transform(translateX(0));
+  @include u-transform(translate3d(0,0,0));
+  @include u-transition(all .6s ease-in-out);
+  @include u-backface(hidden);
+}
+
+.show-nav #main {
+  @include u-transform(translateX(-300px));
+  @include u-transform(translate3d(-300px,0,0));
+}
+
+#nav {
+  position: absolute;
+  float: right;
+  width: 300px;
+  height: 100%;
+  top: 0;
+  right: -300px;
+  background-color: $mrd-bg-color-trans;
+  color: $mrd-color;
+  padding: 25px 10px;
+  z-index: 99;
+}
+
+.btn-lock {
+  position: absolute;
+  color: $mrd-color;
+  background-color: $mrd-bg-color-trans;
+  width: 61px;
+  font-size: 36px;
+  left: -61px;
+  padding: 4px 13px 8px 15px;
+  top: 23%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  @include u-transition(all .6s ease);
+}
+
+.btn-lock i {
+  @include u-transition(all .6s ease);
+}
+
+.btn-lock i:hover {
+  font-size: 40px;
+  opacity: .8;
+}
+
+.btn-has-error {
+  color: $mrd-error-color;
+}
+
+@media screen and (max-width:480px) {
+  .btn-lock {
+    top:10%;
+    font-size:21px;
+    left:-44px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  .btn-lock i:hover {
+    font-size: 25px;
+    opacity: .8;
+  }
+
+}
+
+/* ********************************
+         SITE AREA
+*********************************** */
+#cont {
+  background-color: black;
+}
+
+.main-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 72px);
+  z-index: -5;
+  background-color: $mrd-bg-color;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  background-color: black;
+  color: $mrd-color;
+  font-weight: 600;
+  opacity: 0.963;
+}
+
+.copy {
+  font-size: 9px;
+  font-weight: 100;
+  color: $mrd-color;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.center-footer {
+  margin: 0 auto;
+  width: 100%;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  height: 72px;
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.bg-img img {
+  background-color: $mrd-bg-color;
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  opacity: .5;
+}
+
+.center {
+  clear: both;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.logo-box img {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+}
+
+.logo-box {
+  padding: 50px 0 30px;
+}
+
+/* ********************************
+         LOGIN AREA
+*********************************** */
+
+.login-form {
+  display: inline-block;
+  width: 100%;
+  margin: 25px 0 0;
+  padding: 20px;
+  filter: alpha(opacity=50);
+  opacity: .5;
+  @include u-transition(opacity .3s ease-in-out);
+}
+
+.login-form:hover {
+  opacity: 1;
+  @include u-transition(opacity .6s ease-in-out);
+}
+
+.login-form input[type="email"], .login-form input[type="password"] {
+  color: inherit;
+  background-color: rgba(113,113,113,.6);
+  background-position: 14px center;
+  background-repeat: no-repeat;
+  float: left;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 10px;
+  padding: 8px 16px 8px 40px;
+  width: 100%;
+  display: block;
+  line-height: 28px;
+  border: none;
+}
+
+.login-form label {
+  color: inherit;
+  float: left;
+  font-family: inherit;
+  font-size: 25px;
+  padding: 0 0 10px;
+  width: 100%;
+}
+
+.login-form a.lost-pass {
+  color: $mrd-color;
+  float: left;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.login-form input[type="submit"] {
+  color: #c2c2c2;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid rgb(255, 255, 255);
+  font-weight: 700;
+  margin: 20px 0 0;
+  padding: 5px 10px;
+  text-align: center;
+  float: right;
+  display: inline-block;
+  @include u-transition(all .6s ease-in-out);
+}
+
+.login-form input[type="submit"]:hover {
+  border: 0;
+  color: $mrd-bg-color;
+  background-color: $mrd-color;
+}
+
+.login-error {
+  display: inline-block;
+  padding-bottom: 10px;
+  color: $mrd-error-color;
+  font-weight: bold;
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputWithIcon {
+  position: relative;
+  display: inline-block;
+  font-family: "Font Awesome 5 Free", "Open Sans", sans-serif;
+  font-size: 1.5em;
+  padding-right: 3px;
+  font-weight:900;
+}
+
+.inputIconUser::before {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  content: "\f0e0";
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconUser.with-error {
+  color: $mrd-error-color;
+  font-weight: bold;
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconUser.with-error::before {
+  color: $mrd-error-color;
+  content: "\f00d";
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconPassword::before {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  content: "\f023";
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconPassword.with-error {
+  color: $mrd-error-color;
+  font-weight: bold;
+  @include u-transition(all .6s ease-in-out);
+}
+
+.inputIconPassword.with-error::before {
+  color: $mrd-error-color;
+  content: "\f00d";
+  @include u-transition(all .6s ease-in-out);
+}
+
+
+

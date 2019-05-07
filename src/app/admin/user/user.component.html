@@ -1,0 +1,43 @@
+<div class="table-container">
+
+  <h1 class="mat-h1 mat-h1-text">Usuários</h1>
+  
+  <mat-form-field class="mat-h1-text">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+  </mat-form-field>
+
+  <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8 table-drawer">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> #</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="full_name">
+      <th mat-header-cell  mat-sort-header *matHeaderCellDef> Nome</th>
+      <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell  mat-sort-header *matHeaderCellDef> E-mail</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Registered Column -->
+    <ng-container matColumnDef="date_created">
+      <th mat-header-cell  mat-sort-header *matHeaderCellDef> Data de Registro</th>
+      <td mat-cell *matCellDef="let element"> {{element.date_created | date: 'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+  </table>
+
+  <mat-paginator [length]="100"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+
+</div>

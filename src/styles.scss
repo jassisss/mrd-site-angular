@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*{
+  margin:0;
+  padding:0;
+  border: none;
+  font-size: 100%;
+}
+
+@font-face {
+  font-family: 'Dashicons';
+  src: url('assets/fonts/dashicons.eot');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('assets/fonts/roboto-regular-webfont.woff2') format('woff2'),
+  url('assets/fonts/roboto-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('assets/fonts/opensans-regular-webfont.woff2') format('woff2'),
+  url('assets/fonts/opensans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
