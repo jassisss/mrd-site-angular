@@ -21,10 +21,12 @@ export class DataService {
     return this.http.get<UserGeral[]>('assets/data/user-geral.json');
   }
 
+  // noinspection JSUnusedGlobalSymbols
   getUserStatus() {
     return this.http.get<UserstatusGeral[]>('assets/data/userstatus-geral.json');
   }
 
+  // noinspection JSUnusedGlobalSymbols
   getUserTipo() {
     return this.http.get<UsertipoGeral[]>('assets/data/usertipo-geral.json');
   }

@@ -42,6 +42,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
 
   }
 
+  // noinspection UnterminatedStatementJS
   getRangeLabel = (page, pageSize, length) => {
     if (length === 0 || pageSize === 0) {
       return '0 de ' + length;

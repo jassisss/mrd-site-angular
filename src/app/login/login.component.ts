@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
 
-      $('.toggle-nav').click(function (e) {
+      $('.toggle-nav').click((e) => {
         e.stopPropagation();
         toggleNav();
       });
@@ -21,16 +21,17 @@ export class LoginComponent implements OnInit {
       function toggleNav() {
 
         // tslint:disable-next-line:no-unused-expression
-        var btnlock = $('.btn-lock>i');
+        const btnlock = $('.btn-lock>i');
+        const wrapper = $('#wrapper');
 
-        if ($('#wrapper').hasClass('show-nav')) {
+        if (wrapper.hasClass('show-nav')) {
           btnlock.removeClass('fa-unlock');
           btnlock.addClass('fa-lock');
-          $('#wrapper').removeClass('show-nav');
+          wrapper.removeClass('show-nav');
         } else {
           btnlock.removeClass('fa-lock');
           btnlock.addClass('fa-unlock');
-          $('#wrapper').addClass('show-nav');
+          wrapper.addClass('show-nav');
         }
       }
 
