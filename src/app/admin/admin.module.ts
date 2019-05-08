@@ -20,7 +20,15 @@ import {
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule, MatGridListModule, MatMenuModule, MatSelectModule, MatPaginatorIntl, MatInputModule, MatCheckboxModule, MatRadioModule
+  MatSortModule,
+  MatGridListModule,
+  MatMenuModule,
+  MatSelectModule,
+  MatPaginatorIntl,
+  MatInputModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatTooltipModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { PeriodictComponent } from './periodict/periodict.component';
@@ -56,7 +64,8 @@ import { UserModule } from './user/user.module';
     MatSelectModule,
     MatInputModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTooltipModule
   ],
   exports: [
     MatToolbarModule,

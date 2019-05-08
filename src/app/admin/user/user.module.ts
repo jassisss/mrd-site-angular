@@ -10,7 +10,7 @@ import {
   MatIconModule, MatInputModule,
   MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatRadioModule, MatSelectModule,
   MatSidenavModule, MatSortModule, MatTableModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import { FormComponent } from './components/form/form.component';
@@ -41,7 +41,8 @@ import { FormComponent } from './components/form/form.component';
     MatCheckboxModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTooltipModule
   ]
 })
 export class UserModule {
