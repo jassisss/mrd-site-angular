@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../shared/service/data.service';
 import { UserData } from '../../shared/model/user-data';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-periodict',
@@ -13,9 +13,7 @@ export class PeriodictComponent implements OnInit {
   dataSource: UserData[] = [];
   /** Columns displayed in the start. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select', 'id', 'name'];
-
-
-  selection = new SelectionModel<UserData>(false, []);
+  selection = new SelectionModel<UserData>(true, []);
 
   constructor( private dataService: DataService) {
     this.selection.clear();
@@ -27,6 +25,7 @@ export class PeriodictComponent implements OnInit {
     this.dataService.getUsers().subscribe(dados => {
       this.dataSource = dados;
     });
+    this.selection.clear();
 
   }
 
@@ -34,7 +33,11 @@ export class PeriodictComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.length;
-    return numSelected == numRows;
+    return numSelected === numRows;
   }
 
+  onTableClick(e: MouseEvent, row) {
+    e.stopPropagation();
+    console.log(row);
+  }
 }

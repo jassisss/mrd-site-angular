@@ -1,5 +1,13 @@
 <!--suppress ALL -->
 <div class="table-container">
+  <!-- breadcrumbs -->
+  <div class="mat-h1 mat-h1-text">
+    <div class="container">
+    <span class="breadcrumbs">
+      <a routerLink="/admin/user">Usuários</a>
+    </span>
+    </div>
+  </div>
 
   <h1 class="mat-h1 mat-h1-text">Usuários</h1>
   
@@ -32,7 +40,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    <tr mat-row class="tab-linha"  (dblclick)="onTableClick($event, myRowData)" *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 
   </table>
 

@@ -11,12 +11,18 @@ import {UsertipoGeral} from '../model/usertipo-geral';
 })
 export class DataService {
 
+ jsonServerUrl = 'http://localhost:3000/';
+
   constructor( private http: HttpClient) { }
+
+  getJsonUsers() {
+    return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user');
+  }
 
   getUsers() {
     return this.http.get<UserData[]>('assets/data/user-data.json');
   }
-
+  // noinspection JSUnusedGlobalSymbols
   getUsersGeral() {
     return this.http.get<UserGeral[]>('assets/data/user-geral.json');
   }

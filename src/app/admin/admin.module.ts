@@ -8,7 +8,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ControleComponent } from './controle/controle.component';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './user/components/list/user.component';
 import { ProductComponent } from './product/product.component';
 import {
   MatToolbarModule,
@@ -25,12 +25,12 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import { PeriodictComponent } from './periodict/periodict.component';
 import { ReadingComponent } from './reading/reading.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
     AdminComponent,
     ControleComponent,
-    UserComponent,
     ProductComponent,
     PeriodictComponent,
     ReadingComponent
@@ -39,6 +39,26 @@ import { ReadingComponent } from './reading/reading.component';
     CommonModule,
     AdminRoutingModule,
     LayoutModule,
+    UserModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatExpansionModule,
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatGridListModule,
+    MatMenuModule,
+    CdkTableModule,
+    MatSelectModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule
+  ],
+  exports: [
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

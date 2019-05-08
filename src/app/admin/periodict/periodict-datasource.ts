@@ -1,4 +1,4 @@
-import { DataSource } from '@angular/cdk/collections';
+import {DataSource} from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { DataService } from '../../shared/service/data.service';
 import { UserData } from '../../shared/model/user-data';

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {DataService} from '../../shared/service/data.service';
+import {DataService} from '../../../../shared/service/data.service';
 import {MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
-import {UserGeral} from '../../shared/model/user-geral';
+import {UserGeral} from '../../../../shared/model/user-geral';
 
 @Component({
   selector: 'app-user',
@@ -33,7 +33,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getUsersGeral().subscribe(dados => {
+    this.dataService.getJsonUsers().subscribe(dados => {
       this.users = dados;
       this.dataSource = new MatTableDataSource(dados);
       this.dataSource.paginator = this.paginator;
@@ -63,4 +63,10 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  onTableClick(e: MouseEvent, row) {
+    e.stopPropagation();
+    console.log(row);
+  }
+
 }
