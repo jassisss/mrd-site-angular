@@ -5,10 +5,10 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './components/list/user.component';
 import {
   MatButtonModule,
-  MatCardModule, MatCheckboxModule,
+  MatCardModule, MatCheckboxModule, MatDatepickerModule,
   MatExpansionModule, MatGridListModule,
   MatIconModule, MatInputModule,
-  MatListModule, MatMenuModule, MatPaginatorModule, MatRadioModule, MatSelectModule,
+  MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatRadioModule, MatSelectModule,
   MatSidenavModule, MatSortModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -39,7 +39,10 @@ import { FormComponent } from './components/form/form.component';
     MatSelectModule,
     MatInputModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
-export class UserModule { }
+export class UserModule {
+}

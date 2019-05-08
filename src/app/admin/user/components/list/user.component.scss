@@ -1,3 +1,21 @@
+/* ********************************
+         BREADCRUMBS
+*********************************** */
+.breadcrumbs {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.breadcrumbs a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.breadcrumbs span::before {
+  content: " / ";
+}
+/* ********************************
+         MATERIAL TABLE
+*********************************** */
 table {
   width: 100%;
 }
@@ -33,3 +51,4 @@ td.mat-cell {
   cursor: pointer;
   background-color: rgba(17,17,17,0.1);
 }
+

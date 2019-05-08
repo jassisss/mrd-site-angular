@@ -1,3 +1,44 @@
-<p>
-  form works!
-</p>
+<!--suppress ALL -->
+<main class="form-container">
+  <!-- breadcrumbs -->
+  <div class="mat-h1 mat-h1-text">
+    <div class="container">
+    <span class="breadcrumbs">
+      <a routerLink="/admin/user">Usuários</a>
+      <span>Novo</span>
+    </span>
+    </div>
+  </div>
+
+  <mat-card class="form-card mat-elevation-z8">
+    <form action="">
+      <mat-card-content>
+        <div class="input-container">
+          <mat-form-field>
+            <input matInput placeholder="Nome completo">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="E-mail">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Tipo de usuário">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Status do usuário">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <mat-divider [inset]="true"></mat-divider>
+        <button mat-button>CANCELAR</button>
+        <button mat-button type="submit">SALVAR</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+
+</main>

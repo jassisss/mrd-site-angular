@@ -9,11 +9,11 @@
     </div>
   </div>
 
-  <h1 class="mat-h1 mat-h1-text">Usuários</h1>
-  
   <mat-form-field class="mat-h1-text">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
   </mat-form-field>
+
+  <button routerLink="/admin/user/novo" style="float: right; margin-right: 20px;" mat-button type="submit">Novo</button>
 
   <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8 table-drawer">
     <!-- Position Column -->
