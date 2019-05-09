@@ -11,7 +11,7 @@ import {UsertipoGeral} from '../model/usertipo-geral';
 })
 export class DataService {
 
- jsonServerUrl = 'http://localhost:3000/';
+  jsonServerUrl = 'http://localhost:3000/';
 
   constructor( private http: HttpClient) { }
 
@@ -36,9 +36,13 @@ export class DataService {
   getUserTipo() {
     return this.http.get<UsertipoGeral[]>('assets/data/usertipo-geral.json');
   }
-
+  // noinspection JSUnusedGlobalSymbols
   getProducts() {
     return this.http.get<ProductData[]>('assets/data/product-data.json');
+  }
+
+  getJsonProducts() {
+    return this.http.get<ProductData[]>(this.jsonServerUrl + 'product');
   }
 
 }

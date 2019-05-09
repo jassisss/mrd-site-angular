@@ -28,7 +28,7 @@ import {
   MatInputModule,
   MatCheckboxModule,
   MatRadioModule,
-  MatTooltipModule
+  MatTooltipModule, MatProgressSpinnerModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { PeriodictComponent } from './periodict/periodict.component';
@@ -65,7 +65,8 @@ import { UserModule } from './user/user.module';
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatToolbarModule,

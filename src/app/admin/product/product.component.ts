@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
 import { ProductData } from '../../shared/model/product-data';
 import {DataService} from '../../shared/service/data.service';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-product',
@@ -14,11 +15,14 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
   nextPageLabel     = '';
   previousPageLabel = '';
 
+  tableButtonsHide = true;
+
   products: ProductData[];
 
-  columnsToDisplay: string[] = ['id', 'product', 'cost_price', 'date_create'];
+  columnsToDisplay: string[] = ['radio', 'product', 'cost_price', 'date_create'];
 
   dataSource: MatTableDataSource<ProductData>;
+  selection = new SelectionModel<ProductData>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -33,7 +37,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getProducts().subscribe(dados => {
+    this.dataService.getJsonProducts().subscribe(dados => {
       this.products = dados;
       this.dataSource = new MatTableDataSource(dados);
       this.dataSource.paginator = this.paginator;
@@ -42,6 +46,11 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
 
   }
 
+  onRowClicked(e, linha) {
+    e.stopPropagation();
+    this.tableButtonsHide = false;
+    console.log(linha);
+  }
   // noinspection UnterminatedStatementJS
   getRangeLabel = (page, pageSize, length) => {
     if (length === 0 || pageSize === 0) {

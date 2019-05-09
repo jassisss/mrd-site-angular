@@ -3,8 +3,9 @@
          BREADCRUMBS
 *********************************** */
 .breadcrumbs {
-  padding-top: 20px;
-  padding-left: 20px;
+  font-size: 1rem;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .breadcrumbs a {
@@ -12,9 +13,6 @@
   font-weight: bold;
 }
 
-.breadcrumbs span::before {
-  content: " / ";
-}
 /* ********************************
          CONTAINER
 *********************************** */
