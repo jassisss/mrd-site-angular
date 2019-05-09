@@ -1,6 +1,91 @@
 <!--suppress ALL -->
+
 <div class="table-container">
+
   <!-- breadcrumbs -->
+  <div class="mat-h1 mat-h1-text">
+    <div class="container">
+    <span class="breadcrumbs">
+      <a routerLink="/admin">Admin</a> >
+      <span> Usuários</span>
+    </span>
+    </div>
+  </div>
+
+  <!-- Card Table -->
+  <mat-card class="user-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h1 class="mat-h1 mat-h1-text">Usuários</h1>
+      </mat-card-title>
+      <mat-card-subtitle style="display: inline-block; height: auto;">
+        <mat-form-field class="mat-h1-text">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+        </mat-form-field>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- Spinner -->
+    <!--    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+          <mat-spinner></mat-spinner>
+        </div>-->
+
+    <mat-card-content>
+      <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8 table-drawer">
+        <!-- Radio Column -->
+        <ng-container matColumnDef="radio">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">
+            <mat-radio-button (click)="onRowClicked($event, row)"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)">
+            </mat-radio-button>
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="full_name">
+          <th mat-header-cell  mat-sort-header *matHeaderCellDef> Nome</th>
+          <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell  mat-sort-header *matHeaderCellDef> E-mail</th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Registered Column -->
+        <ng-container matColumnDef="date_created">
+          <th mat-header-cell  mat-sort-header *matHeaderCellDef> Data de Registro</th>
+          <td mat-cell *matCellDef="let element"> {{element.date_created | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row class="tab-linha"  (dblclick)="onTableClick($event, myRowData)" *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+      </table>
+      <mat-paginator [length]="100"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </mat-card-content>
+    <mat-card-actions class="user-card-action">
+      <button routerLink="/admin/user/novo" mat-mini-fab matTooltip="Adicionar novo usuário" aria-label="Novo usuário">
+        <i class="fas fa-user-plus"></i>
+      </button>
+      <button mat-mini-fab matTooltip="Editar usuário selecionado" aria-label="Editar usuário selecionado">
+        <i class="fas fa-user-edit"></i>
+      </button>
+      <button mat-mini-fab matTooltip="Excluir usuário selecionado" aria-label="Excluir usuário selecionado">
+        <i class="fas fa-user-minus"></i>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!--suppress ALL -->
+<!--
+<div class="table-container">
+  &lt;!&ndash; breadcrumbs &ndash;&gt;
   <div class="mat-h1 mat-h1-text">
     <div class="container">
     <span class="breadcrumbs">
@@ -17,24 +102,24 @@
   <button routerLink="/admin/user/novo" style="float: right; margin-right: 20px;" mat-button type="submit">Novo</button>
 
   <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8 table-drawer">
-    <!-- Position Column -->
+    &lt;!&ndash; Position Column &ndash;&gt;
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> #</th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
-    <!-- Name Column -->
+    &lt;!&ndash; Name Column &ndash;&gt;
     <ng-container matColumnDef="full_name">
       <th mat-header-cell  mat-sort-header *matHeaderCellDef> Nome</th>
       <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
     </ng-container>
 
-    <!-- Email Column -->
+    &lt;!&ndash; Email Column &ndash;&gt;
     <ng-container matColumnDef="email">
       <th mat-header-cell  mat-sort-header *matHeaderCellDef> E-mail</th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
-    <!-- Registered Column -->
+    &lt;!&ndash; Registered Column &ndash;&gt;
     <ng-container matColumnDef="date_created">
       <th mat-header-cell  mat-sort-header *matHeaderCellDef> Data de Registro</th>
       <td mat-cell *matCellDef="let element"> {{element.date_created | date: 'dd/MM/yyyy'}} </td>
@@ -51,3 +136,4 @@
   </mat-paginator>
 
 </div>
+-->

@@ -26,6 +26,30 @@
 }
 
 /* ********************************
+         CARD
+*********************************** */
+.product-card {
+  margin-right: 10px;
+}
+
+.product-card-action {
+  background-color: #d2d2d2;
+  padding: 5px;
+  margin: 0 auto;
+  height: 45px;
+}
+
+.product-card-action button {
+  background-color: #eac220;
+  color: #505050;
+  margin-left: 10px;
+}
+
+.product-card-action .fa-minus {
+  color: red;
+}
+
+/* ********************************
          TABELA
 *********************************** */
 table {
@@ -57,25 +81,4 @@ td.mat-cell {
   font-family: Dashico, "Helvetica Neue", sans-serif;
   font-size: 16px;
   font-weight: normal;
-}
-
-.product-card {
-  margin-right: 10px;
-}
-
-.product-card-action {
-  background-color: #d2d2d2;
-  padding: 5px;
-  margin: 0 auto;
-  height: 45px;
-}
-
-.product-card-action button {
-  background-color: #eac220;
-  color: #505050;
-  margin-left: 10px;
-}
-
-.product-card-action .fa-user-minus {
-  color: red;
 }

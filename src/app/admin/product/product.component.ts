@@ -1,27 +1,28 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
 import { ProductData } from '../../shared/model/product-data';
 import {DataService} from '../../shared/service/data.service';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent extends MatPaginatorIntl implements OnInit {
+export class ProductComponent extends MatPaginatorIntl implements OnInit, AfterViewInit {
 
-  itemsPerPageLabel = '';
-  nextPageLabel     = '';
-  previousPageLabel = '';
-
-  tableButtonsHide = true;
+  itemsPerPageLabel = 'número de páginas';
+  nextPageLabel     = '  próxima';
+  previousPageLabel = ' anterior';
 
   products: ProductData[];
 
+  dataSource: MatTableDataSource<ProductData>;
+
+  tableButtonsHide = true;
+
   columnsToDisplay: string[] = ['radio', 'product', 'cost_price', 'date_create'];
 
-  dataSource: MatTableDataSource<ProductData>;
   selection = new SelectionModel<ProductData>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,21 +30,18 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
 
   constructor(private dataService: DataService) {
     super();
-    this.nextPageLabel = '  próxima';
-    this.previousPageLabel = ' anterior';
-    this.itemsPerPageLabel = 'número de páginas';
-
   }
 
   ngOnInit() {
-
     this.dataService.getJsonProducts().subscribe(dados => {
       this.products = dados;
       this.dataSource = new MatTableDataSource(dados);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
 
+  ngAfterViewInit() {
   }
 
   onRowClicked(e, linha) {
@@ -74,3 +72,21 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit {
   }
 
 }
+/*
+
+export class ProductDataSource extends MatTableDataSource<ProductData> {
+
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+
+  public loading$ = this.loadingSubject.asObservable();
+
+  constructor(private paginator: MatPaginator, private sort: MatSort, private dataService: DataService) {
+    super();
+  }
+  // @ts-ignore
+  connect(): Observable<ProductData[]> {
+    return this.dataService.getJsonProducts();
+  }
+  disconnect() {}
+}
+*/

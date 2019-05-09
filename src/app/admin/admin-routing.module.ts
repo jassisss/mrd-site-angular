@@ -18,7 +18,7 @@ const routesAdmin: Routes = [
       {path: 'controle', component: ControleComponent},
       {path: 'product', component: ProductComponent},
       {path: 'reading', component: ReadingComponent},
-      {path: 'periodict', component: PeriodictComponent},
+      {path: 'periodict', component: PeriodictComponent}
     ]},
   {path: '**', component: Erro404Component}
 ];

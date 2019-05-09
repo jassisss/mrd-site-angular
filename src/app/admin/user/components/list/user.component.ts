@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {DataService} from '../../../../shared/service/data.service';
 import {MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
 import {UserGeral} from '../../../../shared/model/user-geral';
+import {SelectionModel} from '@angular/cdk/collections';
+import {ProductData} from '../../../../shared/model/product-data';
 
 @Component({
   selector: 'app-user',
@@ -16,10 +18,15 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
 
   users: UserGeral[];
 
-  columnsToDisplay: string[] = ['id', 'full_name', 'email', 'date_created'];
+  tableButtonsHide = true;
+
+  selection = new SelectionModel<ProductData>(true, []);
+
+  columnsToDisplay: string[] = ['radio', 'full_name', 'email', 'date_created'];
 
  // dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
   dataSource: MatTableDataSource<UserGeral>;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -40,6 +47,12 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
       this.dataSource.sort = this.sort;
     });
 
+  }
+
+  onRowClicked(e, linha) {
+    e.stopPropagation();
+    this.tableButtonsHide = false;
+    console.log(linha);
   }
 
   // noinspection UnterminatedStatementJS

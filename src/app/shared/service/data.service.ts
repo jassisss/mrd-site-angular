@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { UserData } from '../model/user-data';
 import { ProductData } from '../model/product-data';
-import {UserGeral} from '../model/user-geral';
-import {UserstatusGeral} from '../model/userstatus-geral';
-import {UsertipoGeral} from '../model/usertipo-geral';
+import { UserGeral } from '../model/user-geral';
+import { UserstatusGeral } from '../model/userstatus-geral';
+import { UsertipoGeral } from '../model/usertipo-geral';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class DataService {
 
   constructor( private http: HttpClient) { }
 
-  getJsonUsers() {
+  getJsonUsers(): Observable<UserGeral[]> {
     return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user');
   }
 
@@ -41,7 +43,7 @@ export class DataService {
     return this.http.get<ProductData[]>('assets/data/product-data.json');
   }
 
-  getJsonProducts() {
+  getJsonProducts(): Observable<ProductData[]> {
     return this.http.get<ProductData[]>(this.jsonServerUrl + 'product');
   }
 
