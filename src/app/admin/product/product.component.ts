@@ -1,15 +1,17 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
-import { ProductData } from '../../shared/model/product-data';
-import {DataService} from '../../shared/service/data.service';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel} from '@angular/cdk/collections';
+import { Subscription } from 'rxjs';
+
+import { DataService } from '../../shared/service/data.service';
+import { ProductData } from '../../shared/model/product-data';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent extends MatPaginatorIntl implements OnInit, AfterViewInit {
+export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDestroy {
 
   itemsPerPageLabel = 'número de páginas';
   nextPageLabel     = '  próxima';
@@ -18,6 +20,10 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, AfterV
   products: ProductData[];
 
   dataSource: MatTableDataSource<ProductData>;
+
+  subs: Subscription;
+
+  loading$ = this.dataService.subject$;
 
   tableButtonsHide = true;
 
@@ -33,7 +39,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, AfterV
   }
 
   ngOnInit() {
-    this.dataService.getJsonProducts().subscribe(dados => {
+    this.subs = this.dataService.getJsonProducts().subscribe(dados => {
       this.products = dados;
       this.dataSource = new MatTableDataSource(dados);
       this.dataSource.paginator = this.paginator;
@@ -41,7 +47,8 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, AfterV
     });
   }
 
-  ngAfterViewInit() {
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   onRowClicked(e, linha) {

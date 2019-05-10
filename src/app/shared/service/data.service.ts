@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { delay, finalize } from 'rxjs/operators';
 
 import { UserData } from '../model/user-data';
 import { ProductData } from '../model/product-data';
@@ -13,17 +14,34 @@ import { UsertipoGeral } from '../model/usertipo-geral';
 })
 export class DataService {
 
-  jsonServerUrl = 'http://localhost:3000/';
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+
+  public subject$ = this.loadingSubject.asObservable();
+
+  private jsonServerUrl = 'http://localhost:3000/';
 
   constructor( private http: HttpClient) { }
 
   getJsonUsers(): Observable<UserGeral[]> {
-    return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user');
+    this.loadingSubject.next(true);
+    return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user')
+      .pipe(
+        delay(1000),
+        finalize(() => this.loadingSubject.next(false)));
+  }
+
+  getJsonProducts(): Observable<ProductData[]> {
+    this.loadingSubject.next(true);
+    return this.http.get<ProductData[]>(this.jsonServerUrl + 'product')
+      .pipe(
+        delay(1000),
+        finalize(() => this.loadingSubject.next(false)));
   }
 
   getUsers() {
     return this.http.get<UserData[]>('assets/data/user-data.json');
   }
+
   // noinspection JSUnusedGlobalSymbols
   getUsersGeral() {
     return this.http.get<UserGeral[]>('assets/data/user-geral.json');
@@ -33,7 +51,6 @@ export class DataService {
   getUserStatus() {
     return this.http.get<UserstatusGeral[]>('assets/data/userstatus-geral.json');
   }
-
   // noinspection JSUnusedGlobalSymbols
   getUserTipo() {
     return this.http.get<UsertipoGeral[]>('assets/data/usertipo-geral.json');
@@ -41,10 +58,6 @@ export class DataService {
   // noinspection JSUnusedGlobalSymbols
   getProducts() {
     return this.http.get<ProductData[]>('assets/data/product-data.json');
-  }
-
-  getJsonProducts(): Observable<ProductData[]> {
-    return this.http.get<ProductData[]>(this.jsonServerUrl + 'product');
   }
 
 }

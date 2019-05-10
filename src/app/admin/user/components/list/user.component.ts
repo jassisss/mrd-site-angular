@@ -1,16 +1,17 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {DataService} from '../../../../shared/service/data.service';
-import {MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
-import {UserGeral} from '../../../../shared/model/user-geral';
-import {SelectionModel} from '@angular/cdk/collections';
-import {ProductData} from '../../../../shared/model/product-data';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
+
+import { DataService } from '../../../../shared/service/data.service';
+import { UserGeral } from '../../../../shared/model/user-geral';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent extends MatPaginatorIntl implements OnInit {
+export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy {
 
   itemsPerPageLabel = '';
   nextPageLabel     = '';
@@ -18,14 +19,18 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
 
   users: UserGeral[];
 
+  subs: Subscription;
+
   tableButtonsHide = true;
 
-  selection = new SelectionModel<ProductData>(true, []);
+  selection = new SelectionModel<UserGeral>(true, []);
 
   columnsToDisplay: string[] = ['radio', 'full_name', 'email', 'date_created'];
 
  // dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
   dataSource: MatTableDataSource<UserGeral>;
+
+  loading$ = this.dataService.subject$;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -40,13 +45,17 @@ export class UserComponent extends MatPaginatorIntl implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getJsonUsers().subscribe(dados => {
+    this.subs = this.dataService.getJsonUsers().subscribe(dados => {
       this.users = dados;
       this.dataSource = new MatTableDataSource(dados);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
 
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   onRowClicked(e, linha) {
