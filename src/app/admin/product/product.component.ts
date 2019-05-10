@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
+import { BehaviorSubject, of, Subscription } from 'rxjs';
 import { SelectionModel} from '@angular/cdk/collections';
-import { Subscription } from 'rxjs';
+import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 
 import { DataService } from '../../shared/service/data.service';
 import { ProductData } from '../../shared/model/product-data';
@@ -23,9 +23,11 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
   subs: Subscription;
 
+  error$ = new BehaviorSubject<boolean>(false);
+
   loading$ = this.dataService.subject$;
 
-  tableButtonsHide = true;
+  tableButtonsHide = false;
 
   columnsToDisplay: string[] = ['radio', 'product', 'cost_price', 'date_create'];
 
@@ -39,12 +41,28 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
   }
 
   ngOnInit() {
-    this.subs = this.dataService.getJsonProducts().subscribe(dados => {
-      this.products = dados;
-      this.dataSource = new MatTableDataSource(dados);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+
+    this.onRefresh();
+
+  }
+
+  onRefresh() {
+
+    this.tableButtonsHide = false;
+    this.subs = this.dataService.getJsonProducts()
+      .subscribe(
+        dados => {
+          this.products = dados;
+          this.dataSource = new MatTableDataSource(dados);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error => {
+          console.log(error);
+          this.error$.next(true);
+          return of();
+        });
+
   }
 
   ngOnDestroy() {
@@ -53,7 +71,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
   onRowClicked(e, linha) {
     e.stopPropagation();
-    this.tableButtonsHide = false;
+    this.tableButtonsHide = true;
     console.log(linha);
   }
   // noinspection UnterminatedStatementJS

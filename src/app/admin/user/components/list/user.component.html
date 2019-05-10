@@ -64,15 +64,19 @@
                      [pageSizeOptions]="[5, 10, 25, 100]">
       </mat-paginator>
     </mat-card-content>
-    <mat-card-actions class="user-card-action">
+    <mat-card-actions class="user-card-action" >
       <button routerLink="/admin/user/novo" mat-mini-fab matTooltip="Adicionar novo usuário" aria-label="Novo usuário">
         <i class="fas fa-user-plus"></i>
       </button>
-      <button mat-mini-fab matTooltip="Editar usuário selecionado" aria-label="Editar usuário selecionado">
+      <button *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Editar usuário selecionado" aria-label="Editar usuário selecionado">
         <i class="fas fa-user-edit"></i>
       </button>
-      <button mat-mini-fab matTooltip="Excluir usuário selecionado" aria-label="Excluir usuário selecionado">
+      <button *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Excluir usuário selecionado" aria-label="Excluir usuário selecionado">
         <i class="fas fa-user-minus"></i>
+      </button>
+      <div class="fill"></div>
+      <button (click)="onRefresh()" mat-mini-fab matTooltip="Recarregar dados de usuário" aria-label="Recarregar dados de usuário">
+        <i class="fas fa-sync"></i>
       </button>
     </mat-card-actions>
     <mat-card-footer *ngIf="loading$ | async">

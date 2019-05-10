@@ -69,11 +69,15 @@
       <button mat-mini-fab matTooltip="Adicionar novo produto" aria-label="Novo produto">
         <i class="fas fa-plus"></i>
       </button>
-      <button mat-mini-fab matTooltip="Editar produto selecionado" aria-label="Editar produto selecionado">
+      <button *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Editar produto selecionado" aria-label="Editar produto selecionado">
         <i class="fas fa-check"></i>
       </button>
-      <button mat-mini-fab matTooltip="Excluir produto selecionado" aria-label="Excluir produto selecionado">
+      <button *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Excluir produto selecionado" aria-label="Excluir produto selecionado">
         <i class="fas fa-minus"></i>
+      </button>
+      <div class="fill"></div>
+      <button (click)="onRefresh()" mat-mini-fab matTooltip="Recarregar dados dos produtos" aria-label="Recarregar dados dos produtos">
+        <i class="fas fa-sync"></i>
       </button>
     </mat-card-actions>
     <mat-card-footer *ngIf="loading$ | async">

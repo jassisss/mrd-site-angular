@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, of, Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 
+import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 import { DataService } from '../../../../shared/service/data.service';
 import { UserGeral } from '../../../../shared/model/user-geral';
 
@@ -19,9 +19,11 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   users: UserGeral[];
 
+  error$ = new BehaviorSubject<boolean>(false);
+
   subs: Subscription;
 
-  tableButtonsHide = true;
+  tableButtonsHide = false;
 
   selection = new SelectionModel<UserGeral>(true, []);
 
@@ -45,12 +47,26 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   ngOnInit() {
 
-    this.subs = this.dataService.getJsonUsers().subscribe(dados => {
-      this.users = dados;
-      this.dataSource = new MatTableDataSource(dados);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    this.onRefresh();
+
+  }
+
+  onRefresh() {
+
+    this.tableButtonsHide = false;
+    this.subs = this.dataService.getJsonUsers()
+      .subscribe(
+        dados => {
+          this.users = dados;
+          this.dataSource = new MatTableDataSource(dados);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error => {
+          console.log(error);
+          this.error$.next(true);
+          return of();
+        });
 
   }
 
@@ -60,7 +76,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   onRowClicked(e, linha) {
     e.stopPropagation();
-    this.tableButtonsHide = false;
+    this.tableButtonsHide = true;
     console.log(linha);
   }
 

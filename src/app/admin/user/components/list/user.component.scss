@@ -6,6 +6,7 @@
   padding-top: 10px;
   padding-left: 10px;
 }
+
 .breadcrumbs a {
   text-decoration: none;
   font-weight: bold;
@@ -32,20 +33,30 @@
 }
 
 .user-card-action {
+  display: flex;
   background-color: #d2d2d2;
   padding: 5px;
   margin: 0 auto;
   height: 45px;
 }
 
+.fill {
+  flex: 1;
+}
+
 .user-card-action button {
   background-color: #eac220;
   color: #505050;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .user-card-action .fa-user-minus {
   color: red;
+}
+
+.user-card-action .fa-sync {
+  color: green;
 }
 
 /* ********************************
