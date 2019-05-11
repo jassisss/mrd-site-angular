@@ -3,8 +3,11 @@
 *********************************** */
 $mrd-color: #eac220;
 $mrd-bg-color: #111111;
+$mrd-bg-color-nav: #222222;
 $mrd-bg-color-trans: rgba(17,17,17,0.8);
+$mrd-bg-color-focus-trans: rgba(0,0,0,0.8);
 $mrd-error-color: red;
+$mrd-font-family: "Open Sans", Roboto, sans-serif;
 
 /* ********************************
          MIXINS
@@ -47,4 +50,13 @@ $mrd-error-color: red;
   -moz-animation: $animate;
   -ms-animation: $animate;
   animation: $animate;
+}
+
+/* ********************************
+         RESET
+*********************************** */
+* {
+  margin: 0;
+  padding: 0;
+  @include u-box-sizing(border-box);
 }

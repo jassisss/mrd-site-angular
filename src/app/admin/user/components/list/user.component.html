@@ -1,29 +1,26 @@
 <!--suppress ALL -->
 <div class="table-container">
   <!-- breadcrumbs -->
-  <div class="mat-h1 mat-h1-text">
-    <div class="container">
-    <span class="breadcrumbs">
-      <a routerLink="/admin">Admin</a> >
-      <span> Usuários</span>
-    </span>
-    </div>
+  <div class="breadcrumbs-container">
+      <span class="breadcrumbs">
+        <a routerLink="/admin">Admin</a> >
+        <span class="breadcrumbs-atual"> Usuários</span>
+      </span>
   </div>
   <!-- Card Table -->
-  <mat-card class="user-card">
+  <mat-card class="mrd-table-card">
     <mat-card-header>
-      <mat-card-title>
-        <h1 class="mat-h1 mat-h1-text">Usuários</h1>
-      </mat-card-title>
       <mat-card-subtitle style="display: inline-block; height: auto;">
-        <mat-form-field class="mat-h1-text">
-          <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
-        </mat-form-field>
+        <span class="inputWithIcon inputIconFilter">
+          <input (keyup)="applyFilter($event.target.value)" value="" size="20" type="text"
+             class="input email filter"
+             placeholder="Filtro">
+        </span>
       </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
-      <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8 table-drawer"  [class.table-disabled]="loading$ | async">
+      <table mat-table matSort  [dataSource]="dataSource" class="table-drawer"  [class.table-disabled]="loading$ | async">
         <!-- Radio Column -->
         <ng-container matColumnDef="radio">
           <th mat-header-cell *matHeaderCellDef>#</th>
@@ -51,18 +48,18 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row class="tab-linha"  (dblclick)="onTableClick($event, myRowData)" *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        <tr mat-row class="tab-linha" (dblclick)="onTableClick($event, myRowData)" *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 
       </table>
 
-      <mat-paginator [length]="100"
+      <mat-paginator class="mrd-table-paginator"  [length]="100"
                      [pageSize]="10"
                      [pageSizeOptions]="[5, 10, 25, 100]">
       </mat-paginator>
 
     </mat-card-content>
 
-    <mat-card-actions class="user-card-action" >
+    <mat-card-actions class="mrd-table-action" >
       <button routerLink="/admin/user/novo" mat-mini-fab matTooltip="Adicionar novo usuário" aria-label="Novo usuário">
         <i class="fas fa-user-plus"></i>
       </button>
@@ -73,12 +70,12 @@
         <i class="fas fa-user-minus"></i>
       </button>
       <div class="fill"></div>
-      <button (click)="onRefresh()" [class.user-card-preloader]="loading$ | async" mat-mini-fab matTooltip="Recarregar dados de usuário" aria-label="Recarregar dados de usuário">
+      <button (click)="onRefresh()" [class.mrd-table-preloader]="loading$ | async" mat-mini-fab matTooltip="Recarregar dados de usuário" aria-label="Recarregar dados de usuário">
         <i class="fas fa-sync"></i>
       </button>
     </mat-card-actions>
 
-    <mat-card-footer *ngIf="loading$ | async">
+    <mat-card-footer class="mrd-table-progress-bar" *ngIf="loading$ | async">
       <mat-progress-bar mode="query"></mat-progress-bar>
     </mat-card-footer>
 

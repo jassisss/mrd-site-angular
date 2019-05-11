@@ -1,44 +1,53 @@
 <!--suppress ALL -->
+<mat-toolbar class="mat-elevation-z8 admin-toolbar-main">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()">
+    <mat-icon class="admin-toggle-nav-icon" fontSet="fa" fontIcon="fa-bars" aria-label="Side nav toggle icon"></mat-icon>
+  </button>
+  <span>
+    <img src="../../assets/img/logo-100x100.png" alt=""
+         [ngClass]="(isHandset$ | async) ? 'admin-logo-toolbar-mini' : 'admin-logo-toolbar'">
+  </span>
+</mat-toolbar>
+<!--suppress ALL -->
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav mat-elevation-z6" fixedInViewport="true"
+
+  <mat-sidenav #drawer class="sidenav mat-elevation-z12"
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="!(isHandset$ | async)">
-
-    <div class="menu-nav">
-      <mat-card class="menu-card mat-elevation-z6" color="primary">
-        <img mat-card-image src="/assets/img/Logo-192x192.png" alt="MRD Logo">
-      </mat-card>
-    </div>
 
     <mat-nav-list>
 
       <mat-accordion>
 
-        <mat-expansion-panel>
-          <mat-expansion-panel-header class="mat-elevation-z6 menu-list-header">
-            <a mat-list-item>Dashboards</a>
+        <mat-expansion-panel class="admin-expansion-panel">
+          <mat-expansion-panel-header class="mat-elevation-z6 admin-menu-list-header">
+            <a class="admin-header-exp-text">Dashboards</a>
           </mat-expansion-panel-header>
-          <div class="menu-list-item">
+          <div class="admin-menu-list-item">
             <a mat-list-item routerLinkActive="active" routerLink="/admin/controle">Controle</a>
           </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel>
-          <mat-expansion-panel-header class="mat-elevation-z6 menu-list-header">
-            <a mat-list-item>Cadastros</a>
+        <mat-expansion-panel class="admin-expansion-panel">
+          <mat-expansion-panel-header class="mat-elevation-z6 admin-menu-list-header">
+            <a class="admin-header-exp-text">Cadastros</a>
           </mat-expansion-panel-header>
-          <div class="menu-list-item">
+          <div class="admin-menu-list-item">
             <a mat-list-item routerLink="/admin/user">Usuários</a>
             <a mat-list-item routerLink="/admin/product">Produtos</a>
           </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="menu-expansion">
-          <mat-expansion-panel-header class="mat-elevation-z6 menu-list-header">
-            <a mat-list-item>Serviços</a>
+        <mat-expansion-panel class="admin-expansion-panel">
+          <mat-expansion-panel-header class="mat-elevation-z6 admin-menu-list-header">
+            <a class="admin-header-exp-text">Serviços</a>
           </mat-expansion-panel-header>
-          <div class="menu-list-item">
+          <div class="admin-menu-list-item">
             <a mat-list-item routerLink="/admin/periodict">Tabela Periódica</a>
             <a mat-list-item routerLink="/admin/reading">Leituras</a>
             <a mat-list-item routerLink="/admin">Serviço 3.3</a>
@@ -49,18 +58,8 @@
       </mat-accordion>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <mat-toolbar class="mat-elevation-z8 mat-toolbar-main">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>MRD</span>
-    </mat-toolbar>
     <!-- Add Content Here -->
     <div class="container">
       <router-outlet></router-outlet>

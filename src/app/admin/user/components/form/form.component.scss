@@ -1,25 +1,26 @@
 @import "../../../../shared/shared";
-/* ********************************
-         RESET
-*********************************** */
-* {
-  margin: 0;
-  padding: 0;
-  @include u-box-sizing(border-box);
-}
 
 /* ********************************
          BREADCRUMBS
 *********************************** */
+.breadcrumbs-container {
+  font-family: $mrd-font-family;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.breadcrumbs-atual {
+  font-size: 1.3em;
+}
+
 .breadcrumbs {
-  font-size: 1rem;
-  padding-top: 10px;
-  padding-left: 10px;
+  font-size: 1.2rem;
 }
 
 .breadcrumbs a {
   text-decoration: none;
   font-weight: bold;
+  color: $mrd-color;
 }
 
 /* ********************************

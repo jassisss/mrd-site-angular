@@ -1,135 +1,82 @@
-// Override Material Design Definitions
-//noinspection ALL
-.mat-card-image:first-child {
-  margin-top: 0;
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  height: 110px;
+@import "../shared/shared";
+
+/* ********************************
+         ADMIN AREA
+*********************************** */
+.admin-toggle-nav-icon {
+  font-size: 2em;
+}
+
+.admin-toolbar-main {
+  background-color: $mrd-bg-color;
+  color: $mrd-color;
+  z-index: 100;
+}
+
+.admin-logo-toolbar {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.admin-logo-toolbar-mini {
+  margin-left: 15px;
+  margin-top: 9px;
+  width: 60%;
 }
 
 .sidenav {
-  background-color: #c2c2c2;
-}
-
-//noinspection ALL
-.mat-expansion-panel {
-  color: red !important;
-}
-
-//noinspection ALL
-.mat-expansion-panel {
-  background-color: #c2c2c2;
-}
-
-//noinspection ALL
-.mat-expansion-panel:not([class*="mat-elevation-z"]) {
-  box-shadow: inset 0 -3px 5px -1px rgba(0,0,0,.2);
-  background-color: #d2d2d2;
-}
-
-//noinspection ALL
-.mat-expansion-panel:not([class*="mat-elevation-z"]):hover {
-  box-shadow: none;
-  background-color: #d2d2d2;
-}
-// End override
-
-.sidenav-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $mrd-bg-color-nav;
+  color: $mrd-color;
   height: 100%;
 }
 
-.sidenav {
-  width: 200px;
+.admin-menu-list-header {
+  font-family: $mrd-font-family;
+  color: $mrd-color;
+  background-color: $mrd-bg-color-nav;
 }
 
-//noinspection ALL
-.sidenav .mat-toolbar {
-  background: inherit;
+.admin-menu-list-header:hover {
+  background-color: rgba(10,10,10,.87) !important;
 }
 
-//noinspection ALL
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.menu-nav {
-  text-align: center;
-  align-items: center;
-  padding: 15px;
-}
-
-.menu-card {
-  max-width: 300px;
-  padding: 30px;
-  background-color: #111111;
-  color: white;
-  border-radius: 50%;
-}
-
-//noinspection ALL
-.menu-header-image {
-  background-size: cover;
-}
-
-.menu-list-header {
-  background-color: #bfbfbf;
-}
-
-.menu-list-item a {
-   color: white;
-}
-
-.menu-list-header:hover {
-  background-color: #111;
-}
-
-//noinspection ALL
-.menu-expansion > .mat-expansion-panel-body {
+.admin-menu-list-header:focus {
+  background-color: $mrd-bg-color-nav !important;
+  font-weight: bold;
   border: none;
-  background-color: red;
 }
 
-.mat-toolbar-main {
-  background-color: #505050;
-  color: #bfbfbf;
+.admin-header-exp-text {
+  color: inherit;
+  font-size: 1.2em;
 }
 
-
-// Tabelas
-
-table {
-  width: 100%;
+.admin-expansion-panel {
+  color: $mrd-color !important;
+  background-color: #333 !important;
 }
 
-//noinspection ALL
-.table-drawer {
-  width: 95%;
-  margin: 0 auto 20px;
+.mat-list-item {
+  background-color: transparent !important;
 }
 
-//noinspection ALL
-.mat-h1-text {
-  padding-left: 20px;
-  padding-top: 20px;
+.admin-menu-list-item a {
+  color: $mrd-color !important;
 }
 
-//noinspection ALL
-tr.mat-header-row {
-  background-color: #c2c2c2 !important;
-  font-size: 20px;
+.admin-menu-list-item a:focus {
+  color: $mrd-color !important;
   font-weight: bold;
 }
 
-//noinspection ALL
-td.mat-cell {
-  font-family: Dashico, "Helvetica Neue", sans-serif;
+/* ********************************
+         ADMIN AREA
+*********************************** */
+.container {
+  color: $mrd-color;
+  background-color: $mrd-bg-color-focus-trans;
+  min-height: 100vh;
 }
-
-//noinspection ALL
-.mat-header-cell {
-  color: rgba(0,0,0,.54);
-  font-size: 20px;
-}
-
