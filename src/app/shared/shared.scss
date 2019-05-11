@@ -42,12 +42,9 @@ $mrd-error-color: red;
   backface-visibility: $backface;
 }
 
-/* ********************************
-         RESET
-*********************************** */
-
-* {
-  margin: 0;
-  padding: 0;
-  @include u-box-sizing(border-box);
+@mixin u-animate ($animate) {
+  -webkit-animation: $animate;
+  -moz-animation: $animate;
+  -ms-animation: $animate;
+  animation: $animate;
 }

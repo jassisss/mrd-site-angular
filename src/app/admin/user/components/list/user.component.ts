@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, of, Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
+import * as $ from 'jquery';
 
 import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 import { DataService } from '../../../../shared/service/data.service';
@@ -54,6 +55,11 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   onRefresh() {
 
     this.tableButtonsHide = false;
+    const botao = $('.table-disabled');
+    const filtro = $('.filter');
+    filtro.val('');
+    botao.attr('disabled', 'disabled');
+
     this.subs = this.dataService.getJsonUsers()
       .subscribe(
         dados => {
@@ -61,6 +67,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
           this.dataSource = new MatTableDataSource(dados);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          botao.attr('enabled', 'enabled');
         },
         error => {
           console.log(error);

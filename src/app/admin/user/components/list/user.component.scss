@@ -1,3 +1,13 @@
+@import "../../../../shared/shared";
+/* ********************************
+         RESET
+*********************************** */
+* {
+  margin: 0;
+  padding: 0;
+  @include u-box-sizing(border-box);
+}
+
 /* ********************************
          BREADCRUMBS
 *********************************** */
@@ -29,7 +39,9 @@
          CARD
 *********************************** */
 .user-card {
-  margin-right: 10px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 10px;
 }
 
 .user-card-action {
@@ -37,7 +49,7 @@
   background-color: #d2d2d2;
   padding: 5px;
   margin: 0 auto;
-  height: 45px;
+  height: 50px;
 }
 
 .fill {
@@ -59,11 +71,38 @@
   color: green;
 }
 
+.user-card-preloader {
+}
+
+.user-card-preloader i {
+  position: absolute;
+  color: red !important;
+  margin-top: 3px;
+  @include u-transform(translate(-50%,-50%));
+  @include u-animate(spin 2200ms linear infinite);
+}
+
+@keyframes spin {
+  0% {
+    @include u-transform(translate(-50%,-50%) rotate(0deg));
+  }
+  100% {
+    @include u-transform(translate(-50%,-50%) rotate(360deg));
+  }
+
+}
+
 /* ********************************
          MATERIAL TABLE
 *********************************** */
 table {
   width: 100%;
+}
+
+.table-container {
+  padding: 1%;
+  width: 100%;
+  height: 100%;
 }
 
 .table-drawer {
@@ -87,7 +126,6 @@ td.mat-cell {
   font-size: 18px;
 }
 
-
 .mat-header-cell {
   color: rgba(0,0,0,.54);
   font-size: 20px;
@@ -98,3 +136,8 @@ td.mat-cell {
   background-color: rgba(17,17,17,0.1);
 }
 
+.table-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background: #CCC;
+}

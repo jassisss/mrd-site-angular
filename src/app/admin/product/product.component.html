@@ -20,13 +20,13 @@
       </mat-card-title>
       <mat-card-subtitle style="display: inline-block; height: auto;">
         <mat-form-field class="mat-h1-text">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+          <input class="filter" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
         </mat-form-field>
       </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
-      <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table-drawer">
+      <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table-drawer" [class.table-disabled]="loading$ | async">
         <!-- Radio Column -->
         <ng-container matColumnDef="radio">
           <th mat-header-cell *matHeaderCellDef>#</th>
@@ -76,7 +76,7 @@
         <i class="fas fa-minus"></i>
       </button>
       <div class="fill"></div>
-      <button (click)="onRefresh()" mat-mini-fab matTooltip="Recarregar dados dos produtos" aria-label="Recarregar dados dos produtos">
+      <button (click)="onRefresh()" [class.product-card-preloader]="loading$ | async" mat-mini-fab matTooltip="Recarregar dados dos produtos" aria-label="Recarregar dados dos produtos">
         <i class="fas fa-sync"></i>
       </button>
     </mat-card-actions>

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, of, Subscription } from 'rxjs';
 import { SelectionModel} from '@angular/cdk/collections';
 import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
+import * as $ from 'jquery';
 
 import { DataService } from '../../shared/service/data.service';
 import { ProductData } from '../../shared/model/product-data';
@@ -49,6 +50,10 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
   onRefresh() {
 
     this.tableButtonsHide = false;
+    const botao = $('.table-disabled');
+    botao.attr('disabled', 'disabled');
+    const filtro = $('.filter');
+    filtro.val('');
     this.subs = this.dataService.getJsonProducts()
       .subscribe(
         dados => {
@@ -56,6 +61,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
           this.dataSource = new MatTableDataSource(dados);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          botao.attr('enabled', 'enabled');
         },
         error => {
           console.log(error);
@@ -97,21 +103,3 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
   }
 
 }
-/*
-
-export class ProductDataSource extends MatTableDataSource<ProductData> {
-
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-
-  public loading$ = this.loadingSubject.asObservable();
-
-  constructor(private paginator: MatPaginator, private sort: MatSort, private dataService: DataService) {
-    super();
-  }
-  // @ts-ignore
-  connect(): Observable<ProductData[]> {
-    return this.dataService.getJsonProducts();
-  }
-  disconnect() {}
-}
-*/
