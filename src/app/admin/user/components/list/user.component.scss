@@ -66,6 +66,10 @@
   color: red;
 }
 
+.mrd-table-action .fa-minus {
+  color: red;
+}
+
 .mrd-table-action .fa-sync {
   color: green;
 }
@@ -203,5 +207,69 @@ td.mat-cell {
   top: 20px;
   right: 20%;
   content: "\f0b0";
+  @include u-transition(all .6s ease-in-out);
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: $mrd-color!important;   /*inner circle color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: $mrd-color!important; /*outer ring color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent .mat-radio-outer-circle {
+  border-color: $mrd-color!important; /*outer ring color change*/
+}
+
+::ng-deep .mat-select-panel {
+  background-color: $mrd-color;
+  font-size: 2em;
+}
+
+::ng-deep .mat-select-value {
+  font-family: $mrd-font-family;
+  font-size: 1.4em;
+  color: $mrd-color;
+}
+
+::ng-deep .mat-select-arrow {
+  color: $mrd-color;
+}
+
+::ng-deep .mat-expansion-indicator::after, .mat-expansion-panel-header-description {
+  color: $mrd-color;
+}
+
+.mat-table-progress-bar {
+  color: $mrd-color;
+}
+
+
+/* ********************************
+         SCROLL TO TOP
+*********************************** */
+#scrollPage {
+  text-decoration: none;
+  cursor: pointer;
+  position: fixed;
+  top: 70px;
+  right: 2%;
+  overflow: hidden;
+  z-index: 999;
+  width: 35px;
+  height: 35px;
+  border: none;
+  text-indent: 100%;
+  background: url(/assets/img/mrd-move-up.png) no-repeat 0 0;
+  opacity: 0.6;
+  -moz-opacity: 0.6;
+  filter: alpha(opacity=0.6);
+}
+
+#scrollPage:hover {
+  opacity: 1;
+  -moz-opacity: 1;
+  filter: alpha(opacity=1);
   @include u-transition(all .6s ease-in-out);
 }

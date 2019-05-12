@@ -12,28 +12,27 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    $('.toggle-nav').click((e) => {
+      e.stopPropagation();
+      toggleNav();
+    });
 
-      $('.toggle-nav').click((e) => {
-        e.stopPropagation();
-        toggleNav();
-      });
+    function toggleNav() {
 
-      function toggleNav() {
+      // tslint:disable-next-line:no-unused-expression
+      const btnlock = $('.btn-lock>i');
+      const wrapper = $('#wrapper');
 
-        // tslint:disable-next-line:no-unused-expression
-        const btnlock = $('.btn-lock>i');
-        const wrapper = $('#wrapper');
-
-        if (wrapper.hasClass('show-nav')) {
-          btnlock.removeClass('fa-unlock');
-          btnlock.addClass('fa-lock');
-          wrapper.removeClass('show-nav');
-        } else {
-          btnlock.removeClass('fa-lock');
-          btnlock.addClass('fa-unlock');
-          wrapper.addClass('show-nav');
-        }
+      if (wrapper.hasClass('show-nav')) {
+        btnlock.removeClass('fa-unlock');
+        btnlock.addClass('fa-lock');
+        wrapper.removeClass('show-nav');
+      } else {
+        btnlock.removeClass('fa-lock');
+        btnlock.addClass('fa-unlock');
+        wrapper.addClass('show-nav');
       }
+    }
 
 
   }

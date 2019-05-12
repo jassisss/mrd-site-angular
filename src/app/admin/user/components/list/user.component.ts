@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, of, Subscription } from 'rxjs';
-import { SelectionModel } from '@angular/cdk/collections';
 import * as $ from 'jquery';
 
 import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
@@ -25,8 +24,6 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   subs: Subscription;
 
   tableButtonsHide = false;
-
-  selection = new SelectionModel<UserGeral>(true, []);
 
   columnsToDisplay: string[] = ['radio', 'full_name', 'email', 'date_created'];
 

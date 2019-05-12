@@ -43,6 +43,29 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
   ngOnInit() {
 
+    const toTopo = $('#scrollPage');
+
+    const div = document.getElementById('elem');
+    const rect = div.getBoundingClientRect();
+
+    toTopo.hide();
+
+    toTopo.click((e) => {
+      e.stopPropagation();
+      $('body,html').animate({
+        scrollTop: rect.top - 200
+      }, 800);
+      return false;
+    });
+
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+        toTopo.fadeIn();
+      } else {
+        toTopo.fadeOut();
+      }
+    });
+
     this.onRefresh();
 
   }
