@@ -1,7 +1,8 @@
 <!--suppress ALL -->
-<div class="table-container">
+<div id="elem">
+  <div class="table-container">
   <!-- breadcrumbs -->
-  <div  id="elem"  class="breadcrumbs-container">
+  <div class="breadcrumbs-container">
       <span class="breadcrumbs">
         <a routerLink="/admin">Admin</a> >
         <span class="breadcrumbs-atual"> Produtos</span>
@@ -54,10 +55,12 @@
         <tr mat-row class="tab-linha" *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 
       </table>
-      <mat-paginator class="mrd-table-paginator" [length]="100"
+      <mat-paginator class="mrd-table-paginator"
+                     [length]="100"
                      [pageSize]="5"
                      [pageSizeOptions]="[5, 10, 25, 100]">
       </mat-paginator>
+
     </mat-card-content>
 
     <mat-card-actions class="mrd-table-action">
@@ -71,15 +74,15 @@
         <i class="fas fa-minus"></i>
       </button>
       <div class="fill"></div>
-      <button (click)="onRefresh()" [class.mrd-table-card-preloader]="loading$ | async" mat-mini-fab matTooltip="Recarregar dados dos produtos" aria-label="Recarregar dados dos produtos">
+      <button (click)="onRefresh()" [class.mrd-table-preloader]="loading$ | async" mat-mini-fab matTooltip="Recarregar dados dos produtos" aria-label="Recarregar dados dos produtos">
         <i class="fas fa-sync"></i>
       </button>
     </mat-card-actions>
 
     <mat-card-footer class="mrd-table-progress-bar" *ngIf="loading$ | async">
-      <mat-progress-bar mode="query"></mat-progress-bar>
+      <mat-progress-bar class="color-progress" mode="query"></mat-progress-bar>
     </mat-card-footer>
   </mat-card>
   <a id="scrollPage">SCROLL</a>
 </div>
-
+</div>

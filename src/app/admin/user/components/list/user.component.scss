@@ -168,6 +168,12 @@ td.mat-cell {
   font-size: 1.2em;
 }
 
+.mrd-table-paginator-handset {
+  font-size: .7em;
+  display: flex;
+  flex-direction: row;
+}
+
 //noinspection ALL
 .mat-paginator-navigation-previous .mat-paginator-navigation-next .mat-icon-button {
   background-color: red !important;
@@ -241,8 +247,12 @@ td.mat-cell {
   color: $mrd-color;
 }
 
-.mat-table-progress-bar {
-  color: $mrd-color;
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: $mrd-color;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: $mrd-bg-color;
 }
 
 
@@ -253,8 +263,8 @@ td.mat-cell {
   text-decoration: none;
   cursor: pointer;
   position: fixed;
-  top: 70px;
-  right: 2%;
+  bottom: 15px;
+  right: 1.5%;
   overflow: hidden;
   z-index: 999;
   width: 35px;
@@ -265,6 +275,43 @@ td.mat-cell {
   opacity: 0.6;
   -moz-opacity: 0.6;
   filter: alpha(opacity=0.6);
+  @include u-transition(all .8s ease-in-out);
+}
+
+.to-bottom {
+  bottom: 15px;
+  @include u-animate(tobotton .8s linear 1);
+}
+
+@keyframes tobotton {
+  0% {
+    bottom: 90%;
+  }
+  50% {
+    bottom: 50%;
+  }
+  100% {
+    bottom: 15px;
+  }
+
+}
+
+.to-top {
+  top: 15px;
+  @include u-animate(totop .8s linear 1);
+}
+
+@keyframes totop {
+  0% {
+    top: 90%;
+  }
+  50% {
+    top: 50%;
+  }
+  100% {
+    top: 15px;
+  }
+
 }
 
 #scrollPage:hover {

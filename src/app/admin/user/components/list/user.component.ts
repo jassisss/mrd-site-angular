@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, of, Subscription } from 'rxjs';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import * as $ from 'jquery';
 
 import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 import { DataService } from '../../../../shared/service/data.service';
 import { UserGeral } from '../../../../shared/model/user-geral';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -23,10 +25,26 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   subs: Subscription;
 
+  subsHandSet: Subscription;
+
+  subsTablet: Subscription;
+
+
   tableButtonsHide = false;
 
-  columnsToDisplay: string[] = ['radio', 'full_name', 'email', 'date_created'];
+  columnsToDisplay: string[] = ['radio', 'full_name'];
 
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  isTablet$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Tablet)
+    .pipe(
+      map(result => result.matches)
+    );
  // dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
   dataSource: MatTableDataSource<UserGeral>;
 
@@ -35,7 +53,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private breakpointObserver: BreakpointObserver) {
     super();
     this.nextPageLabel = '  próxima';
     this.previousPageLabel = ' anterior';
@@ -46,6 +64,24 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   ngOnInit() {
 
     this.onRefresh();
+
+    this.subsHandSet = this.isHandset$.subscribe(result  => {
+        if (result) {
+          this.columnsToDisplay = ['radio', 'email'];
+        } else {
+          this.columnsToDisplay = ['radio', 'full_name', 'email', 'date_created'];
+        }
+      }
+    );
+
+    this.subsTablet = this.isTablet$.subscribe(result  => {
+        if (result) {
+          this.columnsToDisplay = ['radio', 'email', 'date_created'];
+        } else {
+          this.columnsToDisplay = ['radio', 'full_name', 'email', 'date_created'];
+        }
+      }
+    );
 
   }
 
@@ -76,6 +112,8 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   ngOnDestroy() {
     this.subs.unsubscribe();
+    this.subsHandSet.unsubscribe();
+    this.subsTablet.unsubscribe();
   }
 
   onRowClicked(e, linha) {

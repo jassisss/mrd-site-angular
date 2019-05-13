@@ -8,10 +8,13 @@
 }
 
 .admin-toolbar-main {
-  position: fixed;
   background-color: $mrd-bg-color;
   color: $mrd-color;
   z-index: 100;
+}
+
+.fixed-bar {
+  position: fixed;
 }
 
 .admin-logo-toolbar {
@@ -26,8 +29,6 @@
 }
 
 .sidenav {
-  position: fixed;
-  top: 64px;
   background-color: $mrd-bg-color-nav;
   color: $mrd-color;
   height: 100%;
@@ -76,16 +77,8 @@
          ADMIN AREA
 *********************************** */
 .container {
-  position: relative;
-  top: 64px;
   color: $mrd-color;
   background-color: $mrd-bg-color-focus-trans;
   min-height: 100vh;
-}
-
-@media screen and (max-width: 600px) {
-  .container {
-    top: 56px;
-  }
 }
 

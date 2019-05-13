@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, of, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { SelectionModel} from '@angular/cdk/collections';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
+import { map } from 'rxjs/operators';
 import * as $ from 'jquery';
 
 import { DataService } from '../../shared/service/data.service';
@@ -24,6 +26,11 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
   subs: Subscription;
 
+  subsHandSet: Subscription;
+
+  subsTablet: Subscription;
+
+
   error$ = new BehaviorSubject<boolean>(false);
 
   loading$ = this.dataService.subject$;
@@ -32,12 +39,24 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
   columnsToDisplay: string[] = ['radio', 'product', 'cost_price', 'date_create'];
 
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  isTablet$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Tablet)
+    .pipe(
+      map(result => result.matches)
+    );
+
   selection = new SelectionModel<ProductData>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private breakpointObserver: BreakpointObserver) {
     super();
   }
 
@@ -53,20 +72,48 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
     toTopo.click((e) => {
       e.stopPropagation();
       $('body,html').animate({
-        scrollTop: rect.top - 200
+        scrollTop: 0
       }, 800);
       return false;
     });
 
     $(window).scroll(function() {
+
+      if (($(this).height() + $(this).scrollTop() - div.scrollHeight) > -60) {
+        toTopo.removeClass('to-bottom');
+        toTopo.addClass('to-top');
+      } else {
+        toTopo.removeClass('to-top');
+        toTopo.addClass('to-bottom');
+      }
+
       if ($(this).scrollTop() > 100) {
         toTopo.fadeIn();
       } else {
         toTopo.fadeOut();
       }
+
     });
 
     this.onRefresh();
+
+    this.subsHandSet = this.isHandset$.subscribe(result  => {
+        if (result) {
+          this.columnsToDisplay = ['radio', 'product'];
+        } else {
+          this.columnsToDisplay = ['radio', 'product', 'cost_price', 'date_create'];
+        }
+      }
+    );
+
+    this.subsTablet = this.isTablet$.subscribe(result  => {
+        if (result) {
+          this.columnsToDisplay = ['radio', 'product', 'date_create'];
+        } else {
+          this.columnsToDisplay = ['radio', 'product', 'cost_price', 'date_create'];
+        }
+      }
+    );
 
   }
 
@@ -96,6 +143,8 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
   ngOnDestroy() {
     this.subs.unsubscribe();
+    this.subsHandSet.unsubscribe();
+    this.subsTablet.unsubscribe();
   }
 
   onRowClicked(e, linha) {
