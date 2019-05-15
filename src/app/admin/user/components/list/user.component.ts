@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
-import * as $ from 'jquery';
 
+import * as $ from 'jquery';
 import { DataService } from '../../../../shared/service/data.service';
 import { UserGeral } from '../../../../shared/model/user-geral';
 
@@ -53,7 +54,9 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dataService: DataService, private breakpointObserver: BreakpointObserver) {
+  constructor(private dataService: DataService,
+              private breakpointObserver: BreakpointObserver,
+              private router: Router) {
     super();
     this.nextPageLabel = '  próxima';
     this.previousPageLabel = ' anterior';
@@ -119,7 +122,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   onRowClicked(e, linha) {
     e.stopPropagation();
     this.tableButtonsHide = true;
-    console.log(linha);
+    console.log(linha.id);
   }
 
   // noinspection UnterminatedStatementJS
@@ -146,7 +149,8 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   onTableClick(e: MouseEvent, row) {
     e.stopPropagation();
-    console.log(row);
+    console.log(row.id);
+    this.router.navigate(['/admin/user/view/1']);
   }
 
 }

@@ -33,6 +33,14 @@
             <p>20 de janeiro de 2019 - 21:00hs</p>
           </div>
         </div>
+        <div class="view-row">
+          <div class="view-label">
+            <p>Status:</p>
+          </div>
+          <div class="view-detail">
+            <p style="color: green;">Ativo</p>
+          </div>
+        </div>
       </div>
     </mat-card-content>
     <mat-divider class="view-divide" [inset]="true"></mat-divider>
@@ -42,7 +50,8 @@
         <i class="fas fa-edit"></i>
       </button>
       <div class="fill"></div>
-      <button routerLink="/admin/user" mat-mini-fab matTooltip="Retornar para lista de usuários" aria-label="Retornar para lista de usuários">
+      <button routerLink="/admin/user" mat-mini-fab matTooltip="Retornar para lista de usuários"
+              aria-label="Retornar para lista de usuários">
         <i class="fas fa-undo"></i>
       </button>
     </mat-card-actions>
