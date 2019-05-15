@@ -1,0 +1,50 @@
+<main class="view-container">
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs-container">
+      <span class="breadcrumbs">
+        <a routerLink="/admin">Admin</a> >
+        <a routerLink="/admin/user">Usuários</a> >
+        <span class="breadcrumbs-atual"> Visualizar</span>
+      </span>
+  </div>
+
+  <mat-card class="view-card">
+    <mat-card-header class="view-card-header">
+      <div mat-card-avatar class="view-header-image"></div>
+      <mat-card-title>Nome completo</mat-card-title>
+      <mat-card-subtitle>Tipo de usuário</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider class="view-divide" [inset]="true"></mat-divider>
+      <div class="view-card-content">
+        <div class="view-row">
+          <div class="view-label">
+            <p>E-mail:</p>
+          </div>
+          <div class="view-detail">
+            <p>fulano@email.com.br</p>
+          </div>
+        </div>
+        <div class="view-row">
+          <div class="view-label">
+            <p>Data de criação:</p>
+          </div>
+          <div class="view-detail">
+            <p>20 de janeiro de 2019 - 21:00hs</p>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-divider class="view-divide" [inset]="true"></mat-divider>
+    <mat-card-actions class="view-card-action">
+      <button routerLink="/admin/user/editar/1" mat-mini-fab matTooltip="Editar dados do usuário"
+              aria-label="Editar dados do usuário">
+        <i class="fas fa-edit"></i>
+      </button>
+      <div class="fill"></div>
+      <button routerLink="/admin/user" mat-mini-fab matTooltip="Retornar para lista de usuários" aria-label="Retornar para lista de usuários">
+        <i class="fas fa-undo"></i>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</main>

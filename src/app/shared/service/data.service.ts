@@ -26,7 +26,7 @@ export class DataService {
     this.loadingSubject.next(true);
     return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user')
       .pipe(
-        delay(2000),
+        delay(500),
         finalize(() => this.loadingSubject.next(false)));
   }
 
@@ -34,7 +34,7 @@ export class DataService {
     this.loadingSubject.next(true);
     return this.http.get<ProductData[]>(this.jsonServerUrl + 'product')
       .pipe(
-        delay(2000),
+        delay(0),
         finalize(() => this.loadingSubject.next(false)));
   }
 

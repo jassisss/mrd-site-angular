@@ -2,6 +2,7 @@
          VARIÁVEIS
 *********************************** */
 $mrd-color: #eac220;
+$mrd-color-light: rgba(234,194,32,.8);
 $mrd-bg-color: #111111;
 $mrd-bg-color-nav: #222222;
 $mrd-bg-color-trans: rgba(17,17,17,0.8);
@@ -61,3 +62,14 @@ $mrd-font-family: "Open Sans", Roboto, sans-serif;
   padding: 0;
   @include u-box-sizing(border-box);
 }
+
+.fill {
+  flex: 1;
+}
+
+::ng-deep .mat-tooltip {
+  background-color: $mrd-bg-color-nav;
+  color: $mrd-color !important;
+  font-size: 1em;
+}
+

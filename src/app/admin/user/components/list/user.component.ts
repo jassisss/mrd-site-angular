@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 import * as $ from 'jquery';
 
-import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 import { DataService } from '../../../../shared/service/data.service';
 import { UserGeral } from '../../../../shared/model/user-geral';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -32,7 +32,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   tableButtonsHide = false;
 
-  columnsToDisplay: string[] = ['radio', 'full_name'];
+  columnsToDisplay: string[] = ['radio', 'full_name', 'email', 'date_created'];
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)

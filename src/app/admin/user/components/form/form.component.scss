@@ -28,21 +28,43 @@
 *********************************** */
 .form-container {
   padding: 1%;
+  max-width: 800px;
   width: 100%;
   height: 100%;
 }
 
 .form-card {
-  margin: 0 auto;
-  max-width: 800px;
+  margin: 1vh auto 0;
   width: 100%;
-  padding: 10px;
+  padding: 4%;
+  background-color: $mrd-bg-color;
+  color: $mrd-color;
+  font-family: $mrd-font-family;
 }
 
 .form-card > * {
   width: 100%;
 }
 
+.form-table-action {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  padding: 10px;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.form-table-action button {
+  background-color: $mrd-color;
+  color: $mrd-bg-color-nav;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.form-table-action .fa-check {
+  color: green;
+}
 .input-container {
   display: flex;
   flex-direction: column;
@@ -50,4 +72,95 @@
 
 .input-container > * {
   width: 100%;
+  margin-bottom: 10px;
+}
+
+.senha-container > * {
+  width: 48%;
+}
+
+.senha-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.select-container > * {
+  width: 48%;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (max-width:480px) {
+
+  .senha-container > * {
+    width: 100%;
+  }
+
+  .senha-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .select-container > * {
+    width: 100%;
+  }
+
+  .select-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
+/* ********************************
+         DEEP MATERIAL
+*********************************** */
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+  color: $mrd-color;
+  font-size: 1.2em;
+}
+::ng-deep .mat-input-element {
+  font-size: 1.5em !important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline{
+  background-color: $mrd-color;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: $mrd-color-light !important;
+  font-size: 1.1em;
+}
+
+::ng-deep .mat-form-field-ripple {
+  background-color: $mrd-color-light !important;
+  font-size: 1.1em;
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+  color: $mrd-color;
+  font-size: 1.1em;
+}
+
+::ng-deep .mat-select-panel {
+  background-color: $mrd-color;
+  font-size: 1.5em;
+}
+
+::ng-deep .mat-select-value {
+  font-family: $mrd-font-family;
+  font-size: 1.4em;
+  color: $mrd-color;
+}
+
+::ng-deep .mat-select-arrow {
+  color: $mrd-color;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: $mrd-color-light;
 }

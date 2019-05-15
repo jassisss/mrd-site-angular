@@ -1,0 +1,127 @@
+@import "../../../../shared/shared";
+
+/* ********************************
+         BREADCRUMBS
+*********************************** */
+.breadcrumbs-container {
+  font-family: $mrd-font-family;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.breadcrumbs-atual {
+  font-size: 1.3em;
+}
+
+.breadcrumbs {
+  font-size: 1.2rem;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  font-weight: bold;
+  color: $mrd-color;
+}
+
+/* ********************************
+         CONTAINER
+*********************************** */
+.view-container {
+  padding: 1%;
+  max-width: 500px;
+  width: 100%;
+  height: 100%;
+}
+
+.view-card {
+  margin: 1vh auto 0;
+  width: 100%;
+  padding: 4%;
+  background-color: $mrd-bg-color;
+  color: $mrd-color;
+  font-family: $mrd-font-family;
+}
+
+.view-card-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.view-header-image {
+  width: 80px;
+  background-image: url("../../../../../assets/img/Yoda_01.jpg");
+  background-size: cover;
+}
+
+.mat-card-subtitle {
+  color: $mrd-color;
+}
+
+.view-divide {
+  color: $mrd-color;
+  background-color: $mrd-color;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.view-card-action {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  padding: 10px;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.view-card-action button {
+  background-color: $mrd-color;
+  color: $mrd-bg-color-nav;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.view-card-action .fa-check {
+  color: green;
+}
+
+.view-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.view-label {
+  color: $mrd-color-light;
+  width: auto;
+  font-size: 1.2em;
+}
+
+.view-detail {
+  width: auto;
+  font-size: 1.3em;
+  justify-content: start;
+  margin-left: 2%;
+}
+
+@media screen and (max-width:480px) {
+
+  .senha-container > * {
+    width: 100%;
+  }
+
+  .senha-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .select-container > * {
+    width: 100%;
+  }
+
+  .select-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+}

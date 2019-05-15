@@ -28,11 +28,15 @@ import {
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import { FormComponent } from './components/form/form.component';
+import { EditComponent } from './components/edit/edit.component';
+import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
   declarations: [
     UserComponent,
     FormComponent,
+    EditComponent,
+    ViewComponent,
   ],
   imports: [
     CommonModule,
