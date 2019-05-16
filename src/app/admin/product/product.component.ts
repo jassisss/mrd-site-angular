@@ -174,6 +174,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
   openDialog() {
     this.dialog.open(ErrorDialogComponent, {
       data: {
+        title: 'ERRO',
         message: 'Erro ao carregar tabela de produtos. Tente mais tarde...',
         type: 'error'
       }

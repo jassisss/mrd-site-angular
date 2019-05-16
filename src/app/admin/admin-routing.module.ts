@@ -5,7 +5,6 @@ import { AdminComponent } from './admin.component';
 import { ControleComponent } from './controle/controle.component';
 import { UserComponent } from './user/components/list/user.component';
 import { ProductComponent } from './product/product.component';
-import { PeriodictComponent } from './periodict/periodict.component';
 import { ReadingComponent } from './reading/reading.component';
 import { Erro404Component } from '../shared/component/erro404/erro404.component';
 import { FormComponent } from './user/components/form/form.component';
@@ -20,8 +19,7 @@ const routesAdmin: Routes = [
       {path: 'user/view/:id', component: ViewComponent},
       {path: 'controle', component: ControleComponent},
       {path: 'product', component: ProductComponent},
-      {path: 'reading', component: ReadingComponent},
-      {path: 'periodict', component: PeriodictComponent}
+      {path: 'reading', component: ReadingComponent}
     ]},
   {path: '**', component: Erro404Component}
 ];

@@ -22,12 +22,12 @@
           <div class="select-container">
             <mat-form-field>
               <mat-select placeholder="Tipo de usuário">
-                <mat-option value="option">Option</mat-option>
+                <mat-option value="option" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
               <mat-select placeholder="Status do usuário">
-                <mat-option value="option">Option</mat-option>
+                <mat-option value="option" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

@@ -31,7 +31,6 @@ import {
   MatTooltipModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import { PeriodictComponent } from './periodict/periodict.component';
 import { ReadingComponent } from './reading/reading.component';
 import { UserModule } from './user/user.module';
 
@@ -40,7 +39,6 @@ import { UserModule } from './user/user.module';
     AdminComponent,
     ControleComponent,
     ProductComponent,
-    PeriodictComponent,
     ReadingComponent
   ],
   imports: [

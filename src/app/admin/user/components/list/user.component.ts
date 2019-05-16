@@ -153,6 +153,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   openDialog() {
     this.dialog.open(ErrorDialogComponent, {
       data: {
+        title: 'ERRO',
         message: 'Erro ao carregar tabela de usuários. Tente mais tarde...',
         type: 'error'
       }

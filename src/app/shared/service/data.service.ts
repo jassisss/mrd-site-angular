@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { delay, finalize } from 'rxjs/operators';
 
-import { UserData } from '../model/user-data';
 import { ProductData } from '../model/product-data';
 import { UserGeral } from '../model/user-geral';
 import { UserstatusGeral } from '../model/userstatus-geral';
@@ -30,34 +29,28 @@ export class DataService {
         finalize(() => this.loadingSubject.next(false)));
   }
 
+  getJsonUserStatus(): Observable<UserstatusGeral[]> {
+    this.loadingSubject.next(true);
+    return this.http.get<UserstatusGeral[]>(this.jsonServerUrl + 'userstatus')
+      .pipe(
+        delay(0),
+        finalize(() => this.loadingSubject.next(false)));
+  }
+
+  getJsonUserTipo(): Observable<UsertipoGeral[]> {
+    this.loadingSubject.next(true);
+    return this.http.get<UsertipoGeral[]>(this.jsonServerUrl + 'usertipo')
+      .pipe(
+        delay(0),
+        finalize(() => this.loadingSubject.next(false)));
+  }
+
   getJsonProducts(): Observable<ProductData[]> {
     this.loadingSubject.next(true);
     return this.http.get<ProductData[]>(this.jsonServerUrl + 'product')
       .pipe(
         delay(0),
         finalize(() => this.loadingSubject.next(false)));
-  }
-
-  getUsers() {
-    return this.http.get<UserData[]>('assets/data/user-data.json');
-  }
-
-  // noinspection JSUnusedGlobalSymbols
-  getUsersGeral() {
-    return this.http.get<UserGeral[]>('assets/data/user-geral.json');
-  }
-
-  // noinspection JSUnusedGlobalSymbols
-  getUserStatus() {
-    return this.http.get<UserstatusGeral[]>('assets/data/userstatus-geral.json');
-  }
-  // noinspection JSUnusedGlobalSymbols
-  getUserTipo() {
-    return this.http.get<UsertipoGeral[]>('assets/data/usertipo-geral.json');
-  }
-  // noinspection JSUnusedGlobalSymbols
-  getProducts() {
-    return this.http.get<ProductData[]>('assets/data/product-data.json');
   }
 
 }

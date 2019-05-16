@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
-import { UserComponent } from './components/list/user.component';
 import {
   MatButtonModule,
   MatCardModule,
@@ -26,7 +25,11 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
-import {CdkTableModule} from '@angular/cdk/table';
+import { CdkTableModule } from '@angular/cdk/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
+
+import { UserComponent } from './components/list/user.component';
 import { FormComponent } from './components/form/form.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ViewComponent } from './components/view/view.component';
@@ -36,7 +39,7 @@ import { ViewComponent } from './components/view/view.component';
     UserComponent,
     FormComponent,
     EditComponent,
-    ViewComponent,
+    ViewComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +65,11 @@ import { ViewComponent } from './components/view/view.component';
     MatNativeDateModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ReactiveFormsModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule {

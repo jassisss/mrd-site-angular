@@ -10,32 +10,32 @@
   </div>
 
   <mat-card class="form-card">
-    <form action="">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
-            <input type="text" matInput placeholder="Nome completo">
+            <input type="text" matInput formControlName="fullName" placeholder="Nome completo">
           </mat-form-field>
           <mat-form-field>
-            <input type="email" matInput placeholder="E-mail">
+            <input type="email" matInput formControlName="email" placeholder="E-mail">
           </mat-form-field>
           <div class="senha-container">
             <mat-form-field>
-              <input type="password" matInput placeholder="Senha">
+              <input type="password" matInput formControlName="password" placeholder="Senha">
             </mat-form-field>
             <mat-form-field>
-              <input type="password" matInput placeholder="Confirmar senha">
+              <input type="password" matInput formControlName="passwordConfirm" placeholder="Confirmar senha">
             </mat-form-field>
           </div>
           <div class="select-container">
             <mat-form-field>
-              <mat-select placeholder="Tipo de usuário">
-                <mat-option value="option">Option</mat-option>
+              <mat-select formControlName="usertipoId" placeholder="Tipo de usuário">
+                <mat-option value="option" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="Status do usuário">
-                <mat-option value="option">Option</mat-option>
+              <mat-select formControlName="userstatusId" placeholder="Status do usuário">
+                <mat-option value="option" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -44,15 +44,16 @@
       </mat-card-content>
       <mat-card-actions class="form-table-action">
         <mat-divider [inset]="true"></mat-divider>
-        <button mat-mini-fab matTooltip="Salvar informações do usuário"
+        <button type="submit" mat-mini-fab matTooltip="Salvar informações do usuário"
                 aria-label="Salvar informações do usuário">
           <i class="fas fa-check"></i>
         </button>
         <div class="fill"></div>
-        <button mat-mini-fab matTooltip="Limpar formulário" aria-label="Limpar formulário">
+        <button mat-mini-fab (click)="onReset()" matTooltip="Limpar formulário" aria-label="Limpar formulário">
           <i class="fas fa-redo"></i>
         </button>
       </mat-card-actions>
+      <form-debug [form]="userForm"></form-debug>
     </form>
   </mat-card>
 
