@@ -2,12 +2,14 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { SelectionModel} from '@angular/cdk/collections';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
+import {MatDialog, MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
 import { map } from 'rxjs/operators';
 import * as $ from 'jquery';
 
 import { DataService } from '../../shared/service/data.service';
 import { ProductData } from '../../shared/model/product-data';
+import {Router} from '@angular/router';
+import {ErrorDialogComponent} from '../../shared/component/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -24,12 +26,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
   dataSource: MatTableDataSource<ProductData>;
 
-  subs: Subscription;
-
-  subsHandSet: Subscription;
-
-  subsTablet: Subscription;
-
+  subs: Subscription[] = [];
 
   error$ = new BehaviorSubject<boolean>(false);
 
@@ -56,7 +53,9 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private dataService: DataService, private breakpointObserver: BreakpointObserver) {
+  constructor(private dataService: DataService,
+              private breakpointObserver: BreakpointObserver,
+              public dialog: MatDialog) {
     super();
   }
 
@@ -65,7 +64,6 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
     const toTopo = $('#scrollPage');
 
     const div = document.getElementById('elem');
-    const rect = div.getBoundingClientRect();
 
     toTopo.hide();
 
@@ -97,23 +95,23 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
     this.onRefresh();
 
-    this.subsHandSet = this.isHandset$.subscribe(result  => {
+    this.subs.push(this.isHandset$.subscribe(result  => {
         if (result) {
           this.columnsToDisplay = ['radio', 'product'];
         } else {
           this.columnsToDisplay = ['radio', 'product', 'cost_price', 'date_create'];
         }
       }
-    );
+    ));
 
-    this.subsTablet = this.isTablet$.subscribe(result  => {
+    this.subs.push(this.isTablet$.subscribe(result  => {
         if (result) {
           this.columnsToDisplay = ['radio', 'product', 'date_create'];
         } else {
           this.columnsToDisplay = ['radio', 'product', 'cost_price', 'date_create'];
         }
       }
-    );
+    ));
 
   }
 
@@ -124,7 +122,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
     botao.attr('disabled', 'disabled');
     const filtro = $('.filter');
     filtro.val('');
-    this.subs = this.dataService.getJsonProducts()
+    this.subs.push(this.dataService.getJsonProducts()
       .subscribe(
         dados => {
           this.products = dados;
@@ -134,17 +132,16 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
           botao.attr('enabled', 'enabled');
         },
         error => {
-          console.log(error);
+          this.dataSource = null;
+          this.openDialog();
           this.error$.next(true);
           return of();
-        });
+        }));
 
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
-    this.subsHandSet.unsubscribe();
-    this.subsTablet.unsubscribe();
+    this.subs.forEach(s => s.unsubscribe());
   }
 
   onRowClicked(e, linha) {
@@ -172,6 +169,15 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openDialog() {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        message: 'Erro ao carregar tabela de produtos. Tente mais tarde...',
+        type: 'error'
+      }
+    });
   }
 
 }

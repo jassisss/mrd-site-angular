@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 
 import * as $ from 'jquery';
 import { DataService } from '../../../../shared/service/data.service';
 import { UserGeral } from '../../../../shared/model/user-geral';
+import { ErrorDialogComponent } from '../../../../shared/component/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -24,12 +25,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   error$ = new BehaviorSubject<boolean>(false);
 
-  subs: Subscription;
-
-  subsHandSet: Subscription;
-
-  subsTablet: Subscription;
-
+  subs: Subscription[] = [];
 
   tableButtonsHide = false;
 
@@ -56,7 +52,8 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   constructor(private dataService: DataService,
               private breakpointObserver: BreakpointObserver,
-              private router: Router) {
+              private router: Router,
+              public dialog: MatDialog) {
     super();
     this.nextPageLabel = '  próxima';
     this.previousPageLabel = ' anterior';
@@ -68,23 +65,23 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
     this.onRefresh();
 
-    this.subsHandSet = this.isHandset$.subscribe(result  => {
+    this.subs.push(this.isHandset$.subscribe(result  => {
         if (result) {
           this.columnsToDisplay = ['radio', 'email'];
         } else {
           this.columnsToDisplay = ['radio', 'full_name', 'email', 'date_created'];
         }
       }
-    );
+    ));
 
-    this.subsTablet = this.isTablet$.subscribe(result  => {
+    this.subs.push(this.isTablet$.subscribe(result  => {
         if (result) {
           this.columnsToDisplay = ['radio', 'email', 'date_created'];
         } else {
           this.columnsToDisplay = ['radio', 'full_name', 'email', 'date_created'];
         }
       }
-    );
+    ));
 
   }
 
@@ -95,8 +92,9 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     const filtro = $('.filter');
     filtro.val('');
     botao.attr('disabled', 'disabled');
+    this.error$.next(false);
 
-    this.subs = this.dataService.getJsonUsers()
+    this.subs.push(this.dataService.getJsonUsers()
       .subscribe(
         dados => {
           this.users = dados;
@@ -106,17 +104,16 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
           botao.attr('enabled', 'enabled');
         },
         error => {
-          console.log(error);
           this.error$.next(true);
+          this.dataSource = null;
+          this.openDialog();
           return of();
-        });
+        }));
 
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
-    this.subsHandSet.unsubscribe();
-    this.subsTablet.unsubscribe();
+    this.subs.forEach(s =>  s.unsubscribe());
   }
 
   onRowClicked(e, linha) {
@@ -153,4 +150,12 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     this.router.navigate(['/admin/user/view/1']);
   }
 
+  openDialog() {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        message: 'Erro ao carregar tabela de usuários. Tente mais tarde...',
+        type: 'error'
+      }
+    });
+  }
 }
