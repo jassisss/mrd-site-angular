@@ -10,34 +10,48 @@
   </div>
 
   <mat-card class="form-card">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="userForm" (ngSubmit)="onSubmit()" #f="ngForm">
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
             <input type="text" matInput formControlName="fullName" placeholder="Nome completo">
           </mat-form-field>
+          <error-msg [control]="userForm.get('fullName')" [label]="'Nome'"></error-msg>
           <mat-form-field>
             <input type="email" matInput formControlName="email" placeholder="E-mail">
           </mat-form-field>
+          <error-msg [control]="userForm.get('email')" [label]="'E-mail'"></error-msg>
           <div class="senha-container">
-            <mat-form-field>
-              <input type="password" matInput formControlName="password" placeholder="Senha">
-            </mat-form-field>
-            <mat-form-field>
-              <input type="password" matInput formControlName="passwordConfirm" placeholder="Confirmar senha">
-            </mat-form-field>
+            <div class="field-error">
+              <mat-form-field>
+                <input type="password" matInput formControlName="password" placeholder="Senha">
+              </mat-form-field>
+              <error-msg [control]="userForm.get('password')" [label]="'Senha'"></error-msg>
+            </div>
+            <div class="field-error">
+              <mat-form-field>
+                <input type="password" matInput formControlName="passwordConfirm" placeholder="Confirmar senha">
+              </mat-form-field>
+              <error-msg [control]="userForm.get('passwordConfirm')" [label]="'Confirmar senha'" [otherLabel]="'Senha'"></error-msg>
+            </div>
           </div>
           <div class="select-container">
-            <mat-form-field>
-              <mat-select formControlName="usertipoId" placeholder="Tipo de usuário">
-                <mat-option value="option" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-select formControlName="userstatusId" placeholder="Status do usuário">
-                <mat-option value="option" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div class="field-error">
+              <mat-form-field>
+                <mat-select formControlName="usertipoId" placeholder="Tipo de usuário">
+                  <mat-option value="{{tipo.id}}" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <error-msg [control]="userForm.get('usertipoId')" [label]="'Tipo de usuário'"></error-msg>
+            </div>
+            <div class="field-error">
+              <mat-form-field>
+                <mat-select formControlName="userstatusId" placeholder="Status do usuário">
+                  <mat-option value="{{status.id}}" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <error-msg [control]="userForm.get('userstatusId')" [label]="'Tipo de usuário'"></error-msg>
+            </div>
           </div>
         </div>
 
@@ -49,11 +63,11 @@
           <i class="fas fa-check"></i>
         </button>
         <div class="fill"></div>
-        <button mat-mini-fab (click)="onReset()" matTooltip="Limpar formulário" aria-label="Limpar formulário">
+        <button type="submit" mat-mini-fab matTooltip="Limpar formulário" aria-label="Limpar formulário">
           <i class="fas fa-redo"></i>
         </button>
       </mat-card-actions>
-      <form-debug [form]="userForm"></form-debug>
+      <!--<form-debug [form]="userForm"></form-debug>-->
     </form>
   </mat-card>
 

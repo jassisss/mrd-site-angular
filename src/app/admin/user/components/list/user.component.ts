@@ -63,8 +63,6 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   ngOnInit() {
 
-    this.onRefresh();
-
     this.subs.push(this.isHandset$.subscribe(result  => {
         if (result) {
           this.columnsToDisplay = ['radio', 'email'];
@@ -82,6 +80,8 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
         }
       }
     ));
+
+    this.onRefresh();
 
   }
 
@@ -109,6 +109,10 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
           this.openDialog();
           return of();
         }));
+
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
 
   }
 

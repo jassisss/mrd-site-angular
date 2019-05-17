@@ -1,0 +1,8 @@
+@import "../../shared";
+
+.error-message {
+  display: inline-block;
+  font-family: $mrd-font-family;
+  color: red;
+  font-size: 1em;
+}

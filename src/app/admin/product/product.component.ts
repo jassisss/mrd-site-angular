@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { SelectionModel} from '@angular/cdk/collections';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -16,7 +16,7 @@ import {ErrorDialogComponent} from '../../shared/component/error-dialog/error-di
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDestroy {
+export class ProductComponent extends MatPaginatorIntl implements OnInit, OnChanges, OnDestroy {
 
   itemsPerPageLabel = 'número de páginas';
   nextPageLabel     = '  próxima';
@@ -93,8 +93,6 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
 
     });
 
-    this.onRefresh();
-
     this.subs.push(this.isHandset$.subscribe(result  => {
         if (result) {
           this.columnsToDisplay = ['radio', 'product'];
@@ -112,6 +110,9 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
         }
       }
     ));
+
+    this.onRefresh();
+
 
   }
 
@@ -138,6 +139,19 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
           return of();
         }));
 
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+
+
+  }
+
+  ngOnChanges() {
+
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+
   }
 
   ngOnDestroy() {
@@ -151,6 +165,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
   }
   // noinspection UnterminatedStatementJS
   getRangeLabel = (page, pageSize, length) => {
+
     if (length === 0 || pageSize === 0) {
       return '0 de ' + length;
     }
@@ -160,6 +175,11 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnDest
     const endIndex = startIndex < length ?
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
+
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+
     return startIndex + 1 + ' - ' + endIndex + ' de ' + length;
   }
 
