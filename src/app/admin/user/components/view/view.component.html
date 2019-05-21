@@ -11,8 +11,8 @@
   <mat-card class="view-card">
     <mat-card-header class="view-card-header">
       <div mat-card-avatar class="view-header-image"></div>
-      <mat-card-title>Nome completo</mat-card-title>
-      <mat-card-subtitle>Tipo de usuário</mat-card-subtitle>
+      <mat-card-title>{{userView["nome"]}}</mat-card-title>
+      <mat-card-subtitle>{{userView["tipo"]}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <mat-divider class="view-divide" [inset]="true"></mat-divider>
@@ -22,7 +22,7 @@
             <p>E-mail:</p>
           </div>
           <div class="view-detail">
-            <p>fulano@email.com.br</p>
+            <p>{{userView["email"]}}</p>
           </div>
         </div>
         <div class="view-row">
@@ -30,7 +30,7 @@
             <p>Data de criação:</p>
           </div>
           <div class="view-detail">
-            <p>20 de janeiro de 2019 - 21:00hs</p>
+            <p>{{userView["data"]  | date: 'dd/MM/yyyy'}}</p>
           </div>
         </div>
         <div class="view-row">
@@ -38,14 +38,14 @@
             <p>Status:</p>
           </div>
           <div class="view-detail">
-            <p style="color: green;">Ativo</p>
+            <p style="color: green;">{{userView["status"]}}</p>
           </div>
         </div>
       </div>
     </mat-card-content>
     <mat-divider class="view-divide" [inset]="true"></mat-divider>
     <mat-card-actions class="view-card-action">
-      <button routerLink="/admin/user/editar/1" mat-mini-fab matTooltip="Editar dados do usuário"
+      <button (click)="onEdit($event)" mat-mini-fab matTooltip="Editar dados do usuário"
               aria-label="Editar dados do usuário">
         <i class="fas fa-edit"></i>
       </button>

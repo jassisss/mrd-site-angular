@@ -10,24 +10,24 @@
   </div>
 
   <mat-card class="form-card">
-    <form action="">
+    <form action=""  [formGroup]="userForm">
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
-            <input type="text" matInput placeholder="Nome completo">
+            <input type="text" matInput placeholder="Nome completo" formControlName="full_name">
           </mat-form-field>
           <mat-form-field>
-            <input type="email" matInput placeholder="E-mail">
+            <input type="email" matInput placeholder="E-mail" formControlName="email">
           </mat-form-field>
           <div class="select-container">
             <mat-form-field>
-              <mat-select placeholder="Tipo de usuário">
-                <mat-option value="option" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
+              <mat-select placeholder="Tipo de usuário" formControlName="usertipo_id">
+                <mat-option [value]="tipo.id" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="Status do usuário">
-                <mat-option value="option" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
+              <mat-select placeholder="Status do usuário" formControlName="userstatus_id">
+                <mat-option [value]="status.id" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

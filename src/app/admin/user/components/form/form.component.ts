@@ -57,11 +57,18 @@ export class FormComponent implements OnInit, OnDestroy {
       scrollTop: 0
     }, 800);
 
-    this.onReset();
-
     if (this.userForm.valid) {
-      // TODO
+      const data = this.userForm.value;
+      delete data.passwordConfirm;
+      this.dataService.putJsonUser(data).subscribe(
+        success => console.log('Sucesso'),
+        error => console.log('Erro'),
+        () => console.log('Completou')
+      );
+
+      this.onReset();
     }
+
   }
 
   onReset() {

@@ -61,10 +61,10 @@
       <button routerLink="/admin/user/novo" mat-mini-fab matTooltip="Adicionar novo usuário" aria-label="Novo usuário">
         <i class="fas fa-user-plus"></i>
       </button>
-      <button routerLink="/admin/user/view/1" *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Visualizar usuário selecionado" aria-label="Visualizar usuário selecionado">
+      <button (click)="onView($event)" *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Visualizar usuário selecionado" aria-label="Visualizar usuário selecionado">
         <i class="fas fa-eye"></i>
       </button>
-      <button routerLink="/admin/user/editar/1" *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Editar usuário selecionado" aria-label="Editar usuário selecionado">
+      <button (click)="onEdit($event)" *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Editar usuário selecionado" aria-label="Editar usuário selecionado">
         <i class="fas fa-user-edit"></i>
       </button>
       <button *ngIf="tableButtonsHide" mat-mini-fab matTooltip="Excluir usuário selecionado" aria-label="Excluir usuário selecionado">

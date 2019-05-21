@@ -23,6 +23,8 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   users: UserGeral[];
 
+  rowId: number;
+
   error$ = new BehaviorSubject<boolean>(false);
 
   subs: Subscription[] = [];
@@ -42,7 +44,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     .pipe(
       map(result => result.matches)
     );
- // dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
+
   dataSource: MatTableDataSource<UserGeral>;
 
   loading$ = this.dataService.subject$;
@@ -88,10 +90,10 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   onRefresh() {
 
     this.tableButtonsHide = false;
-    const botao = $('.table-disabled');
+    const habilita = $('.table-disabled');
     const filtro = $('.filter');
     filtro.val('');
-    botao.attr('disabled', 'disabled');
+    habilita.attr('disabled', 'disabled');
     this.error$.next(false);
 
     this.subs.push(this.dataService.getJsonUsers()
@@ -101,7 +103,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
           this.dataSource = new MatTableDataSource(dados);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-          botao.attr('enabled', 'enabled');
+          habilita.attr('enabled', 'enabled');
         },
         error => {
           this.error$.next(true);
@@ -116,14 +118,30 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   }
 
-  ngOnDestroy() {
-    this.subs.forEach(s =>  s.unsubscribe());
+  onEdit(e) {
+    e.stopPropagation();
+    this.router.navigate(['/admin/user/editar/', this.rowId]);
+  }
+
+  onView(e) {
+    e.stopPropagation();
+    this.router.navigate(['/admin/user/view/', this.rowId]);
+  }
+
+  onTableClick(e: MouseEvent, row) {
+    e.stopPropagation();
+    this.rowId = row.id;
+    this.onView(e);
   }
 
   onRowClicked(e, linha) {
     e.stopPropagation();
     this.tableButtonsHide = true;
-    console.log(linha.id);
+    this.rowId = linha.id;
+  }
+
+  ngOnDestroy() {
+    this.subs.forEach(s =>  s.unsubscribe());
   }
 
   // noinspection UnterminatedStatementJS
@@ -146,12 +164,6 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  onTableClick(e: MouseEvent, row) {
-    e.stopPropagation();
-    console.log(row.id);
-    this.router.navigate(['/admin/user/view/1']);
   }
 
   openDialog() {

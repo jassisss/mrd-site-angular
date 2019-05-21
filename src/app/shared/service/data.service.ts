@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { delay, finalize } from 'rxjs/operators';
+import {delay, finalize, take} from 'rxjs/operators';
 
 import { ProductData } from '../model/product-data';
 import { UserGeral } from '../model/user-geral';
@@ -29,6 +29,16 @@ export class DataService {
         finalize(() => this.loadingSubject.next(false)));
   }
 
+  getJsonUser(id): Observable<UserGeral[]> {
+    this.loadingSubject.next(true);
+    return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user/' + id)
+      .pipe(take(1));
+  }
+
+  putJsonUser(user): Observable<UserGeral[]> {
+    return this.http.post<UserGeral[]>(this.jsonServerUrl + 'user', user)
+      .pipe(take(1));
+  }
   getJsonUserStatus(): Observable<UserstatusGeral[]> {
     this.loadingSubject.next(true);
     return this.http.get<UserstatusGeral[]>(this.jsonServerUrl + 'userstatus')
@@ -37,12 +47,22 @@ export class DataService {
         finalize(() => this.loadingSubject.next(false)));
   }
 
+  getJsonUserStatusId(id): Observable<UserstatusGeral[]> {
+    return this.http.get<UserstatusGeral[]>(this.jsonServerUrl + 'userstatus/' + id)
+      .pipe(take(1));
+  }
+
   getJsonUserTipo(): Observable<UsertipoGeral[]> {
     this.loadingSubject.next(true);
     return this.http.get<UsertipoGeral[]>(this.jsonServerUrl + 'usertipo')
       .pipe(
         delay(0),
         finalize(() => this.loadingSubject.next(false)));
+  }
+
+  getJsonUserTipoId(id): Observable<UsertipoGeral[]> {
+    return this.http.get<UsertipoGeral[]>(this.jsonServerUrl + 'usertipo/' + id)
+      .pipe(take(1));
   }
 
   getJsonProducts(): Observable<ProductData[]> {
