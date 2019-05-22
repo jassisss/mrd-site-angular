@@ -75,7 +75,7 @@ export class FormComponent implements OnInit, OnDestroy {
         success => {
           // @ts-ignore
           const msg = `Usuário "${success.email}" incluido.`;
-          this.openMsgDialog(msg, 'success', 300);
+          this.openMsgDialog(msg, 'success', 10000);
           this.router.navigate(['/admin/user/']);
         },
         error => {

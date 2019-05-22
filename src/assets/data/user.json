@@ -24,19 +24,29 @@
     },
     {
       "id": 3,
-      "full_name": "José de Assis Silva",
+      "full_name": "José de Assis Santos da Silva",
       "email": "jassis@ibist.org.br",
       "usertipo_id": 2,
       "userstatus_id": 1,
-      "date_created": "2019-05-22 01:50:13"
+      "date_created": "2019-05-22 07:53:06"
     },
     {
-      "id": 4,
+      "full_name": "Dirceu Lopes",
+      "email": "lopes@email.com",
+      "password": "123123",
+      "usertipo_id": 4,
+      "userstatus_id": 4,
+      "date_created": "2019-5-22 07:35:20",
+      "id": 5
+    },
+    {
       "full_name": "Carlos Nordes",
       "email": "nordes@email.com",
+      "password": "123123",
       "usertipo_id": 4,
-      "userstatus_id": 6,
-      "date_created": "2019-05-22 05:15:08"
+      "userstatus_id": 4,
+      "date_created": "2019-5-22 08:21:30",
+      "id": 7
     }
   ],
   "userstatus": [

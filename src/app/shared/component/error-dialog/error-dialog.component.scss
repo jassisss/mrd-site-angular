@@ -1,19 +1,37 @@
 @import "../../../shared/shared";
 
+::ng-deep .mat-dialog-container {
+  background-color: #c2c2c2;
+  opacity: .9;
+  padding: 0;
+  border: 2px solid $mrd-color;
+}
+
 .error-dialog-container {
 
 }
 
 .error-dialog-title {
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: $mrd-bg-color;
+  padding: 10px;
 }
 
 .error-dialog-content {
-
+  padding: 20px;
+  color: $mrd-bg-color-nav !important;
 }
 
 .error-dialog-actions {
+  justify-content: flex-end !important;
+  margin-right: 2%;
+  color: $mrd-bg-color-nav !important;
+}
 
+.mat-dialog-actions {
+  justify-content: flex-end !important;
 }
 
 .error {

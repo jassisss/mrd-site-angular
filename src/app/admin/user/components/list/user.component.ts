@@ -133,7 +133,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   onDelete(e) {
     e.stopPropagation();
-    const msg = `Confirma a exclusão do usuário '${this.rowEmail}'?`;
+    const msg = `Confirma a exclusão do usuário "${this.rowEmail}"?`;
     this.openConfirmDialog(msg, 'warn');
   }
 
@@ -201,7 +201,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   openConfirmDialog(mens, status) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: 'EXCLUIR USUÁRIO',
+        title: 'CONFIRMAR EXCLUSÃO',
         message: mens,
         type: status
       }

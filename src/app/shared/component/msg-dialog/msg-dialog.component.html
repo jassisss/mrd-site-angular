@@ -1,6 +1,8 @@
 <div class="msg-dialog-container">
-  <h1 mat-dialog-title class="msg-dialog-title {{data.type}}">{{data.title}}</h1>
-  <div mat-dialog-content class="msg-dialog-content {{data.type}}">
+  <div mat-dialog-title class="msg-dialog-title {{data.type}}">
+    <span><i class="fas fa-exclamation fa-2x"></i>   </span>
+    <h1>&nbsp;&nbsp;&nbsp;{{data.title}}</h1>
+  </div>  <div mat-dialog-content class="msg-dialog-content {{data.type}}">
     <p>{{data.message}}</p>
   </div>
   <div mat-dialog-actions class="msg-dialog-actions">

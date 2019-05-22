@@ -1,5 +1,8 @@
 <div class="error-dialog-container">
-  <h1 mat-dialog-title class="error-dialog-title {{data.type}}">{{data.title}}</h1>
+  <div mat-dialog-title class="error-dialog-title {{data.type}}">
+    <span><i class="fas fa-exclamation-triangle fa-2x"></i>   </span>
+    <h1>&nbsp;&nbsp;&nbsp;{{data.title}}</h1>
+  </div>
   <div mat-dialog-content class="error-dialog-content {{data.type}}">
     <p>{{data.message}}</p>
   </div>
