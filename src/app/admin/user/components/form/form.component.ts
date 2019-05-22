@@ -7,6 +7,7 @@ import {DataService} from '../../../../shared/service/data.service';
 import {UserstatusGeral} from '../../../../shared/model/userstatus-geral';
 import {UsertipoGeral} from '../../../../shared/model/usertipo-geral';
 import {CustomValidators} from 'ng2-validation';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -28,12 +29,12 @@ export class FormComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.userForm = this.formBuilder.group({
-      fullName: [null, [Validators.required]],
+      full_name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(25)]],
       passwordConfirm: [null, [Validators.required]],
-      usertipoId: [null, [Validators.required]],
-      userstatusId: [null, [Validators.required]]
+      usertipo_id: [null, [Validators.required]],
+      userstatus_id: [null, [Validators.required]]
     });
 
     this.userForm.get('passwordConfirm').setValidators([Validators.required, CustomValidators.equalTo(this.userForm.get('password'))]);
@@ -59,10 +60,14 @@ export class FormComponent implements OnInit, OnDestroy {
 
     if (this.userForm.valid) {
       const data = this.userForm.value;
+      const now = new Date();
       delete data.passwordConfirm;
-      this.dataService.putJsonUser(data).subscribe(
-        success => console.log('Sucesso'),
-        error => console.log('Erro'),
+      data.date_created = formatDate(now, 'yyyy-M-d hh:mm:ss', 'pt');
+      data.usertipo_id = parseInt(data.usertipo_id, 10);
+      data.userstatus_id = parseInt(data.userstatus_id, 10);
+      this.dataService.postJsonUser(data).subscribe(
+        success => console.log('Sucesso', success),
+        error => console.log('Erro', error),
         () => console.log('Completou')
       );
 

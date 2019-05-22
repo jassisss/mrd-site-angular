@@ -36,7 +36,8 @@ PUT http://localhost:3000/user/4
 Content-Type: application/json
 
 {
-  "userstatus_id": 2
+  "usertipo_id": 4,
+  "userstatus_id": 7
 }
-
 ###
+

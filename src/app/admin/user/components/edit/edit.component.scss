@@ -1,1 +1,18 @@
 @import "../form/form.component";
+
+.form-table-action {
+  display: flex;
+  background-color: transparent;
+  padding: 10px;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.form-table-action .fa-user-minus {
+  color: red;
+}
+
+.field-error {
+  display: flex;
+  flex-direction: column;
+}

@@ -25,7 +25,7 @@ export class DataService {
     this.loadingSubject.next(true);
     return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user')
       .pipe(
-        delay(500),
+        delay(0),
         finalize(() => this.loadingSubject.next(false)));
   }
 
@@ -35,10 +35,21 @@ export class DataService {
       .pipe(take(1));
   }
 
-  putJsonUser(user): Observable<UserGeral[]> {
+  postJsonUser(user): Observable<UserGeral[]> {
     return this.http.post<UserGeral[]>(this.jsonServerUrl + 'user', user)
       .pipe(take(1));
   }
+
+  putJsonUser(user): Observable<UserGeral[]> {
+    return this.http.put<UserGeral[]>(this.jsonServerUrl + 'user/' + user.id, user)
+      .pipe(take(1));
+  }
+
+  delJsonUser(id): Observable<UserGeral[]> {
+    return this.http.delete<UserGeral[]>(this.jsonServerUrl + 'user/' + id)
+      .pipe(take(1));
+  }
+
   getJsonUserStatus(): Observable<UserstatusGeral[]> {
     this.loadingSubject.next(true);
     return this.http.get<UserstatusGeral[]>(this.jsonServerUrl + 'userstatus')

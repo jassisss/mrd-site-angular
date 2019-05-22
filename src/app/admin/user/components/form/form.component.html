@@ -14,9 +14,9 @@
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
-            <input type="text" matInput formControlName="fullName" placeholder="Nome completo">
+            <input type="text" matInput formControlName="full_name" placeholder="Nome completo">
           </mat-form-field>
-          <error-msg [control]="userForm.get('fullName')" [label]="'Nome'"></error-msg>
+          <error-msg [control]="userForm.get('full_name')" [label]="'Nome'"></error-msg>
           <mat-form-field>
             <input type="email" matInput formControlName="email" placeholder="E-mail">
           </mat-form-field>
@@ -38,19 +38,19 @@
           <div class="select-container">
             <div class="field-error">
               <mat-form-field>
-                <mat-select formControlName="usertipoId" placeholder="Tipo de usuário">
+                <mat-select formControlName="usertipo_id" placeholder="Tipo de usuário">
                   <mat-option value="{{tipo.id}}" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <error-msg [control]="userForm.get('usertipoId')" [label]="'Tipo de usuário'"></error-msg>
+              <error-msg [control]="userForm.get('usertipo_id')" [label]="'Tipo de usuário'"></error-msg>
             </div>
             <div class="field-error">
               <mat-form-field>
-                <mat-select formControlName="userstatusId" placeholder="Status do usuário">
+                <mat-select formControlName="userstatus_id" placeholder="Status do usuário">
                   <mat-option value="{{status.id}}" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <error-msg [control]="userForm.get('userstatusId')" [label]="'Tipo de usuário'"></error-msg>
+              <error-msg [control]="userForm.get('userstatus_id')" [label]="'Tipo de usuário'"></error-msg>
             </div>
           </div>
         </div>

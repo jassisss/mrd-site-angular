@@ -37,8 +37,10 @@ export class ErrorMsgComponent implements OnInit {
 
     const config = {
       required: `${fieldName} é obrigatório.`,
-      minlength: `${fieldName} precisa ter no mínimo ${validatorValue} caracteres.`,
-      maxlength: `${fieldName} precisa ter no máximo ${validatorValue} caracteres.`,
+       // @ts-ignore
+      minlength: `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,
+      // @ts-ignore
+      maxlength: `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
       equalTo: `${fieldName} deve ser igual a ${otherField}`,
       number: `${fieldName} deve ser um número`,
       email: `E-mail inválido.`

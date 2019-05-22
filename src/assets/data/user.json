@@ -24,34 +24,11 @@
     },
     {
       "id": 3,
-      "email": "jassis@ibist.org.br",
       "full_name": "José de Assis Silva",
-      "password": "$2y$10$ZFkcrSDOkgK.i4Kj2k1f9.4aS3rMgc/5IDAqZErLOX2/jTdZb/RKC",
-      "date_created": "2017-06-30 04:13:36",
-      "pwd_reset_token": "6814zpmzy68w761ro24kg06r8wsny1if",
-      "pwd_reset_token_creation_date": "2019-03-26 05:37:40",
+      "email": "jassis@ibist.org.br",
       "usertipo_id": 2,
-      "userstatus_id": 1
-    },
-    {
-      "id": 4,
-      "email": "nordes@email.com",
-      "fullName": "Carlos Nordes",
-      "password": "12",
-      "date_created": "2017-06-30 04:13:36",
-      "pwd_reset_token": "6814zpmzy68w761ro24kg06r8wsny1if",
-      "pwd_reset_token_creation_date": "2019-03-26 05:37:40",
-      "usertipoId": 4,
-      "userstatusId": 1
-    },
-    {
-      "fullName": "Carlos Nordes",
-      "email": "nordes@email.com",
-      "password": "12",
-      "passwordConfirm": "12",
-      "usertipoId": "3",
-      "userstatusId": "3",
-      "id": 5
+      "userstatus_id": 1,
+      "date_created": "2019-05-22 01:50:13"
     }
   ],
   "userstatus": [

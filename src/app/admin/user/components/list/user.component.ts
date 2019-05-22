@@ -128,6 +128,15 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     this.router.navigate(['/admin/user/view/', this.rowId]);
   }
 
+  onDelete(e) {
+    e.stopPropagation();
+    this.dataService.delJsonUser(this.rowId).subscribe(
+      success => this.onRefresh(),
+      error => console.log('Erro: ', error),
+      () => console.log('Completou: ')
+    );
+  }
+
   onTableClick(e: MouseEvent, row) {
     e.stopPropagation();
     this.rowId = row.id;
