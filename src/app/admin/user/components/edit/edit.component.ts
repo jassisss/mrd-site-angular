@@ -9,6 +9,10 @@ import {DataService} from '../../../../shared/service/data.service';
 import {UserstatusGeral} from '../../../../shared/model/userstatus-geral';
 import {UsertipoGeral} from '../../../../shared/model/usertipo-geral';
 import {formatDate} from '@angular/common';
+import {ErrorDialogComponent} from '../../../../shared/component/error-dialog/error-dialog.component';
+import {MatDialog} from '@angular/material';
+import {MsgDialogComponent} from '../../../../shared/component/msg-dialog/msg-dialog.component';
+import {ConfirmDialogComponent} from '../../../../shared/component/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-edit',
@@ -27,28 +31,20 @@ export class EditComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private dataService: DataService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
     // Cria o formulário
     this.onCreateForm();
-/*
-    this.route.params.subscribe(
-      (params: any) => {
-        const id = params.id;
-        const user$ = this.dataService.getJsonUser(id);
-        user$.subscribe(user => {
-          this.onUpdateForm(user);
-        });
-      });*/
+
     this.route.params
       .pipe(
         map((params: any) => params.id),
         switchMap(id => this.dataService.getJsonUser(id))
       )
-      .subscribe(
-        (user) => this.onUpdateForm(user));
+      .subscribe((user) => this.onUpdateForm(user));
 
   }
 
@@ -99,8 +95,16 @@ export class EditComponent implements OnInit, OnDestroy {
       const now = new Date();
       data.date_created = formatDate(now, 'yyyy-MM-d hh:mm:ss', 'pt');
       this.dataService.putJsonUser(data).subscribe(
-        success => console.log('Sucesso: ', success),
-        error => console.log('Erro: ', error),
+        success => {
+          // @ts-ignore
+          const msg = `Usuário '${success.email}' alterado.`;
+          this.openMsgDialog(msg, 'success', 300);
+          this.router.navigate(['/admin/user/']);
+        },
+        error => {
+          const msg = 'Erro ao tentar alterar usuário.';
+          this.openDialog(msg, error.status);
+        },
         () => console.log('Completou: ')
       );
 
@@ -111,17 +115,61 @@ export class EditComponent implements OnInit, OnDestroy {
 
   onDelete(e) {
     e.stopPropagation();
+    const msg = `Confirma a exclusão do usuário '${this.userForm.value.email}'?`;
+    this.openConfirmDialog(msg, 'warn');
+  }
+
+  onConfirmDelete() {
     this.dataService.delJsonUser(this.userForm.value.id).subscribe(
       success => this.onReset(),
-      error => console.log('Erro: ', error),
+      error => {
+        const mens = `Erro ao tentar excluir o usuários "${this.userForm.value.email}"`;
+        this.openDialog(mens, error.status);
+      },
       () => console.log('Completou: ')
     );
   }
-
   onReset() {
 
     this.router.navigate(['/admin/user/']);
 
+  }
+
+  openDialog(mens, status) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        title: 'ERRO ' + status,
+        message: mens,
+        type: 'error'
+      }
+    });
+  }
+
+  openMsgDialog(mens, status, timeout?: number) {
+    this.dialog.open(MsgDialogComponent, {
+      data: {
+        title: 'EDITAR USUÁRIO',
+        message: mens,
+        type: status,
+        dismissTimeout: timeout
+      }
+    });
+  }
+
+  openConfirmDialog(mens, status) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'EXCLUIR USUÁRIO',
+        message: mens,
+        type: status
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onConfirmDelete();
+      }
+    });
   }
 
   ngOnDestroy() {

@@ -9,6 +9,7 @@ import * as $ from 'jquery';
 import { DataService } from '../../../../shared/service/data.service';
 import { UserGeral } from '../../../../shared/model/user-geral';
 import { ErrorDialogComponent } from '../../../../shared/component/error-dialog/error-dialog.component';
+import {ConfirmDialogComponent} from '../../../../shared/component/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -24,6 +25,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   users: UserGeral[];
 
   rowId: number;
+  rowEmail: string;
 
   error$ = new BehaviorSubject<boolean>(false);
 
@@ -55,7 +57,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   constructor(private dataService: DataService,
               private breakpointObserver: BreakpointObserver,
               private router: Router,
-              public dialog: MatDialog) {
+              private dialog: MatDialog) {
     super();
     this.nextPageLabel = '  próxima';
     this.previousPageLabel = ' anterior';
@@ -108,7 +110,8 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
         error => {
           this.error$.next(true);
           this.dataSource = null;
-          this.openDialog();
+          const mens = 'Erro ao carregar tabela de usuários. Tente mais tarde...';
+          this.openDialog(mens, error.status);
           return of();
         }));
 
@@ -130,16 +133,25 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   onDelete(e) {
     e.stopPropagation();
-    this.dataService.delJsonUser(this.rowId).subscribe(
-      success => this.onRefresh(),
-      error => console.log('Erro: ', error),
-      () => console.log('Completou: ')
-    );
+    const msg = `Confirma a exclusão do usuário '${this.rowEmail}'?`;
+    this.openConfirmDialog(msg, 'warn');
+  }
+
+  onConfirmDelete() {
+        this.dataService.delJsonUser(this.rowId).subscribe(
+          success => this.onRefresh(),
+          error => {
+            const mens = `Erro ao tentar excluir o usuários "${this.rowEmail}"`;
+            this.openDialog(mens, error.status);
+          },
+          () => console.log('Completou: ')
+        );
   }
 
   onTableClick(e: MouseEvent, row) {
     e.stopPropagation();
     this.rowId = row.id;
+    this.rowEmail = row.email;
     this.onView(e);
   }
 
@@ -147,6 +159,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     e.stopPropagation();
     this.tableButtonsHide = true;
     this.rowId = linha.id;
+    this.rowEmail = linha.email;
   }
 
   ngOnDestroy() {
@@ -175,13 +188,30 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     }
   }
 
-  openDialog() {
+  openDialog(mens, status) {
     this.dialog.open(ErrorDialogComponent, {
       data: {
-        title: 'ERRO',
-        message: 'Erro ao carregar tabela de usuários. Tente mais tarde...',
+        title: `ERRO ${status}`,
+        message: mens,
         type: 'error'
       }
     });
   }
+
+  openConfirmDialog(mens, status) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'EXCLUIR USUÁRIO',
+        message: mens,
+        type: status
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onConfirmDelete();
+      }
+    });
+  }
+
 }

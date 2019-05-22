@@ -1,0 +1,35 @@
+@import "../../../shared/shared";
+
+.confirm-dialog-container {
+
+}
+
+.confirm-dialog-title {
+
+}
+
+.confirm-dialog-content {
+
+}
+
+.confirm-dialog-actions {
+
+}
+
+.success {
+  color: green;
+  font-family: $mrd-font-family;
+  font-size: 1.2em;
+}
+
+.info {
+  color: blue;
+  font-family: $mrd-font-family;
+  font-size: 1.2em;
+}
+
+.warn {
+  color: $mrd-color;
+  font-family: $mrd-font-family;
+  font-size: 1.2em;
+}

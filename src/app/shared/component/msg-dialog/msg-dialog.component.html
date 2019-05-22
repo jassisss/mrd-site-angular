@@ -1,0 +1,9 @@
+<div class="msg-dialog-container">
+  <h1 mat-dialog-title class="msg-dialog-title {{data.type}}">{{data.title}}</h1>
+  <div mat-dialog-content class="msg-dialog-content {{data.type}}">
+    <p>{{data.message}}</p>
+  </div>
+  <div mat-dialog-actions class="msg-dialog-actions">
+    <button mat-button (click)="onNoClick()">OK</button>
+  </div>
+</div>

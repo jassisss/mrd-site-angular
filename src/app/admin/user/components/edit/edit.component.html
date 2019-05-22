@@ -10,7 +10,7 @@
   </div>
 
   <mat-card class="form-card">
-    <form (ngSubmit)="onSubmit()" [formGroup]="userForm" #f="ngForm">
+    <form [formGroup]="userForm" #f="ngForm">
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
@@ -48,7 +48,7 @@
                 aria-label="Excluir usuário">
           <i class="fas fa-user-minus"></i>
         </button>
-        <button mat-mini-fab matTooltip="Salvar informações do usuário"
+        <button (click)="onSubmit()" type="submit" mat-mini-fab matTooltip="Salvar informações do usuário"
                 aria-label="Salvar informações do usuário">
           <i class="fas fa-check"></i>
         </button>

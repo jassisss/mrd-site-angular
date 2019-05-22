@@ -1,7 +1,9 @@
-<h1 mat-dialog-title class="error-dialog-title {{data.type}}">{{data.title}}</h1>
-<div mat-dialog-content class="{{data.type}}">
+<div class="error-dialog-container">
+  <h1 mat-dialog-title class="error-dialog-title {{data.type}}">{{data.title}}</h1>
+  <div mat-dialog-content class="error-dialog-content {{data.type}}">
     <p>{{data.message}}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">OK</button>
+  </div>
+  <div mat-dialog-actions class="error-dialog-actions">
+    <button mat-button (click)="onNoClick()">OK</button>
+  </div>
 </div>

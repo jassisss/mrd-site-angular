@@ -1,13 +1,17 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {CustomValidators} from 'ng2-validation';
+import {formatDate} from '@angular/common';
 import * as $ from 'jquery';
 
 import {DataService} from '../../../../shared/service/data.service';
 import {UserstatusGeral} from '../../../../shared/model/userstatus-geral';
 import {UsertipoGeral} from '../../../../shared/model/usertipo-geral';
-import {CustomValidators} from 'ng2-validation';
-import {formatDate} from '@angular/common';
+import {ErrorDialogComponent} from '../../../../shared/component/error-dialog/error-dialog.component';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {MsgDialogComponent} from '../../../../shared/component/msg-dialog/msg-dialog.component';
 
 @Component({
   selector: 'app-form',
@@ -24,7 +28,9 @@ export class FormComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
-              private dataService: DataService) { }
+              private dataService: DataService,
+              private dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -66,8 +72,17 @@ export class FormComponent implements OnInit, OnDestroy {
       data.usertipo_id = parseInt(data.usertipo_id, 10);
       data.userstatus_id = parseInt(data.userstatus_id, 10);
       this.dataService.postJsonUser(data).subscribe(
-        success => console.log('Sucesso', success),
-        error => console.log('Erro', error),
+        success => {
+          // @ts-ignore
+          const msg = `Usuário "${success.email}" incluido.`;
+          this.openMsgDialog(msg, 'success', 300);
+          this.router.navigate(['/admin/user/']);
+        },
+        error => {
+          // @ts-ignore
+          const msg = `Erro ao tentar incluir usuário "${success.email}".`;
+          this.openDialog(msg, error.status);
+        },
         () => console.log('Completou')
       );
 
@@ -89,4 +104,24 @@ export class FormComponent implements OnInit, OnDestroy {
     this.subs.forEach(s =>  s.unsubscribe());
   }
 
+  openDialog(mens, status) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        title: 'ERRO ' + status,
+        message: mens,
+        type: 'error'
+      }
+    });
+  }
+
+  openMsgDialog(mens, status, timeout?: number) {
+    this.dialog.open(MsgDialogComponent, {
+      data: {
+        title: 'NOVO USUÁRIO',
+        message: mens,
+        type: status,
+        dismissTimeout: timeout
+      }
+    });
+  }
 }

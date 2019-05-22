@@ -46,7 +46,7 @@ export class DataService {
   }
 
   delJsonUser(id): Observable<UserGeral[]> {
-    return this.http.delete<UserGeral[]>(this.jsonServerUrl + 'user/' + id)
+    return this.http.delete<UserGeral[]>(this.jsonServerUrl + 'usert/' + id)
       .pipe(take(1));
   }
 

@@ -7,13 +7,17 @@ import {MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatL
 import { FormDebugComponent } from './component/form-debug/form-debug.component';
 import { ErrorDialogComponent } from './component/error-dialog/error-dialog.component';
 import { ErrorMsgComponent } from './component/error-msg/error-msg.component';
+import { MsgDialogComponent } from './component/msg-dialog/msg-dialog.component';
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     Erro404Component,
     FormDebugComponent,
     ErrorDialogComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    MsgDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,9 @@ import { ErrorMsgComponent } from './component/error-msg/error-msg.component';
     ErrorMsgComponent
   ],
   entryComponents: [
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    MsgDialogComponent,
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule { }

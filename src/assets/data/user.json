@@ -29,6 +29,14 @@
       "usertipo_id": 2,
       "userstatus_id": 1,
       "date_created": "2019-05-22 01:50:13"
+    },
+    {
+      "id": 4,
+      "full_name": "Carlos Nordes",
+      "email": "nordes@email.com",
+      "usertipo_id": 4,
+      "userstatus_id": 6,
+      "date_created": "2019-05-22 05:15:08"
     }
   ],
   "userstatus": [

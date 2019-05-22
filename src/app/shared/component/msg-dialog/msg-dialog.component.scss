@@ -1,0 +1,35 @@
+@import "../../../shared/shared";
+
+.msg-dialog-container {
+
+}
+
+.msg-dialog-title {
+
+}
+
+.msg-dialog-content {
+
+}
+
+.msg-dialog-actions {
+
+}
+
+.success {
+  color: green;
+  font-family: $mrd-font-family;
+  font-size: 1.2em;
+}
+
+.info {
+  color: blue;
+  font-family: $mrd-font-family;
+  font-size: 1.2em;
+}
+
+.warn {
+  color: yellow;
+  font-family: $mrd-font-family;
+  font-size: 1.2em;
+}
