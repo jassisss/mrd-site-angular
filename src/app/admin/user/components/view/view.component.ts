@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { UserGeral } from '../../../../shared/model/user-geral';
 import { DataService } from '../../../../shared/service/data.service';
+import { UserModel } from '../../../../shared/model/user-model';
 
 @Component({
   selector: 'app-view',
@@ -11,7 +11,7 @@ import { DataService } from '../../../../shared/service/data.service';
 })
 export class ViewComponent implements OnInit {
 
-  user: UserGeral[];
+  user: UserModel[];
 
   userView = [];
 
@@ -54,6 +54,8 @@ export class ViewComponent implements OnInit {
     this.userView.email = user.email;
     // @ts-ignore
     this.userView.data = user.date_create;
+    // @ts-ignore
+    this.userView.data2 = user.date_update;
   }
 
   onLoadTipo(tipo) {

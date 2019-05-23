@@ -10,7 +10,7 @@
   </div>
 
   <mat-card class="form-card">
-    <form novalidate [formGroup]="userForm" (ngSubmit)="onSubmit()" #f="ngForm">
+    <form novalidate [formGroup]="userForm" #f="ngForm">
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
@@ -58,12 +58,12 @@
       </mat-card-content>
       <mat-card-actions class="form-table-action">
         <mat-divider [inset]="true"></mat-divider>
-        <button type="submit" mat-mini-fab matTooltip="Salvar informações do usuário"
+        <button type="submit" (click)="onSubmit()" mat-mini-fab matTooltip="Salvar informações do usuário"
                 aria-label="Salvar informações do usuário">
           <i class="fas fa-check"></i>
         </button>
         <div class="fill"></div>
-        <button type="submit" mat-mini-fab matTooltip="Limpar formulário" aria-label="Limpar formulário">
+        <button (click)="onReset()" mat-mini-fab matTooltip="Limpar formulário" aria-label="Limpar formulário">
           <i class="fas fa-redo"></i>
         </button>
       </mat-card-actions>

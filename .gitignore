@@ -6,7 +6,7 @@
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
-/src/expurgo
+/expurgo
 
 # dependencies
 /node_modules

@@ -66,16 +66,17 @@ export class FormComponent implements OnInit, OnDestroy {
 
     if (this.userForm.valid) {
       const data = this.userForm.value;
-      const now = new Date();
       delete data.passwordConfirm;
+/*      const now = new Date();
       data.date_create = formatDate(now, 'yyyy-M-d hh:mm:ss', 'pt');
+      data.date_update = formatDate(now, 'yyyy-M-d hh:mm:ss', 'pt');*/
       data.user_type_id = parseInt(data.user_type_id, 10);
       data.user_status_id = parseInt(data.user_status_id, 10);
       this.dataService.postUser(data).subscribe(
         success => {
           // @ts-ignore
-          const msg = `Usuário "${success.email}" incluido.`;
-          this.openMsgDialog(msg, 'success', 10000);
+          const msg = `Usuário "${data.email}" incluido.`;
+          this.openMsgDialog(msg, 'success', 2500);
           this.router.navigate(['/admin/user/']);
         },
         error => {

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,10 +7,9 @@ import { MatDialog, MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource 
 
 import * as $ from 'jquery';
 import { DataService } from '../../../../shared/service/data.service';
-import { UserGeral } from '../../../../shared/model/user-geral';
 import { ErrorDialogComponent } from '../../../../shared/component/error-dialog/error-dialog.component';
-import {ConfirmDialogComponent} from '../../../../shared/component/confirm-dialog/confirm-dialog.component';
-import {UserModel} from '../../../../shared/model/user-model';
+import { ConfirmDialogComponent } from '../../../../shared/component/confirm-dialog/confirm-dialog.component';
+import { UserModel } from '../../../../shared/model/user-model';
 
 @Component({
   selector: 'app-user',
@@ -72,16 +71,16 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
         if (result) {
           this.columnsToDisplay = ['radio', 'email'];
         } else {
-          this.columnsToDisplay = ['radio', 'name', 'email', 'date_create'];
+          this.columnsToDisplay = ['radio', 'name', 'email', 'date_create', 'date_update'];
         }
       }
     ));
 
     this.subs.push(this.isTablet$.subscribe(result  => {
         if (result) {
-          this.columnsToDisplay = ['radio', 'email', 'date_create'];
+          this.columnsToDisplay = ['radio', 'email', 'date_create', 'date_update'];
         } else {
-          this.columnsToDisplay = ['radio', 'name', 'email', 'date_create'];
+          this.columnsToDisplay = ['radio', 'name', 'email', 'date_create', 'date_update'];
         }
       }
     ));

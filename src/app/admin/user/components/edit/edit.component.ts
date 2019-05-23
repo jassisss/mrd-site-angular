@@ -92,13 +92,14 @@ export class EditComponent implements OnInit, OnDestroy {
 
     if (this.userForm.valid) {
       const data = this.userForm.value;
-      const now = new Date();
+/*      const now = new Date();
       data.date_create = formatDate(now, 'yyyy-MM-d hh:mm:ss', 'pt');
+      data.date_update = formatDate(now, 'yyyy-MM-d hh:mm:ss', 'pt');*/
       this.dataService.putUser(data).subscribe(
         success => {
           // @ts-ignore
-          const msg = `Usuário '${success.email}' alterado.`;
-          this.openMsgDialog(msg, 'success', 300);
+          const msg = `Usuário '${data.email}' alterado.`;
+          this.openMsgDialog(msg, 'success', 2500);
           this.router.navigate(['/admin/user/']);
         },
         error => {

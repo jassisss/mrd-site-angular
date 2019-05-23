@@ -17,7 +17,7 @@ export class DataService {
 
   public subject$ = this.loadingSubject.asObservable();
 
-  private serverUrl = 'http://localhost:3000/';
+  private serverUrl = 'http://localhost:8080/';
 
   constructor( private http: HttpClient) { }
 
@@ -68,14 +68,14 @@ export class DataService {
 
   getUserType(): Observable<UsertypeModel[]> {
     this.loadingSubject.next(true);
-    return this.http.get<UsertypeModel[]>(this.serverUrl + 'usertypes')
+    return this.http.get<UsertypeModel[]>(this.serverUrl + 'usertype')
       .pipe(
         delay(0),
         finalize(() => this.loadingSubject.next(false)));
   }
 
   getUserTypeId(id): Observable<UsertypeModel[]> {
-    return this.http.get<UsertypeModel[]>(this.serverUrl + 'usertypes/' + id)
+    return this.http.get<UsertypeModel[]>(this.serverUrl + 'usertype/' + id)
       .pipe(take(1));
   }
 

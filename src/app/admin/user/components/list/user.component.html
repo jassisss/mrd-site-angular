@@ -45,6 +45,11 @@
           <td mat-cell *matCellDef="let element"> {{element.date_create | date: 'dd/MM/yyyy'}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="date_update">
+          <th mat-header-cell  mat-sort-header *matHeaderCellDef> Última Atualização</th>
+          <td mat-cell *matCellDef="let element"> {{element.date_update | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row class="tab-linha" (dblclick)="onTableClick($event, myRowData)" *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 

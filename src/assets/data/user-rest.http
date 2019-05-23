@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:3000/userstatus
+GET http://localhost:3000/usertypes
 
 ###
 
