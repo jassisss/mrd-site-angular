@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {delay, finalize, take} from 'rxjs/operators';
 
-import { ProductData } from '../model/product-data';
-import { UserGeral } from '../model/user-geral';
-import { UserstatusGeral } from '../model/userstatus-geral';
-import { UsertipoGeral } from '../model/usertipo-geral';
+import { UserModel } from '../model/user-model';
+import { UserstatusModel } from '../model/userstatus-model';
+import { UsertypeModel } from '../model/usertype-model';
+import { ProductModel } from '../model/product-model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,68 +17,71 @@ export class DataService {
 
   public subject$ = this.loadingSubject.asObservable();
 
-  private jsonServerUrl = 'http://localhost:3000/';
+  private serverUrl = 'http://localhost:3000/';
 
   constructor( private http: HttpClient) { }
 
-  getJsonUsers(): Observable<UserGeral[]> {
+/*
+  BLOCO DE ACESSO PELO JSON-SERVER
+*/
+  getUsers(): Observable<UserModel[]> {
     this.loadingSubject.next(true);
-    return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user')
+    return this.http.get<UserModel[]>(this.serverUrl + 'user')
       .pipe(
         delay(0),
         finalize(() => this.loadingSubject.next(false)));
   }
 
-  getJsonUser(id): Observable<UserGeral[]> {
+  getUser(id): Observable<UserModel[]> {
     this.loadingSubject.next(true);
-    return this.http.get<UserGeral[]>(this.jsonServerUrl + 'user/' + id)
+    return this.http.get<UserModel[]>(this.serverUrl + 'user/' + id)
       .pipe(take(1));
   }
 
-  postJsonUser(user): Observable<UserGeral[]> {
-    return this.http.post<UserGeral[]>(this.jsonServerUrl + 'user', user)
+  postUser(user): Observable<UserModel[]> {
+    return this.http.post<UserModel[]>(this.serverUrl + 'user', user)
       .pipe(take(1));
   }
 
-  putJsonUser(user): Observable<UserGeral[]> {
-    return this.http.put<UserGeral[]>(this.jsonServerUrl + 'user/' + user.id, user)
+  putUser(user): Observable<UserModel[]> {
+    return this.http.put<UserModel[]>(this.serverUrl + 'user/' + user.id, user)
       .pipe(take(1));
   }
 
-  delJsonUser(id): Observable<UserGeral[]> {
-    return this.http.delete<UserGeral[]>(this.jsonServerUrl + 'user/' + id)
+  delUser(id): Observable<UserModel[]> {
+    return this.http.delete<UserModel[]>(this.serverUrl + 'user/' + id)
       .pipe(take(1));
   }
 
-  getJsonUserStatus(): Observable<UserstatusGeral[]> {
+  getUserStatus(): Observable<UserstatusModel[]> {
     this.loadingSubject.next(true);
-    return this.http.get<UserstatusGeral[]>(this.jsonServerUrl + 'userstatus')
+    return this.http.get<UserstatusModel[]>(this.serverUrl + 'userstatus')
       .pipe(
         delay(0),
         finalize(() => this.loadingSubject.next(false)));
   }
 
-  getJsonUserStatusId(id): Observable<UserstatusGeral[]> {
-    return this.http.get<UserstatusGeral[]>(this.jsonServerUrl + 'userstatus/' + id)
+  getUserStatusId(id): Observable<UserstatusModel[]> {
+    return this.http.get<UserstatusModel[]>(this.serverUrl + 'userstatus/' + id)
       .pipe(take(1));
   }
 
-  getJsonUserTipo(): Observable<UsertipoGeral[]> {
+  getUserType(): Observable<UsertypeModel[]> {
     this.loadingSubject.next(true);
-    return this.http.get<UsertipoGeral[]>(this.jsonServerUrl + 'usertipo')
+    return this.http.get<UsertypeModel[]>(this.serverUrl + 'usertypes')
       .pipe(
         delay(0),
         finalize(() => this.loadingSubject.next(false)));
   }
 
-  getJsonUserTipoId(id): Observable<UsertipoGeral[]> {
-    return this.http.get<UsertipoGeral[]>(this.jsonServerUrl + 'usertipo/' + id)
+  getUserTypeId(id): Observable<UsertypeModel[]> {
+    return this.http.get<UsertypeModel[]>(this.serverUrl + 'usertypes/' + id)
       .pipe(take(1));
   }
 
-  getJsonProducts(): Observable<ProductData[]> {
+  getProducts(): Observable<ProductModel[]> {
     this.loadingSubject.next(true);
-    return this.http.get<ProductData[]>(this.jsonServerUrl + 'product')
+    return this.http.get<ProductModel[]>(this.serverUrl + 'product')
       .pipe(
         delay(0),
         finalize(() => this.loadingSubject.next(false)));

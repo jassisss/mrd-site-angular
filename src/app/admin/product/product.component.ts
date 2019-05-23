@@ -1,15 +1,14 @@
-import {Component, OnChanges, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { SelectionModel} from '@angular/cdk/collections';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import {MatDialog, MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource} from '@angular/material';
+import { MatDialog, MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource } from '@angular/material';
 import { map } from 'rxjs/operators';
 import * as $ from 'jquery';
 
 import { DataService } from '../../shared/service/data.service';
-import { ProductData } from '../../shared/model/product-data';
-import {Router} from '@angular/router';
-import {ErrorDialogComponent} from '../../shared/component/error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../shared/component/error-dialog/error-dialog.component';
+import { ProductModel } from '../../shared/model/product-model';
 
 @Component({
   selector: 'app-product',
@@ -22,9 +21,9 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnChan
   nextPageLabel     = '  próxima';
   previousPageLabel = ' anterior';
 
-  products: ProductData[];
+  products: ProductModel[];
 
-  dataSource: MatTableDataSource<ProductData>;
+  dataSource: MatTableDataSource<ProductModel>;
 
   subs: Subscription[] = [];
 
@@ -48,7 +47,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnChan
       map(result => result.matches)
     );
 
-  selection = new SelectionModel<ProductData>(true, []);
+  selection = new SelectionModel<ProductModel>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -123,7 +122,7 @@ export class ProductComponent extends MatPaginatorIntl implements OnInit, OnChan
     botao.attr('disabled', 'disabled');
     const filtro = $('.filter');
     filtro.val('');
-    this.subs.push(this.dataService.getJsonProducts()
+    this.subs.push(this.dataService.getProducts()
       .subscribe(
         dados => {
           this.products = dados;

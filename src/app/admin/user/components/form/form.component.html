@@ -14,9 +14,9 @@
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
-            <input type="text" matInput formControlName="full_name" placeholder="Nome completo">
+            <input type="text" matInput formControlName="name" placeholder="Nome completo">
           </mat-form-field>
-          <error-msg [control]="userForm.get('full_name')" [label]="'Nome'"></error-msg>
+          <error-msg [control]="userForm.get('name')" [label]="'Nome'"></error-msg>
           <mat-form-field>
             <input type="email" matInput formControlName="email" placeholder="E-mail">
           </mat-form-field>
@@ -38,19 +38,19 @@
           <div class="select-container">
             <div class="field-error">
               <mat-form-field>
-                <mat-select formControlName="usertipo_id" placeholder="Tipo de usuário">
-                  <mat-option value="{{tipo.id}}" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
+                <mat-select formControlName="user_type_id" placeholder="Tipo de usuário">
+                  <mat-option value="{{tipo.id}}" *ngFor="let tipo of userTipo">{{tipo.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <error-msg [control]="userForm.get('usertipo_id')" [label]="'Tipo de usuário'"></error-msg>
+              <error-msg [control]="userForm.get('user_type_id')" [label]="'Tipo de usuário'"></error-msg>
             </div>
             <div class="field-error">
               <mat-form-field>
-                <mat-select formControlName="userstatus_id" placeholder="Status do usuário">
-                  <mat-option value="{{status.id}}" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
+                <mat-select formControlName="user_status_id" placeholder="Status do usuário">
+                  <mat-option value="{{status.id}}" *ngFor="let status of userStatus">{{status.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <error-msg [control]="userForm.get('userstatus_id')" [label]="'Tipo de usuário'"></error-msg>
+              <error-msg [control]="userForm.get('user_status_id')" [label]="'Tipo de usuário'"></error-msg>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
           <i class="fas fa-redo"></i>
         </button>
       </mat-card-actions>
-      <form-debug [form]="userForm"></form-debug>
+<!--      <form-debug [form]="userForm"></form-debug>-->
     </form>
   </mat-card>
 

@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "CGCTec",
+    "desc": "Administrador Geral do Aplicativo",
+    "readonly": 1
+  },
+  {
+    "id": 2,
+    "name": "Owner",
+    "desc": "Dono Master do Aplicativo",
+    "readonly": 1
+  },
+  {
+    "id": 4,
+    "name": "Guest",
+    "desc": "Usuário convidado",
+    "readonly": 0
+  },
+  {
+    "id": 10,
+    "name": "Teste5",
+    "desc": "Usuário teste5",
+    "readonly": 0
+  },
+  {
+    "id": 12,
+    "name": "Teste6",
+    "desc": "Usuário teste6",
+    "readonly": 0
+  },
+  {
+    "id": 13,
+    "name": "Teste7",
+    "desc": "Usuário teste7",
+    "readonly": 0
+  },
+  {
+    "id": 14,
+    "name": "Teste9",
+    "desc": "Usuário teste9",
+    "readonly": 0
+  },
+  {
+    "id": 15,
+    "name": "Teste19",
+    "desc": "Usuário teste19",
+    "readonly": 0
+  },
+  {
+    "id": 17,
+    "name": "Teste129",
+    "desc": "Usuário teste19",
+    "readonly": 0
+  }
+]

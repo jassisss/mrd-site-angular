@@ -1,18 +1,18 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {ActivatedRoute, Router} from '@angular/router';
-import {map, switchMap} from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
 import * as $ from 'jquery';
 
-import {DataService} from '../../../../shared/service/data.service';
-import {UserstatusGeral} from '../../../../shared/model/userstatus-geral';
-import {UsertipoGeral} from '../../../../shared/model/usertipo-geral';
-import {formatDate} from '@angular/common';
-import {ErrorDialogComponent} from '../../../../shared/component/error-dialog/error-dialog.component';
-import {MatDialog} from '@angular/material';
-import {MsgDialogComponent} from '../../../../shared/component/msg-dialog/msg-dialog.component';
-import {ConfirmDialogComponent} from '../../../../shared/component/confirm-dialog/confirm-dialog.component';
+import { DataService } from '../../../../shared/service/data.service';
+import { ErrorDialogComponent } from '../../../../shared/component/error-dialog/error-dialog.component';
+import { MatDialog } from '@angular/material';
+import { MsgDialogComponent } from '../../../../shared/component/msg-dialog/msg-dialog.component';
+import { ConfirmDialogComponent } from '../../../../shared/component/confirm-dialog/confirm-dialog.component';
+import { UserstatusModel } from '../../../../shared/model/userstatus-model';
+import { UsertypeModel } from '../../../../shared/model/usertype-model';
 
 @Component({
   selector: 'app-edit',
@@ -24,8 +24,8 @@ export class EditComponent implements OnInit, OnDestroy {
   @ViewChild('f') myForm;
 
   userForm: FormGroup;
-  userStatus: UserstatusGeral[];
-  userTipo: UsertipoGeral[];
+  userStatus: UserstatusModel[];
+  userTipo: UsertypeModel[];
   subs: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
@@ -42,7 +42,7 @@ export class EditComponent implements OnInit, OnDestroy {
     this.route.params
       .pipe(
         map((params: any) => params.id),
-        switchMap(id => this.dataService.getJsonUser(id))
+        switchMap(id => this.dataService.getUser(id))
       )
       .subscribe((user) => this.onUpdateForm(user));
 
@@ -52,11 +52,11 @@ export class EditComponent implements OnInit, OnDestroy {
 
     this.userForm.patchValue({
       id: user.id,
-      full_name: user.full_name,
+      name: user.name,
       email: user.email,
-      date_created: user.date_created,
-      usertipo_id: user.usertipo_id,
-      userstatus_id: user.userstatus_id
+      date_create: user.date_create,
+      user_type_id: user.user_type_id,
+      user_status_id: user.user_status_id
     });
 
   }
@@ -65,19 +65,19 @@ export class EditComponent implements OnInit, OnDestroy {
 
     this.userForm = this.formBuilder.group({
       id: [null],
-      full_name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
+      name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       email: [null, [Validators.required, Validators.email]],
-      usertipo_id: [null, [Validators.required]],
-      userstatus_id: [null, [Validators.required]]
+      user_type_id: [null, [Validators.required]],
+      user_status_id: [null, [Validators.required]]
     });
 
-    this.subs.push(this.dataService.getJsonUserStatus()
+    this.subs.push(this.dataService.getUserStatus()
       .subscribe(
         dados => {
           this.userStatus = dados;
         }));
 
-    this.subs.push(this.dataService.getJsonUserTipo()
+    this.subs.push(this.dataService.getUserType()
       .subscribe(
         dados => {
           this.userTipo = dados;
@@ -93,8 +93,8 @@ export class EditComponent implements OnInit, OnDestroy {
     if (this.userForm.valid) {
       const data = this.userForm.value;
       const now = new Date();
-      data.date_created = formatDate(now, 'yyyy-MM-d hh:mm:ss', 'pt');
-      this.dataService.putJsonUser(data).subscribe(
+      data.date_create = formatDate(now, 'yyyy-MM-d hh:mm:ss', 'pt');
+      this.dataService.putUser(data).subscribe(
         success => {
           // @ts-ignore
           const msg = `Usuário '${success.email}' alterado.`;
@@ -120,7 +120,7 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   onConfirmDelete() {
-    this.dataService.delJsonUser(this.userForm.value.id).subscribe(
+    this.dataService.delUser(this.userForm.value.id).subscribe(
       success => this.onReset(),
       error => {
         const mens = `Erro ao tentar excluir o usuários "${this.userForm.value.email}"`;

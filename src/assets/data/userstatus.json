@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Ativo",
+    "desc": null,
+    "readonly": 1
+  },
+  {
+    "id": 2,
+    "name": "Inativo",
+    "desc": "Usuário com grande período de inatividade",
+    "readonly": 1
+  },
+  {
+    "id": 6,
+    "name": "Teste",
+    "desc": "Usuário teste",
+    "readonly": 0
+  }
+]

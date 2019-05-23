@@ -10,6 +10,7 @@ import { DataService } from '../../../../shared/service/data.service';
 import { UserGeral } from '../../../../shared/model/user-geral';
 import { ErrorDialogComponent } from '../../../../shared/component/error-dialog/error-dialog.component';
 import {ConfirmDialogComponent} from '../../../../shared/component/confirm-dialog/confirm-dialog.component';
+import {UserModel} from '../../../../shared/model/user-model';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +23,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   nextPageLabel     = '';
   previousPageLabel = '';
 
-  users: UserGeral[];
+  users: UserModel[];
 
   rowId: number;
   rowEmail: string;
@@ -33,7 +34,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   tableButtonsHide = false;
 
-  columnsToDisplay: string[] = ['radio', 'full_name', 'email', 'date_created'];
+  columnsToDisplay: string[] = ['radio', 'name', 'email', 'date_create'];
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -47,7 +48,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
       map(result => result.matches)
     );
 
-  dataSource: MatTableDataSource<UserGeral>;
+  dataSource: MatTableDataSource<UserModel>;
 
   loading$ = this.dataService.subject$;
 
@@ -71,16 +72,16 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
         if (result) {
           this.columnsToDisplay = ['radio', 'email'];
         } else {
-          this.columnsToDisplay = ['radio', 'full_name', 'email', 'date_created'];
+          this.columnsToDisplay = ['radio', 'name', 'email', 'date_create'];
         }
       }
     ));
 
     this.subs.push(this.isTablet$.subscribe(result  => {
         if (result) {
-          this.columnsToDisplay = ['radio', 'email', 'date_created'];
+          this.columnsToDisplay = ['radio', 'email', 'date_create'];
         } else {
-          this.columnsToDisplay = ['radio', 'full_name', 'email', 'date_created'];
+          this.columnsToDisplay = ['radio', 'name', 'email', 'date_create'];
         }
       }
     ));
@@ -98,7 +99,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     habilita.attr('disabled', 'disabled');
     this.error$.next(false);
 
-    this.subs.push(this.dataService.getJsonUsers()
+    this.subs.push(this.dataService.getUsers()
       .subscribe(
         dados => {
           this.users = dados;
@@ -111,7 +112,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
           this.error$.next(true);
           this.dataSource = null;
           const mens = 'Erro ao carregar tabela de usuários. Tente mais tarde...';
-          this.openDialog(mens, error.status);
+          this.openDialog(mens, '304');
           return of();
         }));
 
@@ -138,7 +139,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   }
 
   onConfirmDelete() {
-        this.dataService.delJsonUser(this.rowId).subscribe(
+        this.dataService.delUser(this.rowId).subscribe(
           success => this.onRefresh(),
           error => {
             const mens = `Erro ao tentar excluir o usuários "${this.rowEmail}"`;

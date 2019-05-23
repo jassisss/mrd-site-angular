@@ -14,9 +14,9 @@
       <mat-card-content>
         <div class="input-container">
           <mat-form-field>
-            <input type="text" matInput placeholder="Nome completo" formControlName="full_name">
+            <input type="text" matInput placeholder="Nome completo" formControlName="name">
           </mat-form-field>
-          <error-msg [control]="userForm.get('full_name')" [label]="'Nome'"></error-msg>
+          <error-msg [control]="userForm.get('name')" [label]="'Nome'"></error-msg>
           <mat-form-field>
             <input type="email" matInput placeholder="E-mail" formControlName="email">
           </mat-form-field>
@@ -24,19 +24,19 @@
           <div class="select-container">
             <div class="field-error">
               <mat-form-field>
-                <mat-select placeholder="Tipo de usuário" formControlName="usertipo_id">
-                  <mat-option [value]="tipo.id" *ngFor="let tipo of userTipo">{{tipo.nome}}</mat-option>
+                <mat-select placeholder="Tipo de usuário" formControlName="user_type_id">
+                  <mat-option [value]="tipo.id" *ngFor="let tipo of userTipo">{{tipo.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <error-msg [control]="userForm.get('usertipo_id')" [label]="'Tipo de usuário'"></error-msg>
+              <error-msg [control]="userForm.get('user_type_id')" [label]="'Tipo de usuário'"></error-msg>
             </div>
             <div class="field-error">
               <mat-form-field>
-                <mat-select placeholder="Status do usuário" formControlName="userstatus_id">
-                  <mat-option [value]="status.id" *ngFor="let status of userStatus">{{status.nome}}</mat-option>
+                <mat-select placeholder="Status do usuário" formControlName="user_status_id">
+                  <mat-option [value]="status.id" *ngFor="let status of userStatus">{{status.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <error-msg [control]="userForm.get('userstatus_id')" [label]="'Tipo de usuário'"></error-msg>
+              <error-msg [control]="userForm.get('user_status_id')" [label]="'Tipo de usuário'"></error-msg>
             </div>
           </div>
         </div>

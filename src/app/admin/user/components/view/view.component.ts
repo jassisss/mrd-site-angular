@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import {UserGeral} from '../../../../shared/model/user-geral';
-import {DataService} from '../../../../shared/service/data.service';
+import { UserGeral } from '../../../../shared/model/user-geral';
+import { DataService } from '../../../../shared/service/data.service';
 
 @Component({
   selector: 'app-view',
@@ -25,16 +25,16 @@ export class ViewComponent implements OnInit {
     this.route.params.subscribe(
       (params: any) => {
         const id = params.id;
-        const user$ = this.dataService.getJsonUser(id);
+        const user$ = this.dataService.getUser(id);
         user$.subscribe(user => {
           // @ts-ignore
-          this.dataService.getJsonUserStatusId(user.userstatus_id)
+          this.dataService.getUserStatusId(user.user_status_id)
             .subscribe(
               dados => {
                 this.onLoadStatus(dados);
               });
           // @ts-ignore
-          this.dataService.getJsonUserTipoId(user.usertipo_id)
+          this.dataService.getUserTypeId(user.user_type_id)
             .subscribe(
               dados => {
                 this.onLoadTipo(dados);
@@ -49,21 +49,21 @@ export class ViewComponent implements OnInit {
     // @ts-ignore
     this.userView.id = user.id;
     // @ts-ignore
-    this.userView.nome = user.full_name;
+    this.userView.nome = user.name;
     // @ts-ignore
     this.userView.email = user.email;
     // @ts-ignore
-    this.userView.data = user.date_created;
+    this.userView.data = user.date_create;
   }
 
   onLoadTipo(tipo) {
     // @ts-ignore
-    this.userView.tipo = tipo.nome;
+    this.userView.tipo = tipo.name;
   }
 
   onLoadStatus(status) {
     // @ts-ignore
-    this.userView.status = status.nome;
+    this.userView.status = status.name;
   }
 
   onEdit(e) {

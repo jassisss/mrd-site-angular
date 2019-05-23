@@ -1,17 +1,17 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {CustomValidators} from 'ng2-validation';
-import {formatDate} from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { formatDate } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { Subscription } from 'rxjs';
+import { CustomValidators } from 'ng2-validation';
 import * as $ from 'jquery';
 
-import {DataService} from '../../../../shared/service/data.service';
-import {UserstatusGeral} from '../../../../shared/model/userstatus-geral';
-import {UsertipoGeral} from '../../../../shared/model/usertipo-geral';
-import {ErrorDialogComponent} from '../../../../shared/component/error-dialog/error-dialog.component';
-import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material';
-import {MsgDialogComponent} from '../../../../shared/component/msg-dialog/msg-dialog.component';
+import { DataService } from '../../../../shared/service/data.service';
+import { ErrorDialogComponent } from '../../../../shared/component/error-dialog/error-dialog.component';
+import { MsgDialogComponent } from '../../../../shared/component/msg-dialog/msg-dialog.component';
+import { UserstatusModel } from '../../../../shared/model/userstatus-model';
+import { UsertypeModel } from '../../../../shared/model/usertype-model';
 
 @Component({
   selector: 'app-form',
@@ -23,8 +23,8 @@ export class FormComponent implements OnInit, OnDestroy {
   @ViewChild('f') myForm;
 
   userForm: FormGroup;
-  userStatus: UserstatusGeral[];
-  userTipo: UsertipoGeral[];
+  userStatus: UserstatusModel[];
+  userTipo: UsertypeModel[];
   subs: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
@@ -35,23 +35,23 @@ export class FormComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.userForm = this.formBuilder.group({
-      full_name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
+      name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(25)]],
       passwordConfirm: [null, [Validators.required]],
-      usertipo_id: [null, [Validators.required]],
-      userstatus_id: [null, [Validators.required]]
+      user_type_id: [null, [Validators.required]],
+      user_status_id: [null, [Validators.required]]
     });
 
     this.userForm.get('passwordConfirm').setValidators([Validators.required, CustomValidators.equalTo(this.userForm.get('password'))]);
 
-    this.subs.push(this.dataService.getJsonUserStatus()
+    this.subs.push(this.dataService.getUserStatus()
       .subscribe(
         dados => {
           this.userStatus = dados;
         }));
 
-    this.subs.push(this.dataService.getJsonUserTipo()
+    this.subs.push(this.dataService.getUserType()
       .subscribe(
         dados => {
           this.userTipo = dados;
@@ -68,10 +68,10 @@ export class FormComponent implements OnInit, OnDestroy {
       const data = this.userForm.value;
       const now = new Date();
       delete data.passwordConfirm;
-      data.date_created = formatDate(now, 'yyyy-M-d hh:mm:ss', 'pt');
-      data.usertipo_id = parseInt(data.usertipo_id, 10);
-      data.userstatus_id = parseInt(data.userstatus_id, 10);
-      this.dataService.postJsonUser(data).subscribe(
+      data.date_create = formatDate(now, 'yyyy-M-d hh:mm:ss', 'pt');
+      data.user_type_id = parseInt(data.user_type_id, 10);
+      data.user_status_id = parseInt(data.user_status_id, 10);
+      this.dataService.postUser(data).subscribe(
         success => {
           // @ts-ignore
           const msg = `Usuário "${success.email}" incluido.`;
