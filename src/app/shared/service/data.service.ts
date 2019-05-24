@@ -7,6 +7,7 @@ import { UserModel } from '../model/user-model';
 import { UserstatusModel } from '../model/userstatus-model';
 import { UsertypeModel } from '../model/usertype-model';
 import { ProductModel } from '../model/product-model';
+import {UserphotoModel} from '../model/userphoto-model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +77,11 @@ export class DataService {
 
   getUserTypeId(id): Observable<UsertypeModel[]> {
     return this.http.get<UsertypeModel[]>(this.serverUrl + 'usertype/' + id)
+      .pipe(take(1));
+  }
+
+  getUserPhotoByUserId(id): Observable<UserphotoModel[]> {
+    return this.http.get<UserphotoModel[]>(this.serverUrl + 'userphotouser/' + id)
       .pipe(take(1));
   }
 

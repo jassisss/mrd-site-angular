@@ -33,7 +33,7 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
 
   tableButtonsHide = false;
 
-  columnsToDisplay: string[] = ['radio', 'name', 'email', 'date_create'];
+  columnsToDisplay: string[] = ['radio', 'name', 'email', 'date_create', 'date_update'];
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)

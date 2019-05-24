@@ -43,15 +43,17 @@
 }
 
 .view-card-header {
+  display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
+  flex-direction: row;
+  align-items: center;
 }
 
 .view-header-image {
-  width: 50px;
-  height: 50px;
-  background-image: url("../../../../../assets/img/avatar-menino-01.png");
-  background-size: cover;
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
 }
 
 .mat-card-subtitle {

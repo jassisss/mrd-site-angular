@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DataService } from '../../../../shared/service/data.service';
 import { UserModel } from '../../../../shared/model/user-model';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-view',
@@ -14,6 +15,8 @@ export class ViewComponent implements OnInit {
   user: UserModel[];
 
   userView = [];
+
+  src = '../../../../../assets/img/avatar-menino-01.png';
 
   constructor( private dataService: DataService,
                private route: ActivatedRoute,
@@ -27,6 +30,15 @@ export class ViewComponent implements OnInit {
         const id = params.id;
         const user$ = this.dataService.getUser(id);
         user$.subscribe(user => {
+          // @ts-ignore
+          this.dataService.getUserPhotoByUserId(user.id)
+            .subscribe(
+              dados => {
+                this.onLoadPhoto(dados);
+              },
+              error => {
+                return of();
+              });
           // @ts-ignore
           this.dataService.getUserStatusId(user.user_status_id)
             .subscribe(
@@ -66,6 +78,15 @@ export class ViewComponent implements OnInit {
   onLoadStatus(status) {
     // @ts-ignore
     this.userView.status = status.name;
+  }
+
+  onLoadPhoto(photo) {
+    if (photo) {
+      const buffer = window.atob(photo.img);
+      this.src = buffer;
+    } else {
+      this.src = '../../../../../assets/img/avatar-menino-01.png';
+    }
   }
 
   onEdit(e) {
