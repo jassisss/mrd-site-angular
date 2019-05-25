@@ -107,6 +107,45 @@
   margin-left: 2%;
 }
 
+/* ********************************
+         FILE INPUT CONTAINER
+*********************************** */
+
+.fileInputContainer {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  height: 80px;
+  width: 80px;
+  margin-right: 20px;
+}
+
+.fileInputImg {
+  height: 80px;
+  width: 80px;
+}
+
+.fileInputDiv {
+  display: inline-block;
+  position: relative;
+  left: -80px;
+  text-align: center;
+  background-color: #aaa;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  min-width: 80px;
+  opacity: 0;
+  z-index: 99;
+  @include u-transition(all .5s ease);
+}
+
+.fileInputDiv:hover {
+  cursor: pointer;
+  opacity: .3;
+  @include u-transition(all .5s ease);
+}
+
 @media screen and (max-width:480px) {
 
   .senha-container > * {

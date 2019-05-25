@@ -10,9 +10,13 @@
 
   <mat-card class="view-card">
     <mat-card-header class="view-card-header">
-      <div>
-        <img mat-card-avatar class="view-header-image" src="{{src}}" alt="">
+      <div class="fileInputContainer">
+        <div (click)="fileInput.click()" class="fileInputImg">
+          <img mat-card-avatar class="view-header-image" src="{{src}}" alt="Avatar">
+        </div>
+        <div (click)="fileInput.click()" class="fileInputDiv">Foto</div>
       </div>
+      <input type="file" (change)="onFindFile($event)" #fileInput hidden>
       <div>
         <mat-card-title>{{userView["nome"]}}</mat-card-title>
         <mat-card-subtitle>{{userView["tipo"]}}</mat-card-subtitle>

@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../../shared/service/data.service';
 import { UserModel } from '../../../../shared/model/user-model';
 import {of} from 'rxjs';
+import {MatDialog} from '@angular/material';
+import {ErrorDialogComponent} from '../../../../shared/component/error-dialog/error-dialog.component';
+import {MsgDialogComponent} from '../../../../shared/component/msg-dialog/msg-dialog.component';
+import {UserphotoModel} from '../../../../shared/model/userphoto-model';
 
 @Component({
   selector: 'app-view',
@@ -16,11 +20,14 @@ export class ViewComponent implements OnInit {
 
   userView = [];
 
-  src = '../../../../../assets/img/avatar-menino-01.png';
+  userPhoto: UserphotoModel[] = [];
+
+  src: string | ArrayBuffer = '../../../../../assets/img/avatar-menino-01.png';
 
   constructor( private dataService: DataService,
                private route: ActivatedRoute,
-               private router: Router) {
+               private router: Router,
+               private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -35,6 +42,7 @@ export class ViewComponent implements OnInit {
             .subscribe(
               dados => {
                 this.onLoadPhoto(dados);
+                this.userPhoto = dados;
               },
               error => {
                 return of();
@@ -80,6 +88,13 @@ export class ViewComponent implements OnInit {
     this.userView.status = status.name;
   }
 
+  onEdit(e) {
+    e.stopPropagation();
+    // noinspection JSIgnoredPromiseFromCall
+    // @ts-ignore
+    this.router.navigate(['/admin/user/editar/', this.userView.id]);
+  }
+
   onLoadPhoto(photo) {
     if (photo) {
       const buffer = window.atob(photo.img);
@@ -89,11 +104,77 @@ export class ViewComponent implements OnInit {
     }
   }
 
-  onEdit(e) {
-    e.stopPropagation();
-    // noinspection JSIgnoredPromiseFromCall
-    // @ts-ignore
-    this.router.navigate(['/admin/user/editar/', this.userView.id]);
+  onFindFile(photo) {
+    const inputPhoto = photo.target.files[0];
+    if ( (inputPhoto.type === 'image/jpeg') || (inputPhoto.type === 'image/png')) {
+      const fileReader = new FileReader();
+
+      fileReader.onloadend = () => {
+        this.onUploadPhoto(fileReader.result, inputPhoto);
+      };
+
+      if (inputPhoto) {
+        fileReader.readAsDataURL(inputPhoto);
+      } else {
+        this.src = '../../../../../assets/img/avatar-menino-01.png';
+      }
+
+    } else {
+      const mens = 'Os arquivos só podem ser "jpg" ou "png"...';
+      this.openDialog(mens, 'Input');
+    }
+
   }
 
+  onUploadPhoto(blob, inputPhoto) {
+
+    this.userPhoto = {
+      // @ts-ignore
+      event: `MRD_User`,
+      // @ts-ignore
+      desc: `Foto do usuário ${this.userView.email}`,
+      name: inputPhoto.name,
+      length: inputPhoto.size,
+      type: inputPhoto.type,
+      // @ts-ignore
+      user_id: this.userView.id,
+      img: btoa(blob)
+    };
+
+    this.dataService.postUserPhoto(this.userPhoto)
+      .subscribe(
+        success => {
+          // @ts-ignore
+          const msg = `Foto do usuário "${this.userView.email}" incluida.`;
+          this.openMsgDialog(msg, 'success', 2500);
+          this.src = blob;
+        },
+        error => {
+          // @ts-ignore
+          const msg = `Erro ao tentar incluir foto do usuário "${this.userView.email}".`;
+          this.openDialog(msg, error.status);
+        });
+
+  }
+
+  openDialog(mens, status) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        title: `ERRO ${status}`,
+        message: mens,
+        type: 'error'
+      }
+    });
+  }
+
+  openMsgDialog(mens, status, timeout?: number) {
+    this.dialog.open(MsgDialogComponent, {
+      data: {
+        title: 'NOVA FOTO',
+        message: mens,
+        type: status,
+        dismissTimeout: timeout
+      }
+    });
+  }
 }
