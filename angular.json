@@ -31,7 +31,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/turnjs/turn.min.js"
+              "node_modules/turnjs/turn.min.js",
+              "src/assets/js/resize.js"
             ],
             "es5BrowserSupport": true
           },

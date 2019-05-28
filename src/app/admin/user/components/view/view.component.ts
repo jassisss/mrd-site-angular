@@ -9,6 +9,8 @@ import {ErrorDialogComponent} from '../../../../shared/component/error-dialog/er
 import {MsgDialogComponent} from '../../../../shared/component/msg-dialog/msg-dialog.component';
 import {UserphotoModel} from '../../../../shared/model/userphoto-model';
 
+declare let resize: any;
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -22,12 +24,19 @@ export class ViewComponent implements OnInit {
 
   userPhoto: UserphotoModel[] = [];
 
+  photoExist = true;
+
   src: string | ArrayBuffer = '../../../../../assets/img/avatar-menino-01.png';
+
+  resizeObj: any;
 
   constructor( private dataService: DataService,
                private route: ActivatedRoute,
                private router: Router,
                private dialog: MatDialog) {
+
+    this.resizeObj = new resize();
+
   }
 
   ngOnInit() {
@@ -41,10 +50,12 @@ export class ViewComponent implements OnInit {
           this.dataService.getUserPhotoByUserId(user.id)
             .subscribe(
               dados => {
+                this.photoExist = true;
                 this.onLoadPhoto(dados);
                 this.userPhoto = dados;
               },
               error => {
+                this.photoExist = false;
                 return of();
               });
           // @ts-ignore
@@ -105,12 +116,21 @@ export class ViewComponent implements OnInit {
   }
 
   onFindFile(photo) {
+
     const inputPhoto = photo.target.files[0];
+
+    console.log(this.photoExist);
+
     if ( (inputPhoto.type === 'image/jpeg') || (inputPhoto.type === 'image/png')) {
+
       const fileReader = new FileReader();
 
       fileReader.onloadend = () => {
-        this.onUploadPhoto(fileReader.result, inputPhoto);
+
+        this.resizeObj.resize(fileReader.result, 200, inputPhoto.type, 'dataURL', (image) => {
+          this.onUploadPhoto(image, inputPhoto);
+        });
+
       };
 
       if (inputPhoto) {
@@ -133,28 +153,48 @@ export class ViewComponent implements OnInit {
       event: `MRD_User`,
       // @ts-ignore
       desc: `Foto do usuário ${this.userView.email}`,
-      name: inputPhoto.name,
-      length: inputPhoto.size,
+      // @ts-ignore
+      name: this.userView.email,
+      length: blob.toString().length,
       type: inputPhoto.type,
       // @ts-ignore
       user_id: this.userView.id,
       img: btoa(blob)
     };
 
-    this.dataService.postUserPhoto(this.userPhoto)
-      .subscribe(
-        success => {
-          // @ts-ignore
-          const msg = `Foto do usuário "${this.userView.email}" incluida.`;
-          this.openMsgDialog(msg, 'success', 2500);
-          this.src = blob;
-        },
-        error => {
-          // @ts-ignore
-          const msg = `Erro ao tentar incluir foto do usuário "${this.userView.email}".`;
-          this.openDialog(msg, error.status);
-        });
-
+    if (this.photoExist) {
+      // @ts-ignore
+      this.dataService.putUserPhoto(this.userView.id, this.userPhoto)
+        .subscribe(
+          success => {
+            // @ts-ignore
+            const msg = `Foto do usuário "${this.userView.email}" foi alterada.`;
+            this.openMsgDialog(msg, 'success', 2500);
+            this.src = blob;
+          },
+          error => {
+            // @ts-ignore
+            const msg = `Erro ao tentar alterar foto do usuário "${this.userView.email}".`;
+            console.log(error);
+            this.openDialog(msg, error.status);
+          });
+    } else {
+      this.photoExist = true;
+      this.dataService.postUserPhoto(this.userPhoto)
+        .subscribe(
+          success => {
+            // @ts-ignore
+            const msg = `Foto do usuário "${this.userView.email}" incluida.`;
+            this.openMsgDialog(msg, 'success', 2500);
+            this.src = blob;
+          },
+          error => {
+            // @ts-ignore
+            const msg = `Erro ao tentar incluir foto do usuário "${this.userView.email}".`;
+            console.log(error);
+            this.openDialog(msg, error.status);
+          });
+    }
   }
 
   openDialog(mens, status) {

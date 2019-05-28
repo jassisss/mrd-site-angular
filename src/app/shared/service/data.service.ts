@@ -90,6 +90,11 @@ export class DataService {
       .pipe(take(1));
   }
 
+  putUserPhoto(id, photo): Observable<UserphotoModel[]> {
+    return this.http.put<UserphotoModel[]>(this.serverUrl + 'userphoto/' + id, photo)
+      .pipe(take(1));
+  }
+
   getProducts(): Observable<ProductModel[]> {
     this.loadingSubject.next(true);
     return this.http.get<ProductModel[]>(this.serverUrl + 'product')
