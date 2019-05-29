@@ -55,7 +55,7 @@
             <p>Status:</p>
           </div>
           <div class="view-detail">
-            <p style="color: green;">{{userView["status"]}}</p>
+            <p [style.color]="userView['status'] === 'Ativo' ? 'green' : 'yellow' ">{{userView["status"]}}</p>
           </div>
         </div>
       </div>

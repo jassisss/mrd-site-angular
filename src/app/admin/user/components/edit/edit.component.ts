@@ -121,13 +121,12 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   onConfirmDelete() {
-    this.dataService.delUser(this.userForm.value.id).subscribe(
+    this.dataService.deleteVirtualUser(this.userForm.value.id).subscribe(
       success => this.onReset(),
       error => {
         const mens = `Erro ao tentar excluir o usuários "${this.userForm.value.email}"`;
         this.openDialog(mens, error.status);
-      },
-      () => console.log('Completou: ')
+      }
     );
   }
   onReset() {

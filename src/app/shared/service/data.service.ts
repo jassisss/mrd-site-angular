@@ -49,6 +49,11 @@ export class DataService {
       .pipe(take(1));
   }
 
+  deleteVirtualUser(id): Observable<UserModel[]> {
+    return this.http.put<UserModel[]>(this.serverUrl + 'userdelete/' + id, id)
+      .pipe(take(1));
+  }
+
   delUser(id): Observable<UserModel[]> {
     return this.http.delete<UserModel[]>(this.serverUrl + 'user/' + id)
       .pipe(take(1));

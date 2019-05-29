@@ -138,13 +138,12 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
   }
 
   onConfirmDelete() {
-        this.dataService.delUser(this.rowId).subscribe(
+        this.dataService.deleteVirtualUser(this.rowId).subscribe(
           success => this.onRefresh(),
           error => {
             const mens = `Erro ao tentar excluir o usuários "${this.rowEmail}"`;
             this.openDialog(mens, error.status);
-          },
-          () => console.log('Completou: ')
+          }
         );
   }
 
