@@ -1,0 +1,26 @@
+@import "shared/shared";
+/* ********************************
+         PRE LOADER STYLE
+*********************************** */
+
+.preloader i {
+  position: absolute;
+  font-size: 56px;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  color: $mrd-color !important;
+  @include u-transform(translate(-50%,-50%));
+  @include u-animate(spin 2200ms linear infinite);
+  z-index: 9999991;
+}
+
+@keyframes spin {
+  0% {
+    @include u-transform(translate(-50%,-50%) rotate(0deg));
+  }
+  100% {
+    @include u-transform(translate(-50%,-50%) rotate(360deg));
+  }
+
+}
