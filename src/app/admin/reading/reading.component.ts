@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as $ from 'jquery';
+declare let $: any;
 
 @Component({
   selector: 'app-reading',
@@ -9,10 +9,25 @@ import * as $ from 'jquery';
 })
 export class ReadingComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    $('.flipbook').turn({gradients: true, acceleration: true});
+
+    // Create the flipbook
+    $('.flipbook').turn({
+      // Width
+      width:922,
+      // Height
+      height:600,
+      // Elevation
+      elevation: 50,
+      // Enable gradients
+      gradients: true,
+      // Auto center this flipbook
+      autoCenter: true
+    });
+
   }
 
 }
