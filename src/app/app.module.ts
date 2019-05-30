@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { DataService } from './shared/service/data.service';
+import { AuthService } from './shared/service/auth.service';
+import { AuthGuard } from './shared/guard/auth.guard';
 import { LoginModule } from './login/login.module';
 import { MainModule } from './main/main.module';
-import { AdminModule } from './admin/admin.module';
 import {
   MatTableModule,
   MatPaginatorModule,
@@ -29,7 +30,6 @@ import {
     SharedModule,
     LoginModule,
     MainModule,
-    AdminModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -38,7 +38,9 @@ import {
     MatInputModule
   ],
   providers: [
-    DataService
+    DataService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

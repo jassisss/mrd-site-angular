@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AuthService} from '../../shared/service/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -16,8 +18,11 @@ export class LoginFormComponent implements OnInit {
   withError = false;
   emailClassError: string = null;
   passwordClassError: string = null;
+  authResult = false;
 
-  constructor( private formBuilder: FormBuilder) { }
+  constructor( private formBuilder: FormBuilder,
+               private router: Router,
+               private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -64,12 +69,19 @@ export class LoginFormComponent implements OnInit {
     this.hasError.emit({ hasError: this.withError });
 
     if (!this.withError) {
+      this.authResult = this.authService.onLogin(this.loginForm.value);
       this.onReset();
-      console.log(this.loginForm.controls.loginEmail);
       this.emailClassError = null;
       this.passwordClassError = null;
-      this.withError = false;
-      this.erroMessage = '';
+      if (this.authResult) {
+        this.withError = false;
+        this.erroMessage = '';
+        this.router.navigate(['/admin']);
+      } else {
+        this.withError = true;
+        this.erroMessage = 'E-mail ou senha incorretos.';
+        this.hasError.emit({ hasError: this.withError });
+      }
     }
 
   }

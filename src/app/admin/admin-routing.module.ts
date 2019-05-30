@@ -12,7 +12,7 @@ import { ViewComponent } from './user/components/view/view.component';
 import { EditComponent } from './user/components/edit/edit.component';
 
 const routesAdmin: Routes = [
-  {path: 'admin', component: AdminComponent, children: [
+  {path: '', component: AdminComponent, children: [
       {path: 'user', component: UserComponent},
       {path: 'user/novo', component: FormComponent},
       {path: 'user/editar/:id', component: EditComponent},
