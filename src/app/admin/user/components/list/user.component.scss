@@ -212,48 +212,6 @@ td.mat-cell {
   @include u-transition(all .6s ease-in-out);
 }
 
-/* ********************************
-         DEEP MATERIAL
-*********************************** */
-::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
-  background-color: $mrd-color!important;   /*inner circle color change*/
-}
-
-::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: $mrd-color!important; /*outer ring color change*/
-}
-
-::ng-deep.mat-radio-button.mat-accent .mat-radio-outer-circle {
-  border-color: $mrd-color!important; /*outer ring color change*/
-}
-
-::ng-deep .mat-select-panel {
-  background-color: $mrd-color;
-  font-size: 2em;
-}
-
-::ng-deep .mat-select-value {
-  font-family: $mrd-font-family;
-  font-size: 1.4em;
-  color: $mrd-color;
-}
-
-::ng-deep .mat-select-arrow {
-  color: $mrd-color;
-}
-
-::ng-deep .mat-expansion-indicator::after, .mat-expansion-panel-header-description {
-  color: $mrd-color;
-}
-
-::ng-deep .mat-progress-bar-fill::after {
-  background-color: $mrd-color;
-}
-
-::ng-deep .mat-progress-bar-buffer {
-  background: $mrd-bg-color;
-}
-
 
 /* ********************************
          SCROLL TO TOP

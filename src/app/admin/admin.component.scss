@@ -83,3 +83,51 @@
   min-height: 100vh;
 }
 
+
+/* ********************************
+         USER MENU
+*********************************** */
+.user-card {
+  display: flex;
+  color: $mrd-color;
+  background-color: $mrd-bg-color-nav;
+  flex-direction: column;
+  align-content: center;
+}
+
+.user-card-header {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+.user-header-image {
+  margin: 10px auto;
+  width: 60px;
+  height: 60px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+::ng-deep .mat-menu-panel {
+  min-width: 200px;
+  color: $mrd-color !important;
+  background-color: $mrd-bg-color;
+}
+
+::ng-deep .mat-menu-item {
+  color: $mrd-color !important;
+  min-width: 200px;
+  padding-left: 3%;
+  font-size: 1.2em;
+}
+
+::ng-deep .mat-card-subtitle {
+  color: $mrd-color !important;
+}

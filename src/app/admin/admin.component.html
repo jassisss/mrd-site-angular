@@ -11,6 +11,25 @@
     <img src="../../assets/img/logo-100x100.png" alt=""
          [ngClass]="(isHandset$ | async) ? 'admin-logo-toolbar-mini' : 'admin-logo-toolbar'">
   </span>
+  <div class="fill"></div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <img mat-card-avatar class="user-avatar" src="{{src}}" alt="Avatar">
+  </button>
+  <mat-menu #menu="matMenu" class="user-menu">
+    <button mat-menu-item>
+      <div>{{userAuth.name}}</div>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item disabled>
+      <i class="far fa-address-card"></i>
+      <span>&nbsp;&nbsp;&nbsp;Perfil</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="onLogoff()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>&nbsp;&nbsp;&nbsp;Sair</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>
 <!--suppress ALL -->
 <mat-sidenav-container class="sidenav-container">
@@ -19,6 +38,14 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="!(isHandset$ | async)">
+
+    <mat-card class="user-card">
+      <mat-card-header class="user-card-header">
+        <img mat-card-avatar class="user-header-image" src="{{src}}" alt="Avatar">
+        <mat-card-title>{{userAuth.name}}</mat-card-title>
+        <mat-card-subtitle>{{userAuth.typeName}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
 
     <mat-nav-list>
 

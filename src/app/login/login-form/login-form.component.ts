@@ -1,7 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {AuthService} from '../../shared/service/auth.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../shared/service/auth.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,7 +19,6 @@ export class LoginFormComponent implements OnInit {
   withError = false;
   emailClassError: string = null;
   passwordClassError: string = null;
-  authResult = false;
 
   constructor( private formBuilder: FormBuilder,
                private router: Router,
@@ -27,16 +27,16 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.formBuilder.group({
-      loginEmail: [null, [Validators.required, Validators.email]],
-      loginPassword: [null, Validators.required]
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, Validators.required]
     });
 
   }
 
   onSubmit() {
 
-    const lEmail = this.loginForm.get('loginEmail');
-    const lPassword = this.loginForm.get('loginPassword');
+    const lEmail = this.loginForm.get('email');
+    const lPassword = this.loginForm.get('password');
 
     this.withError = true;
     this.emailClassError = null;
@@ -57,7 +57,7 @@ export class LoginFormComponent implements OnInit {
       }
     }
 
-    if (!lPassword.touched || !lPassword.value) {
+    if (!lPassword.value) {
       this.erroMessage = 'A senha deve ser preenchida';
       this.passwordClassError = 'with-error';
       if (this.withError) {
@@ -69,19 +69,28 @@ export class LoginFormComponent implements OnInit {
     this.hasError.emit({ hasError: this.withError });
 
     if (!this.withError) {
-      this.authResult = this.authService.onLogin(this.loginForm.value);
+
+      const login$ = this.authService.onLogin(this.loginForm.value);
+
+      login$.subscribe(
+        dados => {
+          this.authService.setUserAuth(dados, true);
+          this.withError = false;
+          this.erroMessage = '';
+          this.router.navigate(['/admin']);
+        },
+        error1 => {
+          this.authService.setUserAuth(null, false);
+          this.withError = true;
+          this.erroMessage = 'E-mail ou senha incorretos.';
+          this.hasError.emit({ hasError: this.withError});
+        }
+      );
+
       this.onReset();
       this.emailClassError = null;
       this.passwordClassError = null;
-      if (this.authResult) {
-        this.withError = false;
-        this.erroMessage = '';
-        this.router.navigate(['/admin']);
-      } else {
-        this.withError = true;
-        this.erroMessage = 'E-mail ou senha incorretos.';
-        this.hasError.emit({ hasError: this.withError });
-      }
+
     }
 
   }
@@ -93,11 +102,11 @@ export class LoginFormComponent implements OnInit {
   clearInput() {
     if (this.emailClassError != null) {
       this.emailClassError = null;
-      this.loginForm.get('loginEmail').reset();
+      this.loginForm.get('email').reset();
     }
     if (this.passwordClassError != null) {
       this.passwordClassError = null;
-      this.loginForm.get('loginPassword').reset();
+      this.loginForm.get('password').reset();
     }
 
     this.withError = false;

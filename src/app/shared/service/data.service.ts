@@ -7,7 +7,8 @@ import { UserModel } from '../model/user-model';
 import { UserstatusModel } from '../model/userstatus-model';
 import { UsertypeModel } from '../model/usertype-model';
 import { ProductModel } from '../model/product-model';
-import {UserphotoModel} from '../model/userphoto-model';
+import { UserphotoModel } from '../model/userphoto-model';
+import { UserloginModel } from '../model/userlogin-model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,16 @@ export class DataService {
 
   postUser(user): Observable<UserModel[]> {
     return this.http.post<UserModel[]>(this.serverUrl + 'user', user)
+      .pipe(take(1));
+  }
+
+  postUserLogin(user): Observable<UserloginModel> {
+    return this.http.post<UserloginModel>(this.serverUrl + 'login', user)
+      .pipe(take(1));
+  }
+
+  postUserLoginPhoto(user): Observable<UserloginModel> {
+    return this.http.post<UserloginModel>(this.serverUrl + 'loginp', user)
       .pipe(take(1));
   }
 

@@ -62,7 +62,6 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
     this.nextPageLabel = '  próxima';
     this.previousPageLabel = ' anterior';
     this.itemsPerPageLabel = 'número de páginas';
-
   }
 
   ngOnInit() {
