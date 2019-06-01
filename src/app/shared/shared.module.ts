@@ -9,6 +9,7 @@ import { ErrorDialogComponent } from './component/error-dialog/error-dialog.comp
 import { ErrorMsgComponent } from './component/error-msg/error-msg.component';
 import { MsgDialogComponent } from './component/msg-dialog/msg-dialog.component';
 import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
+import { PasswordDialogComponent } from './component/password-dialog/password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialo
     ErrorDialogComponent,
     ErrorMsgComponent,
     MsgDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    PasswordDialogComponent
   ],
   imports: [
     CommonModule,

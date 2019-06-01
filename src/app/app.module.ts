@@ -17,6 +17,8 @@ import {
   MatSortModule,
   MatFormFieldModule,
   MatInputModule} from '@angular/material';
+import { LyThemeModule, LY_THEME } from '@alyle/ui';
+import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
 
 @NgModule({
 
@@ -35,12 +37,15 @@ import {
     MatSortModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    LyThemeModule.setTheme('minima-dark')
   ],
   providers: [
     DataService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    { provide: LY_THEME, useClass: MinimaLight, multi: true },
+    { provide: LY_THEME, useClass: MinimaDark, multi: true }
   ],
   bootstrap: [AppComponent]
 })
