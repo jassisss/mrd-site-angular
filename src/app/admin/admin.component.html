@@ -20,9 +20,13 @@
       <div>{{userAuth.name}}</div>
     </button>
     <mat-divider></mat-divider>
-    <button mat-menu-item disabled>
+    <button mat-menu-item>
       <i class="far fa-address-card"></i>
       <span>&nbsp;&nbsp;&nbsp;Perfil</span>
+    </button>
+    <button mat-menu-item (click)="onChangePassword()">
+      <i class="fa fa-lock"></i>
+      <span>&nbsp;&nbsp;&nbsp;Alterar senha</span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="onLogoff()">
@@ -92,5 +96,10 @@
     </div>
 
   </mat-sidenav-content>
-
+  <ng-template ly-snack-bar
+               #sb="lySnackBar"
+               (afterDismissed)="afterDismissed($event)"
+                class="admin-snak-bar">
+    <span>{{newPasswordMessage}}</span>
+  </ng-template>
 </mat-sidenav-container>

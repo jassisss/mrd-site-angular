@@ -9,6 +9,7 @@ import { UsertypeModel } from '../model/usertype-model';
 import { ProductModel } from '../model/product-model';
 import { UserphotoModel } from '../model/userphoto-model';
 import { UserloginModel } from '../model/userlogin-model';
+import {NewpasswordModel} from '../model/newpassword-model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,11 @@ export class DataService {
 
   postUserLogin(user): Observable<UserloginModel> {
     return this.http.post<UserloginModel>(this.serverUrl + 'login', user)
+      .pipe(take(1));
+  }
+
+  postNewPassword(password): Observable<NewpasswordModel> {
+    return this.http.post<NewpasswordModel>(this.serverUrl + 'password', password)
       .pipe(take(1));
   }
 

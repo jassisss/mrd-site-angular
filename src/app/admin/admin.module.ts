@@ -33,6 +33,7 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import { ReadingComponent } from './reading/reading.component';
 import { UserModule } from './user/user.module';
+import {LySnackBarModule} from '@alyle/ui/snack-bar';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { UserModule } from './user/user.module';
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    LySnackBarModule
   ],
   exports: [
     MatToolbarModule,

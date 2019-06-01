@@ -43,16 +43,15 @@
 
       </mat-card-content>
       <mat-card-actions class="form-table-action">
-        <mat-divider [inset]="true"></mat-divider>
         <button (click)="onDelete($event)" mat-mini-fab matTooltip="Excluir usuário"
                 aria-label="Excluir usuário">
           <i class="fas fa-user-minus"></i>
         </button>
+        <div class="fill"></div>
         <button (click)="onSubmit()" type="submit" mat-mini-fab matTooltip="Salvar informações do usuário"
                 aria-label="Salvar informações do usuário">
           <i class="fas fa-check"></i>
         </button>
-        <div class="fill"></div>
         <button (click)="onReset()" mat-mini-fab matTooltip="Cancelar edição" aria-label="Cancelar edição">
           <i class="fas fa-undo"></i>
         </button>

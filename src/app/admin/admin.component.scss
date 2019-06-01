@@ -83,7 +83,15 @@
   min-height: 100vh;
 }
 
+.admin-snak-bar {
+  background-color: $mrd-bg-color-nav !important;
+  color: $mrd-color !important;
+}
 
+::ng-deep .y-root-i2 {
+  background-color: $mrd-bg-color-nav !important;
+  color: $mrd-color !important;
+}
 /* ********************************
          USER MENU
 *********************************** */

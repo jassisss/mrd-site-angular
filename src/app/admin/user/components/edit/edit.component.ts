@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -129,6 +128,7 @@ export class EditComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   onReset() {
 
     this.router.navigate(['/admin/user/']);
