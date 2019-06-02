@@ -56,6 +56,16 @@ export class DataService {
       .pipe(take(1));
   }
 
+  postNewPasswordReset(password): Observable<NewpasswordModel> {
+    return this.http.post<NewpasswordModel>(this.serverUrl + 'forgotpassword', password)
+      .pipe(take(1));
+  }
+
+  postEmailResetPassword(email): Observable<NewpasswordModel> {
+    return this.http.post<NewpasswordModel>(this.serverUrl + 'emailresetpassword', email)
+      .pipe(take(1));
+  }
+
   postUserLoginPhoto(user): Observable<UserloginModel> {
     return this.http.post<UserloginModel>(this.serverUrl + 'loginp', user)
       .pipe(take(1));

@@ -10,6 +10,7 @@ import { Erro404Component } from '../shared/component/erro404/erro404.component'
 import { FormComponent } from './user/components/form/form.component';
 import { ViewComponent } from './user/components/view/view.component';
 import { EditComponent } from './user/components/edit/edit.component';
+import { PasswordResetComponent } from '../shared/component/password-reset/password-reset.component';
 
 const routesAdmin: Routes = [
   {path: '', component: AdminComponent, children: [
@@ -19,6 +20,7 @@ const routesAdmin: Routes = [
       {path: 'user/view/:id', component: ViewComponent},
       {path: 'controle', component: ControleComponent},
       {path: 'product', component: ProductComponent},
+      {path: 'password', component: PasswordResetComponent},
       {path: 'reading', component: ReadingComponent}
     ]},
   {path: '**', component: Erro404Component}

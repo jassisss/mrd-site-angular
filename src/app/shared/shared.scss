@@ -152,3 +152,8 @@ $mrd-font-family: "Open Sans", Roboto, sans-serif;
 ::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
   color: $mrd-color-light;
 }
+
+::ng-deep .y-root-i2 {
+  background-color: $mrd-bg-color-nav !important;
+  color: $mrd-color !important;
+}

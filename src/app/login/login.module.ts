@@ -6,6 +6,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SharedModule } from '../shared/shared.module';
+import {LySnackBarModule} from '@alyle/ui/snack-bar';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     LoginRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    LySnackBarModule
   ],
   exports: [
     LoginComponent

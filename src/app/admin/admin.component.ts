@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { UserloginModel } from '../shared/model/userlogin-model';
@@ -10,7 +10,7 @@ import { AuthService } from '../shared/service/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { PasswordDialogComponent } from '../shared/component/password-dialog/password-dialog.component';
-import {LySnackBarDismiss} from '@alyle/ui/snack-bar';
+import { LySnackBarDismiss } from '@alyle/ui/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -26,8 +26,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   newPassword: NewpasswordModel = {
     email: '',
     password: '',
-    newpassword: ''
+    newpassword: '',
+    password_reset_token: 'ALTERAR SENHA'
   };
+
+  subs: Subscription[] = [];
 
   newPasswordMessage: string;
 
@@ -61,8 +64,9 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
 
+    this.subs.forEach(s =>  s.unsubscribe());
+
     this.authService.setUserAuth(null, false);
-    this.router.navigate(['/login']);
 
   }
 
@@ -96,6 +100,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(PasswordDialogComponent, {
       data: {
         title: 'ALTERAR SENHA',
+        email: this.userAuth.email,
+        password_reset_token: 'ALTERARSENHA',
         type: status
       }
     });

@@ -14,7 +14,7 @@
             placeholder="Senha">
   </span>
 
-  <a class="lost-pass" href="#" title="Senha perdida">Senha perdida</a>
+  <a class="lost-pass" (click)="onLostPassword()" matTooltip="Senha perdida">Senha perdida</a>
 
   <input type="submit" class="button mat-ripple" name="submit" id="submit" value="Entrar" tabindex="4">
   <input type="hidden" name="is_custom_login" value="1">
@@ -22,3 +22,10 @@
   <!--  Só para testes
   <form-debug [form]="loginForm"></form-debug> -->
 </form>
+
+<ng-template ly-snack-bar
+             #sb="lySnackBar"
+             (afterDismissed)="afterDismissed($event)"
+             class="admin-snak-bar">
+  <span>{{newPasswordMessage}}</span>
+</ng-template>

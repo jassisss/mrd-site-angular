@@ -5,6 +5,8 @@ import { CustomValidators } from 'ng2-validation';
 
 export interface DialogData {
   title: string;
+  email: string;
+  password_reset_token: string;
   type: string;
 }
 
@@ -26,6 +28,8 @@ export class PasswordDialogComponent implements OnInit {
   ngOnInit() {
 
     this.userForm = this.formBuilder.group({
+      email: this.data.email,
+      password_reset_token: this.data.password_reset_token,
       password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(25)]],
       newpassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(25)]],
       confirmpassword: [null, [Validators.required]]
@@ -38,8 +42,14 @@ export class PasswordDialogComponent implements OnInit {
     return (!this.userForm.get(field).valid && this.userForm.get(field).touched ) ?  'red' : '#eac220';
   }
 
-  onSubmit() {
-    console.log(this.userForm.value);
+  isReset() {
+    if (this.data.password_reset_token === 'ALTERARSENHA') {
+      return true;
+    } else {
+      this.userForm.get('password').setValue('moke');
+      this.userForm.get('password').setValidators(null);
+      return false;
+    }
   }
 
   onNoClick(): void {

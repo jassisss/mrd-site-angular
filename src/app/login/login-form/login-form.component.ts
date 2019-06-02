@@ -1,8 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../shared/service/auth.service';
+import {DataService} from '../../shared/service/data.service';
+import {LySnackBarDismiss} from '@alyle/ui/snack-bar';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -12,6 +14,8 @@ import { AuthService } from '../../shared/service/auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  @ViewChild('sb') mySnackBar;
+
   @Output() hasError = new EventEmitter();
 
   loginForm: FormGroup;
@@ -20,9 +24,13 @@ export class LoginFormComponent implements OnInit {
   emailClassError: string = null;
   passwordClassError: string = null;
 
+  newPasswordMessage: string;
+
+
   constructor( private formBuilder: FormBuilder,
                private router: Router,
-               private authService: AuthService) { }
+               private authService: AuthService,
+               private dataService: DataService) { }
 
   ngOnInit() {
 
@@ -114,4 +122,23 @@ export class LoginFormComponent implements OnInit {
 
   }
 
+  afterDismissed(e: LySnackBarDismiss) {
+  }
+
+  onLostPassword() {
+
+    const lostEmail$ = this.dataService.postEmailResetPassword(this.loginForm.value);
+
+    lostEmail$.subscribe(
+      success => {
+        this.newPasswordMessage = `E-mail enviado para ${success.email}`;
+        this.mySnackBar.open();
+      },
+      error1 => {
+        this.newPasswordMessage = `Erro - ${error1.error.message}.`;
+        this.mySnackBar.open();
+      }
+    );
+
+  }
 }

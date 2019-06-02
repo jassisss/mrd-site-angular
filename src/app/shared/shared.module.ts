@@ -27,6 +27,7 @@ import { MsgDialogComponent } from './component/msg-dialog/msg-dialog.component'
 import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
 import { PasswordDialogComponent } from './component/password-dialog/password-dialog.component';
 import {LySnackBarModule} from '@alyle/ui/snack-bar';
+import { PasswordResetComponent } from './component/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {LySnackBarModule} from '@alyle/ui/snack-bar';
     ErrorMsgComponent,
     MsgDialogComponent,
     ConfirmDialogComponent,
-    PasswordDialogComponent
+    PasswordDialogComponent,
+    PasswordResetComponent
   ],
   imports: [
     CommonModule,
@@ -65,13 +67,15 @@ import {LySnackBarModule} from '@alyle/ui/snack-bar';
     ErrorMsgComponent,
     MsgDialogComponent,
     ConfirmDialogComponent,
-    PasswordDialogComponent
+    PasswordDialogComponent,
+    PasswordResetComponent
   ],
   entryComponents: [
     ErrorDialogComponent,
     MsgDialogComponent,
     ConfirmDialogComponent,
-    PasswordDialogComponent
+    PasswordDialogComponent,
+    PasswordResetComponent
   ]
 })
 export class SharedModule { }
