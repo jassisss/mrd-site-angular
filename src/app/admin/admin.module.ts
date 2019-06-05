@@ -34,13 +34,15 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { ReadingComponent } from './reading/reading.component';
 import { UserModule } from './user/user.module';
 import {LySnackBarModule} from '@alyle/ui/snack-bar';
+import { HtmlComponent } from './html/html.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     ControleComponent,
     ProductComponent,
-    ReadingComponent
+    ReadingComponent,
+    HtmlComponent
   ],
   imports: [
     CommonModule,

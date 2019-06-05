@@ -33,13 +33,15 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
                private router: Router,
                private dataService: DataService,
                private dialog: MatDialog,
-               private location: Location) { }
-
-  ngOnInit() {
+               private location: Location) {
     // tslint:disable-next-line:no-unused-expression
     this.newPassword.email = this.route.snapshot.queryParamMap.get('email');
     this.newPassword.password_reset_token = this.route.snapshot.queryParamMap.get('token');
     this.onChangePassword(this.newPassword.email, this.newPassword.password_reset_token);
+
+  }
+
+  ngOnInit() {
   }
 
   afterDismissed(e: LySnackBarDismiss) {
@@ -59,7 +61,7 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
           }, 2000);
         },
         error1 => {
-          this.newPasswordMessage = `Erro - senha não alterada.`;
+          this.newPasswordMessage = `Senha não alterada - ${error1.error.message}`;
           this.mySnackBar.open();
           setTimeout(() => {
             this.location.back();
@@ -73,8 +75,6 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
     this.newPassword.password_reset_token = data.password_reset_token;
     this.newPassword.password = data.password;
     this.newPassword.newpassword = data.newpassword;
-
-    console.log(this.newPassword);
 
     this.subs.push(this.dataService.postNewPasswordReset(this.newPassword)
       .subscribe(
@@ -101,11 +101,11 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
     this.openConfirmDialog(title, email, token, status);
   }
 
-  openConfirmDialog(title, email, token, status) {
+  openConfirmDialog(title: string, email, token, status) {
     const dialogRef = this.dialog.open(PasswordDialogComponent, {
       data: {
-        title: title,
-        email: email,
+        title: `${title}`,
+        email: `${email}`,
         password_reset_token: token,
         type: status
       }
@@ -117,6 +117,12 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
           this.onNewPassword(result);
         } else {
           this.onNewPasswordReset(result);
+        }
+      } else {
+        if (this.newPassword.password_reset_token === 'ALTERARSENHA') {
+          this.location.back();
+        } else {
+          this.router.navigate(['/login']);
         }
       }
     });

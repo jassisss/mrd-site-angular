@@ -119,8 +119,6 @@ export class ViewComponent implements OnInit {
 
     const inputPhoto = photo.target.files[0];
 
-    console.log(this.photoExist);
-
     if ( (inputPhoto.type === 'image/jpeg') || (inputPhoto.type === 'image/png')) {
 
       const fileReader = new FileReader();

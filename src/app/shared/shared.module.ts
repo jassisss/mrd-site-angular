@@ -74,8 +74,7 @@ import { PasswordResetComponent } from './component/password-reset/password-rese
     ErrorDialogComponent,
     MsgDialogComponent,
     ConfirmDialogComponent,
-    PasswordDialogComponent,
-    PasswordResetComponent
+    PasswordDialogComponent
   ]
 })
 export class SharedModule { }

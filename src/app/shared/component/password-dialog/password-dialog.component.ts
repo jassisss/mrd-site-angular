@@ -20,6 +20,8 @@ export class PasswordDialogComponent implements OnInit {
   userForm: FormGroup;
 
   hide = true;
+  hide1 = true;
+  hide2 = true;
 
   constructor(public dialogRef: MatDialogRef<PasswordDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
