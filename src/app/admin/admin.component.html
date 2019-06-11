@@ -21,12 +21,12 @@
     </button>
     <mat-divider></mat-divider>
     <a type="button" mat-menu-item [routerLink]="['password']" [queryParams]="{email: userAuth.email, token: 'ALTERARSENHA'}">
-      <i class="far fa-address-card"></i>
-      <span>&nbsp;&nbsp;&nbsp;Perfil</span>
-    </a>
-    <button mat-menu-item (click)="onChangePassword()">
       <i class="fa fa-lock"></i>
       <span>&nbsp;&nbsp;&nbsp;Alterar senha</span>
+    </a>
+    <button mat-menu-item>
+      <i class="fa fa-address-card"></i>
+      <span>&nbsp;&nbsp;&nbsp;Perfil</span>
     </button>
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="onLogoff()">

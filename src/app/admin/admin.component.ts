@@ -91,25 +91,4 @@ export class AdminComponent implements OnInit, OnDestroy {
   afterDismissed(e: LySnackBarDismiss) {
   }
 
-  onChangePassword() {
-    const status = 'warn';
-    this.openConfirmDialog(status);
-  }
-
-  openConfirmDialog(status) {
-    const dialogRef = this.dialog.open(PasswordDialogComponent, {
-      data: {
-        title: 'ALTERAR SENHA',
-        email: this.userAuth.email,
-        password_reset_token: 'ALTERARSENHA',
-        type: status
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.onNewPassword(result);
-      }
-    });
-  }
 }
