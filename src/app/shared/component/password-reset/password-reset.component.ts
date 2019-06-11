@@ -97,7 +97,7 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
 
   onChangePassword(email, token) {
     const status = 'warn';
-    const title = (token === 'ALTERARSENHA') ? 'ALTERAR SENHA' : 'RESETAR SENHA';
+    const title = (token === 'ALTERARSENHA') ? 'ALTERAR SENHA' : 'REDEFINIR SENHA';
     this.openConfirmDialog(title, email, token, status);
   }
 
