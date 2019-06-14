@@ -109,8 +109,9 @@ export class UserComponent extends MatPaginatorIntl implements OnInit, OnDestroy
         error => {
           this.error$.next(true);
           this.dataSource = null;
-          const mens = 'Erro ao carregar tabela de usuários. Tente mais tarde...';
-          this.openDialog(mens, '304');
+          // const mens = 'Erro ao carregar tabela de usuários. Tente mais tarde...';
+          const mens = `Erro - ${error.error.message}.`;
+          this.openDialog(mens, error.error.code);
           return of();
         }));
 

@@ -1,10 +1,10 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../shared/service/auth.service';
-import {DataService} from '../../shared/service/data.service';
-import {LySnackBarDismiss} from '@alyle/ui/snack-bar';
+import { DataService } from '../../shared/service/data.service';
+import { LySnackBarDismiss } from '@alyle/ui/snack-bar';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -83,6 +83,7 @@ export class LoginFormComponent implements OnInit {
       login$.subscribe(
         dados => {
           this.authService.setUserAuth(dados, true);
+          localStorage.setItem('currentUser', JSON.stringify(dados));
           this.withError = false;
           this.erroMessage = '';
           this.router.navigate(['/admin']);

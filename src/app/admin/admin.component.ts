@@ -59,6 +59,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.authService.setUserAuth(null, false);
     this.router.navigate(['/login']);
+    localStorage.removeItem('currentUser');
 
   }
 
@@ -67,6 +68,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subs.forEach(s =>  s.unsubscribe());
 
     this.authService.setUserAuth(null, false);
+
+    localStorage.removeItem('currentUser');
 
   }
 
